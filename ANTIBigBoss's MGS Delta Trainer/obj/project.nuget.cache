@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ag+E+x4N6no=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss's MGS Delta Trainer\\ANTIBigBoss's MGS Delta Trainer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mitch\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Mitch\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

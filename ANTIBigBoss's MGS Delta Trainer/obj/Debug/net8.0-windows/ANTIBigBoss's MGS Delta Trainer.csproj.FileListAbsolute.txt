@@ -1,0 +1,20 @@
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.exe
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.dll.config
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.deps.json
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.runtimeconfig.json
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.dll
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.pdb
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.CamoForm.resources
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.DebugForm.resources
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.ItemForm.resources
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.MainMenuForm.resources
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.Properties.Resources.resources
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.WeaponForm.resources
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.csproj.GenerateResource.cache
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.csproj.CoreCompileInputs.cache
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.dll
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\refint\ANTIBigBoss's MGS Delta Trainer.dll
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.pdb
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.genruntimeconfig.cache
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\net8.0-windows\ref\ANTIBigBoss's MGS Delta Trainer.dll

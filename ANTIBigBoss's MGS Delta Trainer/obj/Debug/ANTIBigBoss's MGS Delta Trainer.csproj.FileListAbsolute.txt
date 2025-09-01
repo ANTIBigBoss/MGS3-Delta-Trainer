@@ -1,0 +1,10 @@
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Debug\ANTIBigBoss's MGS Delta Trainer.exe.config
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Debug\ANTIBigBoss's MGS Delta Trainer.exe
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Debug\ANTIBigBoss's MGS Delta Trainer.pdb
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\ANTIBigBoss's MGS Delta Trainer.csproj.AssemblyReference.cache
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\ANTIBigBoss_s_MGS_Delta_Trainer.Properties.Resources.resources
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\ANTIBigBoss's MGS Delta Trainer.csproj.GenerateResource.cache
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\ANTIBigBoss's MGS Delta Trainer.csproj.CoreCompileInputs.cache
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\ANTIBigBoss's MGS Delta Trainer.exe
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\ANTIBigBoss's MGS Delta Trainer.pdb
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Debug\ANTIBigBoss's MGS Delta Trainer.exe.config

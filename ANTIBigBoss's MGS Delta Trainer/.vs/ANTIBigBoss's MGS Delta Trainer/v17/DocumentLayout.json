@@ -1,0 +1,278 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\camoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:camoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\itemform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:itemform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\weaponform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:weaponform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\camoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:camoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\weaponform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:weaponform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\itemform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:itemform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\weaponitemmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:weaponitemmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\itemweaponmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:itemweaponmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\antibigboss\u0027s mgs delta trainer.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:antibigboss\u0027s mgs delta trainer.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\aobmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:aobmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\loggingmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:loggingmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\memorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:memorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|c:\\users\\mitch\\source\\repos\\antibigboss\u0027s mgs delta trainer\\custommessageboxmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821A3BA3-6BA0-4E97-B1BE-669BE833FE4F}|ANTIBigBoss\u0027s MGS Delta Trainer.csproj|solutionrelative:custommessageboxmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 229,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainMenuForm.cs",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\MainMenuForm.cs",
+              "RelativeDocumentMoniker": "MainMenuForm.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\MainMenuForm.cs",
+              "RelativeToolTip": "MainMenuForm.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAmwBMAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:47:45.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CamoForm.cs",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\CamoForm.cs",
+              "RelativeDocumentMoniker": "CamoForm.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\CamoForm.cs",
+              "RelativeToolTip": "CamoForm.cs",
+              "ViewState": "AgIAACQCAAAAAAAAAAAlwDUCAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-31T20:10:39.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "WeaponForm.cs",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\WeaponForm.cs",
+              "RelativeDocumentMoniker": "WeaponForm.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\WeaponForm.cs",
+              "RelativeToolTip": "WeaponForm.cs",
+              "ViewState": "AgIAAGwEAAAAAAAAAAAEwHEEAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T20:40:21.92Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WeaponForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\WeaponForm.cs",
+              "RelativeDocumentMoniker": "WeaponForm.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\WeaponForm.cs [Design]",
+              "RelativeToolTip": "WeaponForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T19:13:47.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainMenuForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\MainMenuForm.cs",
+              "RelativeDocumentMoniker": "MainMenuForm.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\MainMenuForm.cs [Design]",
+              "RelativeToolTip": "MainMenuForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T20:40:03.325Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ItemForm.cs",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\ItemForm.cs",
+              "RelativeDocumentMoniker": "ItemForm.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\ItemForm.cs",
+              "RelativeToolTip": "ItemForm.cs",
+              "ViewState": "AgIAACQBAAAAAAAAAAAiwDIBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-31T15:58:39.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ItemForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\ItemForm.cs",
+              "RelativeDocumentMoniker": "ItemForm.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\ItemForm.cs [Design]",
+              "RelativeToolTip": "ItemForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T20:39:59.5Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CamoForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\CamoForm.cs",
+              "RelativeDocumentMoniker": "CamoForm.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\CamoForm.cs [Design]",
+              "RelativeToolTip": "CamoForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T20:39:54.293Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ANTIBigBoss\u0027s MGS Delta Trainer",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\ANTIBigBoss\u0027s MGS Delta Trainer.csproj",
+              "RelativeDocumentMoniker": "ANTIBigBoss\u0027s MGS Delta Trainer.csproj",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\ANTIBigBoss\u0027s MGS Delta Trainer.csproj",
+              "RelativeToolTip": "ANTIBigBoss\u0027s MGS Delta Trainer.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-30T20:38:45.168Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Constants.cs",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\Constants.cs",
+              "RelativeDocumentMoniker": "Constants.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\Constants.cs",
+              "RelativeToolTip": "Constants.cs",
+              "ViewState": "AgIAAPgAAAAAAAAAAADwvwIBAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T20:03:59.643Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "WeaponItemManager.cs",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\WeaponItemManager.cs",
+              "RelativeDocumentMoniker": "WeaponItemManager.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\WeaponItemManager.cs",
+              "RelativeToolTip": "WeaponItemManager.cs",
+              "ViewState": "AgIAAOUAAAAAAAAAAAAAAP4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T19:26:22.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AobManager.cs",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\AobManager.cs",
+              "RelativeDocumentMoniker": "AobManager.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\AobManager.cs",
+              "RelativeToolTip": "AobManager.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAowF4AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T13:16:03.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ItemWeaponManager.cs",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\ItemWeaponManager.cs",
+              "RelativeDocumentMoniker": "ItemWeaponManager.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\ItemWeaponManager.cs",
+              "RelativeToolTip": "ItemWeaponManager.cs",
+              "ViewState": "AgIAAEsBAAAAAAAAAAAAAAQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T18:40:50.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LoggingManager.cs",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\LoggingManager.cs",
+              "RelativeDocumentMoniker": "LoggingManager.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\LoggingManager.cs",
+              "RelativeToolTip": "LoggingManager.cs",
+              "ViewState": "AgIAAPgAAAAAAAAAAAAuwAwAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T18:39:59.904Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CustomMessageBoxManager.cs",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\CustomMessageBoxManager.cs",
+              "RelativeDocumentMoniker": "CustomMessageBoxManager.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\CustomMessageBoxManager.cs",
+              "RelativeToolTip": "CustomMessageBoxManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T18:29:57.363Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MemoryManager.cs",
+              "DocumentMoniker": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\MemoryManager.cs",
+              "RelativeDocumentMoniker": "MemoryManager.cs",
+              "ToolTip": "C:\\Users\\Mitch\\source\\repos\\ANTIBigBoss\u0027s MGS Delta Trainer\\MemoryManager.cs",
+              "RelativeToolTip": "MemoryManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T18:29:23.931Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
