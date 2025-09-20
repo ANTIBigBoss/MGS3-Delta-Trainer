@@ -5,7 +5,6 @@ C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Release\net8.0-w
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Release\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.dll
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\bin\Release\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.pdb
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.CamoForm.resources
-C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.DebugForm.resources
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.ItemForm.resources
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.MainMenuForm.resources
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.Properties.Resources.resources
@@ -18,3 +17,5 @@ C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-w
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.pdb
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\ANTIBigBoss's MGS Delta Trainer.genruntimeconfig.cache
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\ref\ANTIBigBoss's MGS Delta Trainer.dll
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.StatsAndAlertForm.resources
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\ANTIBigBoss_s_MGS_Delta_Trainer.MiscForm.resources

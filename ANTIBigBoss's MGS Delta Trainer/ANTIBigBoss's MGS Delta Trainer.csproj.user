@@ -7,13 +7,16 @@
     <Compile Update="CamoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="DebugForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="ItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="MainMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MiscForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="StatsAndAlertForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="WeaponForm.cs">

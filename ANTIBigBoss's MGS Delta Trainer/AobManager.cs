@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ANTIBigBoss_s_MGS_Delta_Trainer
-    // This is all the old MGS3 MC Code will update AOBs when I have access to the game and can get AOB patterns
+// This is all the old MGS3 MC Code will update AOBs when I have access to the game and can get AOB patterns
 {
     public class AobManager
     {
@@ -64,17 +64,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             new Dictionary<string, (byte[] Pattern, string Mask, IntPtr? StartOffset, IntPtr? EndOffset)>
 
             {
-                
+
                 #region Memory Region Finding AOBs
                 {
-                    // 22 results outside of exe it seems but 1 in the exe in Delta
                     "AlertMemoryRegion", // ?? ?? 00 00 ?? ?? 00 00 50 46 00 00 FF FF FF FF
                     (new byte[] { 0x00, 0x00, 0x50, 0x46, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF },
                         "? ? x x ? ? x x x x x x x x x x",
-                        
-                        // Specify the range of memory in the exe to search for
-                        new IntPtr(0x1000000),
-                        new IntPtr(0x1FF0000)
+
+                        new IntPtr(0x12000000),
+                        new IntPtr(0x14000000)
                     )
                 },
 
@@ -82,89 +80,129 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                     "WeaponsTable", // 00 00 AA 77 63 00
                     (new byte[] { 0x00, 0x00, 0xAA, 0x77, 0x63, 0x00 },
                         "x x x x x x",
-                        new IntPtr(0x135D0000),
-                        new IntPtr(0x135E0000)
+                        new IntPtr(0x13400000),
+                        new IntPtr(0x135FEEEE)
                         )
                 },
 
-                {    
+                {
                     "ItemsTable", // 00 00 DA 5A 2B 00
                     (new byte[] { 0x00, 0x00, 0xDA, 0x5A, 0x2B, 0x00 },
                         "x x x x x x",
-                        new IntPtr(0x135D0000),
-                        new IntPtr(0x135E0000)
-                        // Same as weapons but 12 bytes to get to the Life Medicine
-                        // Usage to travel forward looks like this it would also be using the class information from BaseMGS3Object.cs:
-                        //IntPtr.Add(aobResult, Constants.TestAOBs["ItemsTable"].Pattern.Length + 12 + (ItemOffset * index));
+                        new IntPtr(0x13400000),
+                        new IntPtr(0x135FEEEE)
                         )
                 },
 
-                {   // Small Chance but this might be usable for animations and camo index(89BE/35262) 
-                    // I'll double check if this ended up being usable for both in MC when the time comes to implement
+                {   
                     "Animations", // 00 00 DA 5A 2B 00
-                    // Same as Items but we search in a further region that has the same byte pattern
                     (new byte[] { 0x00, 0x00, 0xDA, 0x5A, 0x2B, 0x00 },
                         "x x x x x x",
-                        new IntPtr(0x1C00000),
-                        new IntPtr(0x1E00000)
+                        new IntPtr(0x13600000),
+                        new IntPtr(0x14100000)
                     )
                 },
 
                 {
-                    "Alphabet", // 30 00 00 31 00 00 32 00 00 33 - 10958/2ACE is the camo index
+                    "Alphabet", // 30 00 00 31 00 00 32 00 00 33
                     (new byte[] { 0x30, 0x00, 0x00, 0x31, 0x00, 0x00, 0x32, 0x00, 0x00, 0x33 },
                         "x x x x x x x x x x",
-                        new IntPtr(0x1D00000),
-                        new IntPtr(0x1F00000)
-                    )
-                },
- 
-                #endregion
-                
-                #region Camera and Model AOBs
-                {
-                    "ModelDistortion", // 45 0F 29 43 C8 45 0F 29 4B B8 45 0F 29 53 A8 45 0F 29 5B 98 45 0F 29 63 88 44 0F 29 6C 24 30
-                    (new byte[] { 0x45, 0x0F, 0x29, 0x43, 0xC8, 0x45, 0x0F, 0x29, 0x4B, 0xB8, 0x45, 0x0F, 0x29, 0x53, 0xA8, 0x45, 0x0F, 0x29, 0x5B, 0x98, 0x45, 0x0F, 0x29, 0x63, 0x88, 0x44, 0x0F, 0x29, 0x6C, 0x24, 0x30 },
-                        "x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x",
-                        new IntPtr(0x000000),
-                        new IntPtr(0xC00000)
-                        )
-                },
-
-                
-                {   // 1595/5525 Byte before this AOB is the filter value (Side note this might work for Animations too)
-                    "PissFilter", // 00 00 A0 49 00 00 00 00 FF FF FF 7F
-                    (new byte[] { 0x00, 0x00, 0xA0, 0x49, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0x7F },
-                        "x x x x x x x x x x x x",
-                        new IntPtr(0x1C00000),
-                        new IntPtr(0x1F00000)
+                        new IntPtr(0x12000000),
+                        new IntPtr(0x14000000)
                     )
                 },
 
                 {
-                    // The byte before this AOB is the instruction value for what changes the filter when a new area loads
-                    // All wee do here is change 48 into 90 to disable the instruction
-                    // ADD/2781 bytes after this is the instructions for it writing a value to the filter and checking if the 
-                    // correct value is there changing F3 0F 11 99 78 03 00 00 to 90 90 90 90 90 90 90 90 will allow a checkbox
-                    // to permanently disable the piss filter or turn it back on
+                    "Fog", // 75 05 40 B6 01 EB 03 40 32 F6 48 8B 4C 24 48 48 85 C9 74 05 E8 04 23 F7 FE 40 84 F6
+                    (new byte[] { 0x75, 0x05, 0x40, 0xB6, 0x01, 0xEB, 0x03, 0x40, 0x32, 0xF6, 0x48, 0x8B, 0x4C, 0x24, 0x48, 0x48, 0x85, 0xC9, 0x74, 0x05, 0xE8, 0x04, 0x23, 0xF7, 0xFE, 0x40, 0x84, 0xF6 },
+                        "x x x x x x x x x x x x x x x x x x x x x x x x x x x x",
+                        new IntPtr(0x1000000),
+                        new IntPtr(0x4000000)
+                    )
+                },
+
+                
+                {
+                    "calcuateCamoIndexOffset", // 48 83 EC 30 0F 29 74 24 20 48 8B F9 48 63 F2 E8
+                    (new byte[] { 0x48, 0x83, 0xEC, 0x30, 0x0F, 0x29, 0x74, 0x24, 0x20, 0x48, 0x8B, 0xF9, 0x48, 0x63, 0xF2, 0xE8 },
+                        "x x x x x x x x x x x x x x x x",
+                        new IntPtr(0x6000000),
+                        new IntPtr(0x8000000)
+                    )
+                },
+
+                {
+                    "SnakeLifeRecovery", // FF C7 83 FF 40 0F 8C 91
+                    (new byte[] { 0xFF, 0xC7, 0x83, 0xFF, 0x40, 0x0F, 0x8C, 0x91 },
+                        "x x x x x x x x",
+                        new IntPtr(0x6000000),
+                        new IntPtr(0x8000000)
+                    )
+                },
+
+                {   
+                    "GuardDamage", // C3 CC CC CC CC CC 33 C0 39 81 38
+                    (new byte[] { 0xC3, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0x33, 0xC0, 0x39, 0x81, 0x38 },
+                        "x x x x x x x x x x x",
+                        new IntPtr(0x5000000),
+                        new IntPtr(0x9000000)
+                    )
+                },
+
+                {
+                    "PlayerStatusCheck", // 8B D1 B8 01 00 00 00 83 E1 1F D3 E0 8B CA 48 C1
+                    (new byte[] { 0x8B, 0xD1, 0xB8, 0x01, 0x00, 0x00, 0x00, 0x83, 0xE1, 0x1F, 0xD3, 0xE0, 0x8B, 0xCA, 0x48, 0xC1 },
+                        "x x x x x x x x x x x x x x x x",
+                        new IntPtr(0x6000000),
+                        new IntPtr(0x8000000)
+                    )
+                },
+
+                {
+                    "FilterEffects", // 40 40 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 80 3F 00 00 80 3F 00 00 80 3F 
+                    (new byte[] { 0x40, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F  },
+                        "x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x",
+                        new IntPtr(0x13000000),
+                        new IntPtr(0x15000000)
+                    )
+                },
+
+                {
+                    "FilterInstructions", // F3 0F 11 9B 20 01 00 00 F3 0F 11 93 24 01 00 00 F3 0F 11 8B 28 01 00 00 F3 0F 11 83 2C 01 00 00
+                    (new byte[] { 0xF3, 0x0F, 0x11, 0x9B, 0x20, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x93, 0x24, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x8B, 0x28, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x83, 0x2C, 0x01, 0x00, 0x00 },
+                        "x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x",
+                        new IntPtr(0x2000000),
+                        new IntPtr(0x2F00000)
+                    )
+                },
+
+                {
                     "PissFilterInstructions", // C7 81 74 03 00 00 00 00 7F 43
                     (new byte[] { 0xC7, 0x81, 0x74, 0x03, 0x00, 0x00, 0x00, 0x00, 0x7F, 0x43 },
                         "x x x x x x x x x x",
-                        new IntPtr(0x10000),
-                        new IntPtr(0xF0000)
+                        new IntPtr(0x6900000),
+                        new IntPtr(0x7900000)
                     )
                 },
 
-
-                { // TODO: Add notes on how many bytes before or after Bloom is for this
-                "BloomFilter", // 00 00 A0 49 00 00 00 00 FF FF FF 7F
-                (new byte[] { 0x00, 0x00, 0xA0, 0x49, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0x7F },
+                {
+                    "PissFilter", // 00 00 A0 49 00 00 00 00 FF FF FF 7F
+                    (new byte[] { 0x00, 0x00, 0xA0, 0x49, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0x7F },
                         "x x x x x x x x x x x x",
-                    new IntPtr(0x1C00000),
-                    new IntPtr(0x1F00000)
+                    new IntPtr(0x11000000),
+                    new IntPtr(0x21000000)
                     )
                 },
-                
+
+                {
+                    "StageRestart", // 42 41 53 4C 55 53 2D 32 31 33 35 39 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 10
+                    (new byte[] { 0x42, 0x41, 0x53, 0x4C, 0x55, 0x53, 0x2D, 0x32, 0x31, 0x33, 0x35, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10 },
+                        "x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x",
+                    new IntPtr(0x13000000),
+                    new IntPtr(0x15000000)
+                    )
+                },
+
                 {
                     "LeftBandana", // 33 33 93 3F 9A 99 B9 3F 9A 99 B9 3F
                     (new byte[] { 0x33, 0x33, 0x93, 0x3F, 0x9A, 0x99, 0xB9, 0x3F, 0x9A, 0x99, 0xB9, 0x3F },
@@ -186,17 +224,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 #endregion
 
                 #region Old AOBs in Delta but Might no longer be useful
-                
-
-                {   // 4 Bytes before the AOB is the 4-byte damage value in MC, in Delta it just crashes when edited.
-                    "WpNadeDamage", // C3 CC CC CC CC CC 33 C0 39 81 38
-                    (new byte[] { 0xC3, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0x33, 0xC0, 0x39, 0x81, 0x38 },
-                        "x x x x x x x x x x x",
-                        new IntPtr(0x100000),
-                        new IntPtr(0x1F0000)
-                    )
-                },
-                
+              
                 // These next 3 AOBs were originally used for the XYZ teleporting, in MC they were not in the exe
                 // In Delta however all 3 are in the exe, should investigate if these 3 will be helpful at all.
                 {
@@ -225,22 +253,11 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                         new IntPtr(0x30000000000)
                     )
                 },
-
-                // Originally in MGS3 MC was used to find the main pointer region that had everything from:
-                // health - stamina, game stats, serious injuries, etc. Unsure if Delta will do the same or not yet.
-                {
-                    "PointerBytes", // 30 75 ?? ?? ?? ?? 00 00 2C 01 00 00 ??
-                    (new byte[] { 0x30, 0x75, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x2C, 0x01, 0x00, 0x00, 0x00 },
-                        "xx????xxxxxx?",
-                        new IntPtr(0x1DFFFFF),
-                        new IntPtr(0x1F00000)
-                    )
-                },
-
+               
                 #endregion
 
                 #region Boss AOBs (Needs Testing)
-                // Will test these out further when I play Delta more and have a collection of saves at each area
+                /* Will test these out further when I play Delta more and have a collection of saves at each area
                 {
                     // Fear, Pain and Volgin are confirmed for this AOB Ocelot did not work
                     "TheFearAOB", // F0 49 02 00 F0 49 02 00
@@ -438,5 +455,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             return false;
         }
 
+                */
+#endregion
+            };
     }
 }

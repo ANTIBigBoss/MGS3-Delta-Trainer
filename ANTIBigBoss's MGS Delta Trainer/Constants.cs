@@ -22,7 +22,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             ByteArray, // For anything in between or larger than 8 bytes
         }
 
-        // Add/Sub to indicate which IntPtr to use aka IntPtr.Add or IntPtr.Subtract
         public enum AlertOffsets
         {
             AlertTriggerAdd = 78,
@@ -52,25 +51,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         public enum DamageOffsets
         {
-            CQCSlam1Add = 24,
-            CQCSlam2Add = 35,
-            WpNadeSub = 4,
-            ZzzDrainSub = 6,
-            ShotgunSub = 6,
-            M63Sub = 2,
-            StunNadeSub = 6,
-            KnifeForkSub = 6,
-            TriplePunchSub = 1775,
-            StunRollSub = 6,
-            ZzzWeapons1Sub = 4,
-            MostLethalSub = 2,
-            ExplosiveAdd = 24,
-            ThroatSlitSub = 26,
-            SleepStatus1Sub = 6,
-            SleepStatus2Sub = 90,
-            StunPunchInstructionsAdd = 24,
-            SinglePunchSub = 2,
-            PunchKnockOverAdd = 33
+            
         }
 
         public enum MiscOffsets
@@ -89,9 +70,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         public enum AnimationOffsets
         {
-            // Difference from Piss Filter AOB not sure if anything closer is stable or not but we can compare post update if this works
-            // It did not work they gone
-            SnakeLongSleepSub = 0, // Refind this broke during MGS3's 2.0.0 update
+            SnakeLongSleepSub = 0,
             ForceDirectionSub = 11749,
             SnakeShortSleepSub = 11735,
             VomitFireSub = 11734,
@@ -102,10 +81,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             StopSnakeMovementSub = 11718,
             StopSnakeMovementFpvSub = 11731,
             StopSnakeMovementNoDamageAdd = 32715
-
         }
 
-        // Sub and Add determine to use IntPtr.Add or IntPtr.Subtract
         public enum MainPointerAddresses
         {
             StartOfPointerSub = 2636, // Byte: will probably only use as a reference point
@@ -258,7 +235,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         public const string PROCESS_NAME = "MGSDelta-Win64-Shipping";
 
-        internal const int MainPointerRegionOffset = 0x00ACBE18; // Old MGS3 MC Main pointer, update when I have access to Delta
+        internal const int MainPointerRegionOffset = 0xC534038;
 
         // Will laugh if these work the exact same way in Delta: THEY DID LMAO
         public static class InjuryData
@@ -316,20 +293,49 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         {
             public static class Health
             {
-                public const int Current = 0x684;
-                public const int Max = 0x686;
+                public const int Current = 0x7B4;
+                public const int Max = 0x7B6;
             }
 
             public static class Stamina
             {
-                public const int Current = 0xA4A;
+                public const int Current = 0xB7A;
+            }
+
+            public static class Strings
+            {
+                public const int SnakeString = 0x14;
+                public const int CurrentMap = 0x24;               
+            }
+
+            public static class GameStats
+            {
+                public const int Difficulty = 0x6;
+                public const int Continues = 0x34;
+                public const int Saves = 0x36;
+                public const int AlertsTriggered = 0x38;
+                public const int Kills = 0x3A;
+                public const int SpecialItems = 0x3D;
+                public const int PlantsAndAnimalsCaptured = 0x3F;
+                public const int SeriousInjury = 0x40;
+                public const int TotalDamage = 0x43;
+                public const int MealsEaten = 0x46;
+                public const int GameTime = 0x4C;
+                public const int LifeMeds = 0x6D8;
+
+            }
+
+            public static class SnakesGear
+            {
+                public const int CurrentItem = 0xB7A;
+                public const int CurrentWeapon = 0xB7A;
             }
 
             public static class InjurySlots
             {
                 public const int TotalSlots = 68;
-                public const int SlotSize = 14; // Size of each injury slot
-                public const int BaseOffset = 0x688; // base offset for the first injury
+                public const int SlotSize = 14;
+                public const int BaseOffset = 0x7B8;
 
                 public static int CalculateOffset(int slotNumber)
                 {

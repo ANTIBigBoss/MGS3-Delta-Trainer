@@ -126,6 +126,17 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             RemoveCompass = new Button();
             AddCompass = new Button();
             pictureBox17 = new PictureBox();
+            RemoveBananaCap = new Button();
+            AddBananaCap = new Button();
+            pictureBox18 = new PictureBox();
+            RemoveBananaCapGold = new Button();
+            AddBananaCapGold = new Button();
+            pictureBox19 = new PictureBox();
+            AddAll = new Button();
+            RemoveAll = new Button();
+            StatsAndAlertForm = new Button();
+            MiscFormSwap = new Button();
+            BatteryDrainCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -157,6 +168,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             ((System.ComponentModel.ISupportInitialize)pictureBox35).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox19).BeginInit();
             SuspendLayout();
             // 
             // AddLifeMed
@@ -711,7 +724,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             RemoveCrocCap.Name = "RemoveCrocCap";
             RemoveCrocCap.Size = new System.Drawing.Size(82, 48);
             RemoveCrocCap.TabIndex = 387;
-            RemoveCrocCap.Text = "Remove Croc Caps";
+            RemoveCrocCap.Text = "Remove Croc Cap";
             RemoveCrocCap.UseVisualStyleBackColor = true;
             RemoveCrocCap.Click += RemoveCrocCap_Click;
             // 
@@ -727,7 +740,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             AddCrocCap.Name = "AddCrocCap";
             AddCrocCap.Size = new System.Drawing.Size(82, 48);
             AddCrocCap.TabIndex = 386;
-            AddCrocCap.Text = "Add Croc Caps";
+            AddCrocCap.Text = "Add Croc Cap";
             AddCrocCap.UseVisualStyleBackColor = true;
             AddCrocCap.Click += AddCrocCap_Click;
             // 
@@ -1430,6 +1443,168 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             pictureBox17.TabIndex = 650;
             pictureBox17.TabStop = false;
             // 
+            // RemoveBananaCap
+            // 
+            RemoveBananaCap.BackgroundImage = (System.Drawing.Image)resources.GetObject("RemoveBananaCap.BackgroundImage");
+            RemoveBananaCap.Cursor = Cursors.Hand;
+            RemoveBananaCap.FlatStyle = FlatStyle.Flat;
+            RemoveBananaCap.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            RemoveBananaCap.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            RemoveBananaCap.ImeMode = ImeMode.NoControl;
+            RemoveBananaCap.Location = new System.Drawing.Point(1059, 214);
+            RemoveBananaCap.Name = "RemoveBananaCap";
+            RemoveBananaCap.Size = new System.Drawing.Size(82, 48);
+            RemoveBananaCap.TabIndex = 655;
+            RemoveBananaCap.Text = "Remove Banana Cap";
+            RemoveBananaCap.UseVisualStyleBackColor = true;
+            RemoveBananaCap.Click += RemoveBananaCap_Click;
+            // 
+            // AddBananaCap
+            // 
+            AddBananaCap.BackgroundImage = (System.Drawing.Image)resources.GetObject("AddBananaCap.BackgroundImage");
+            AddBananaCap.Cursor = Cursors.Hand;
+            AddBananaCap.FlatStyle = FlatStyle.Flat;
+            AddBananaCap.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            AddBananaCap.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            AddBananaCap.ImeMode = ImeMode.NoControl;
+            AddBananaCap.Location = new System.Drawing.Point(1059, 171);
+            AddBananaCap.Name = "AddBananaCap";
+            AddBananaCap.Size = new System.Drawing.Size(82, 48);
+            AddBananaCap.TabIndex = 654;
+            AddBananaCap.Text = "Add Banana Cap";
+            AddBananaCap.UseVisualStyleBackColor = true;
+            AddBananaCap.Click += AddBananaCap_Click;
+            // 
+            // pictureBox18
+            // 
+            pictureBox18.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            pictureBox18.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox18.Image = (System.Drawing.Image)resources.GetObject("pictureBox18.Image");
+            pictureBox18.ImeMode = ImeMode.NoControl;
+            pictureBox18.Location = new System.Drawing.Point(969, 171);
+            pictureBox18.Name = "pictureBox18";
+            pictureBox18.Size = new System.Drawing.Size(93, 91);
+            pictureBox18.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox18.TabIndex = 653;
+            pictureBox18.TabStop = false;
+            // 
+            // RemoveBananaCapGold
+            // 
+            RemoveBananaCapGold.BackgroundImage = (System.Drawing.Image)resources.GetObject("RemoveBananaCapGold.BackgroundImage");
+            RemoveBananaCapGold.Cursor = Cursors.Hand;
+            RemoveBananaCapGold.FlatStyle = FlatStyle.Flat;
+            RemoveBananaCapGold.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            RemoveBananaCapGold.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            RemoveBananaCapGold.ImeMode = ImeMode.NoControl;
+            RemoveBananaCapGold.Location = new System.Drawing.Point(1059, 312);
+            RemoveBananaCapGold.Name = "RemoveBananaCapGold";
+            RemoveBananaCapGold.Size = new System.Drawing.Size(82, 48);
+            RemoveBananaCapGold.TabIndex = 658;
+            RemoveBananaCapGold.Text = "Remove Banana Cap (Gold)";
+            RemoveBananaCapGold.UseVisualStyleBackColor = true;
+            RemoveBananaCapGold.Click += RemoveBananaCapGold_Click;
+            // 
+            // AddBananaCapGold
+            // 
+            AddBananaCapGold.BackgroundImage = (System.Drawing.Image)resources.GetObject("AddBananaCapGold.BackgroundImage");
+            AddBananaCapGold.Cursor = Cursors.Hand;
+            AddBananaCapGold.FlatStyle = FlatStyle.Flat;
+            AddBananaCapGold.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            AddBananaCapGold.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            AddBananaCapGold.ImeMode = ImeMode.NoControl;
+            AddBananaCapGold.Location = new System.Drawing.Point(1059, 269);
+            AddBananaCapGold.Name = "AddBananaCapGold";
+            AddBananaCapGold.Size = new System.Drawing.Size(82, 48);
+            AddBananaCapGold.TabIndex = 657;
+            AddBananaCapGold.Text = "Add Banana Cap (Gold)";
+            AddBananaCapGold.UseVisualStyleBackColor = true;
+            AddBananaCapGold.Click += AddBananaCapGold_Click;
+            // 
+            // pictureBox19
+            // 
+            pictureBox19.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            pictureBox19.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox19.Image = (System.Drawing.Image)resources.GetObject("pictureBox19.Image");
+            pictureBox19.ImeMode = ImeMode.NoControl;
+            pictureBox19.Location = new System.Drawing.Point(969, 269);
+            pictureBox19.Name = "pictureBox19";
+            pictureBox19.Size = new System.Drawing.Size(93, 91);
+            pictureBox19.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox19.TabIndex = 656;
+            pictureBox19.TabStop = false;
+            // 
+            // AddAll
+            // 
+            AddAll.BackgroundImage = (System.Drawing.Image)resources.GetObject("AddAll.BackgroundImage");
+            AddAll.FlatStyle = FlatStyle.Flat;
+            AddAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            AddAll.Location = new System.Drawing.Point(969, 369);
+            AddAll.Name = "AddAll";
+            AddAll.Size = new System.Drawing.Size(172, 91);
+            AddAll.TabIndex = 659;
+            AddAll.Text = "Add all Add/Remove Items";
+            AddAll.UseVisualStyleBackColor = true;
+            AddAll.Click += AddAll_Click;
+            // 
+            // RemoveAll
+            // 
+            RemoveAll.BackgroundImage = (System.Drawing.Image)resources.GetObject("RemoveAll.BackgroundImage");
+            RemoveAll.FlatStyle = FlatStyle.Flat;
+            RemoveAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            RemoveAll.Location = new System.Drawing.Point(969, 470);
+            RemoveAll.Name = "RemoveAll";
+            RemoveAll.Size = new System.Drawing.Size(172, 91);
+            RemoveAll.TabIndex = 660;
+            RemoveAll.Text = "Remove all Add/Remove Items";
+            RemoveAll.UseVisualStyleBackColor = true;
+            RemoveAll.Click += RemoveAll_Click;
+            // 
+            // StatsAndAlertForm
+            // 
+            StatsAndAlertForm.BackgroundImage = (System.Drawing.Image)resources.GetObject("StatsAndAlertForm.BackgroundImage");
+            StatsAndAlertForm.Cursor = Cursors.Hand;
+            StatsAndAlertForm.FlatStyle = FlatStyle.Flat;
+            StatsAndAlertForm.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            StatsAndAlertForm.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            StatsAndAlertForm.ImeMode = ImeMode.NoControl;
+            StatsAndAlertForm.Location = new System.Drawing.Point(310, 12);
+            StatsAndAlertForm.Name = "StatsAndAlertForm";
+            StatsAndAlertForm.Size = new System.Drawing.Size(130, 31);
+            StatsAndAlertForm.TabIndex = 868;
+            StatsAndAlertForm.Text = "Stats/Alerts";
+            StatsAndAlertForm.UseVisualStyleBackColor = true;
+            StatsAndAlertForm.Click += StatsAndAlertForm_Click;
+            // 
+            // MiscFormSwap
+            // 
+            MiscFormSwap.BackgroundImage = (System.Drawing.Image)resources.GetObject("MiscFormSwap.BackgroundImage");
+            MiscFormSwap.Cursor = Cursors.Hand;
+            MiscFormSwap.FlatStyle = FlatStyle.Flat;
+            MiscFormSwap.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            MiscFormSwap.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            MiscFormSwap.ImeMode = ImeMode.NoControl;
+            MiscFormSwap.Location = new System.Drawing.Point(446, 12);
+            MiscFormSwap.Name = "MiscFormSwap";
+            MiscFormSwap.Size = new System.Drawing.Size(130, 31);
+            MiscFormSwap.TabIndex = 870;
+            MiscFormSwap.Text = "Misc";
+            MiscFormSwap.UseVisualStyleBackColor = true;
+            MiscFormSwap.Click += MiscFormSwap_Click;
+            // 
+            // BatteryDrainCheckBox
+            // 
+            BatteryDrainCheckBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            BatteryDrainCheckBox.BackgroundImage = (System.Drawing.Image)resources.GetObject("BatteryDrainCheckBox.BackgroundImage");
+            BatteryDrainCheckBox.FlatStyle = FlatStyle.Flat;
+            BatteryDrainCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            BatteryDrainCheckBox.Location = new System.Drawing.Point(969, 579);
+            BatteryDrainCheckBox.Name = "BatteryDrainCheckBox";
+            BatteryDrainCheckBox.Size = new System.Drawing.Size(172, 29);
+            BatteryDrainCheckBox.TabIndex = 869;
+            BatteryDrainCheckBox.Text = "Stop Battery Drain";
+            BatteryDrainCheckBox.UseVisualStyleBackColor = false;
+            BatteryDrainCheckBox.CheckedChanged += BatteryDrainCheckBox_CheckedChanged;
+            // 
             // ItemForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1438,6 +1613,17 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             BackgroundImage = (System.Drawing.Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new System.Drawing.Size(1161, 707);
+            Controls.Add(MiscFormSwap);
+            Controls.Add(BatteryDrainCheckBox);
+            Controls.Add(StatsAndAlertForm);
+            Controls.Add(RemoveAll);
+            Controls.Add(AddAll);
+            Controls.Add(RemoveBananaCapGold);
+            Controls.Add(AddBananaCapGold);
+            Controls.Add(pictureBox19);
+            Controls.Add(RemoveBananaCap);
+            Controls.Add(AddBananaCap);
+            Controls.Add(pictureBox18);
             Controls.Add(RemoveCompass);
             Controls.Add(AddCompass);
             Controls.Add(pictureBox17);
@@ -1568,6 +1754,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             ((System.ComponentModel.ISupportInitialize)pictureBox35).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox19).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1674,5 +1862,16 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private Button RemoveCompass;
         private Button AddCompass;
         private PictureBox pictureBox17;
+        private Button RemoveBananaCap;
+        private Button AddBananaCap;
+        private PictureBox pictureBox18;
+        private Button RemoveBananaCapGold;
+        private Button AddBananaCapGold;
+        private PictureBox pictureBox19;
+        private Button AddAll;
+        private Button RemoveAll;
+        private Button StatsAndAlertForm;
+        private Button MiscFormSwap;
+        private CheckBox BatteryDrainCheckBox;
     }
 }

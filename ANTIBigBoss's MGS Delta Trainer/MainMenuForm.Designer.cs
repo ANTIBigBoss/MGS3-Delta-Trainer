@@ -36,7 +36,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             ItemFormSwap = new Button();
             WeaponFormSwap = new Button();
             LogAOBs = new Button();
-            DebugFormSwap = new Button();
+            StatsAndAlertForm = new Button();
+            PatchNotesButton = new Button();
+            MiscFormSwap = new Button();
             SuspendLayout();
             // 
             // CamoFormSwap
@@ -48,7 +50,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             CamoFormSwap.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             CamoFormSwap.ImageAlign = ContentAlignment.TopCenter;
             CamoFormSwap.ImeMode = ImeMode.NoControl;
-            CamoFormSwap.Location = new Point(730, 245);
+            CamoFormSwap.Location = new Point(730, 247);
             CamoFormSwap.Name = "CamoFormSwap";
             CamoFormSwap.Size = new Size(426, 42);
             CamoFormSwap.TabIndex = 555;
@@ -101,7 +103,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             LogAOBs.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             LogAOBs.ImageAlign = ContentAlignment.TopCenter;
             LogAOBs.ImeMode = ImeMode.NoControl;
-            LogAOBs.Location = new Point(730, 298);
+            LogAOBs.Location = new Point(730, 420);
             LogAOBs.Name = "LogAOBs";
             LogAOBs.Size = new Size(426, 41);
             LogAOBs.TabIndex = 560;
@@ -109,23 +111,58 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             LogAOBs.UseVisualStyleBackColor = false;
             LogAOBs.Click += LogAOBs_Click;
             // 
-            // DebugFormSwap
+            // StatsAndAlertForm
             // 
-            DebugFormSwap.BackgroundImage = (Image)resources.GetObject("DebugFormSwap.BackgroundImage");
-            DebugFormSwap.BackgroundImageLayout = ImageLayout.Center;
-            DebugFormSwap.Cursor = Cursors.Hand;
-            DebugFormSwap.FlatStyle = FlatStyle.Flat;
-            DebugFormSwap.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            DebugFormSwap.ImageAlign = ContentAlignment.TopCenter;
-            DebugFormSwap.ImeMode = ImeMode.NoControl;
-            DebugFormSwap.Location = new Point(730, 645);
-            DebugFormSwap.Name = "DebugFormSwap";
-            DebugFormSwap.Size = new Size(426, 45);
-            DebugFormSwap.TabIndex = 561;
-            DebugFormSwap.Text = "Debug/Modding Resources";
-            DebugFormSwap.UseVisualStyleBackColor = true;
-            DebugFormSwap.Visible = false;
-            DebugFormSwap.Click += DebugFormSwap_Click;
+            StatsAndAlertForm.BackgroundImage = (Image)resources.GetObject("StatsAndAlertForm.BackgroundImage");
+            StatsAndAlertForm.BackgroundImageLayout = ImageLayout.Center;
+            StatsAndAlertForm.Cursor = Cursors.Hand;
+            StatsAndAlertForm.FlatStyle = FlatStyle.Flat;
+            StatsAndAlertForm.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            StatsAndAlertForm.ImageAlign = ContentAlignment.TopCenter;
+            StatsAndAlertForm.ImeMode = ImeMode.NoControl;
+            StatsAndAlertForm.Location = new Point(730, 307);
+            StatsAndAlertForm.Name = "StatsAndAlertForm";
+            StatsAndAlertForm.Size = new Size(426, 42);
+            StatsAndAlertForm.TabIndex = 562;
+            StatsAndAlertForm.Text = "Stats/Alerts";
+            StatsAndAlertForm.UseVisualStyleBackColor = true;
+            StatsAndAlertForm.Click += StatsAndAlertForm_Click;
+            // 
+            // PatchNotesButton
+            // 
+            PatchNotesButton.BackColor = SystemColors.ActiveBorder;
+            PatchNotesButton.BackgroundImage = (Image)resources.GetObject("PatchNotesButton.BackgroundImage");
+            PatchNotesButton.BackgroundImageLayout = ImageLayout.Center;
+            PatchNotesButton.Cursor = Cursors.Hand;
+            PatchNotesButton.FlatStyle = FlatStyle.Flat;
+            PatchNotesButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            PatchNotesButton.ImageAlign = ContentAlignment.TopCenter;
+            PatchNotesButton.ImeMode = ImeMode.NoControl;
+            PatchNotesButton.Location = new Point(730, 478);
+            PatchNotesButton.Name = "PatchNotesButton";
+            PatchNotesButton.Size = new Size(426, 41);
+            PatchNotesButton.TabIndex = 563;
+            PatchNotesButton.Text = "Patch Notes";
+            PatchNotesButton.UseVisualStyleBackColor = false;
+            PatchNotesButton.Click += PatchNotesButton_Click;
+            // 
+            // MiscFormSwap
+            // 
+            MiscFormSwap.BackColor = SystemColors.ActiveBorder;
+            MiscFormSwap.BackgroundImage = (Image)resources.GetObject("MiscFormSwap.BackgroundImage");
+            MiscFormSwap.BackgroundImageLayout = ImageLayout.Center;
+            MiscFormSwap.Cursor = Cursors.Hand;
+            MiscFormSwap.FlatStyle = FlatStyle.Flat;
+            MiscFormSwap.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            MiscFormSwap.ImageAlign = ContentAlignment.TopCenter;
+            MiscFormSwap.ImeMode = ImeMode.NoControl;
+            MiscFormSwap.Location = new Point(730, 364);
+            MiscFormSwap.Name = "MiscFormSwap";
+            MiscFormSwap.Size = new Size(426, 41);
+            MiscFormSwap.TabIndex = 564;
+            MiscFormSwap.Text = "Misc";
+            MiscFormSwap.UseVisualStyleBackColor = false;
+            MiscFormSwap.Click += MiscFormSwap_Click;
             // 
             // MainMenuForm
             // 
@@ -134,7 +171,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1185, 702);
-            Controls.Add(DebugFormSwap);
+            Controls.Add(MiscFormSwap);
+            Controls.Add(PatchNotesButton);
+            Controls.Add(StatsAndAlertForm);
             Controls.Add(LogAOBs);
             Controls.Add(WeaponFormSwap);
             Controls.Add(CamoFormSwap);
@@ -143,7 +182,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "ANTIBigBoss's MGS3 Delta Trainer - Main Menu - Version 1.0.0.0";
+            Text = "ANTIBigBoss's MGS3 Delta Trainer - Main Menu - Version 1.0.0.5";
             Load += MainMenuForm_Load;
             ResumeLayout(false);
         }
@@ -153,6 +192,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private Button ItemFormSwap;
         private Button WeaponFormSwap;
         private Button LogAOBs;
-        private Button DebugFormSwap;
+        private Button StatsAndAlertForm;
+        private Button PatchNotesButton;
+        private Button MiscFormSwap;
     }
 }

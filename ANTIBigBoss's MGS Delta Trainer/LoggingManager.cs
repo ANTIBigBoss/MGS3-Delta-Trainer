@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using static ANTIBigBoss_s_MGS_Delta_Trainer.Constants;
 using static ANTIBigBoss_s_MGS_Delta_Trainer.MemoryManager;
 
 namespace ANTIBigBoss_s_MGS_Delta_Trainer
@@ -122,12 +123,12 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                         {
                             string aobHexString = BitConverter.ToString(aobBytes).Replace("-", " ");
                             LoggingManager.Instance.Log(
-                                $"{name}: Instance found at: {address.ToString("X")}, METAL GEAR SOLID3.exe+{offset:X}, AOB: {aobHexString}");
+                                $"{name}: Instance found at: {address.ToString("X")}, MGSDelta-Win64-Shipping.exe+{offset:X}, AOB: {aobHexString}");
                         }
                         else
                         {
                             LoggingManager.Instance.Log(
-                                $"{name}: Instance found at: {address.ToString("X")}, METAL GEAR SOLID3.exe+{offset:X}, but failed to read AOB bytes.");
+                                $"{name}: Instance found at: {address.ToString("X")}, MGSDelta-Win64-Shipping.exe+{offset:X}, but failed to read AOB bytes.");
                         }
                     }
                 }
@@ -139,148 +140,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
             NativeMethods.CloseHandle(processHandle);
         }
-
-        /// <summary>
-        /// A more indepth logging 
-        /// </summary>
-        public void LogAllMemoryAddressesandValues()
-        {
-            var LogMemoryAddresses = new Dictionary<string, Func<string>>()
-            {
-                { "CQC Slam Normal Damage", () => DebugMethodManager.Instance.CQCSlamNormalDamage() },
-                { "CQC Slam Extreme Damage", () => DebugMethodManager.Instance.CQCSlamExtremeDamage() },
-                { "Wp Grenade Damage", () => DebugMethodManager.Instance.WpNadeDamage() },
-                { "Zzz Drain Instructions", () => DebugMethodManager.Instance.ZzzDrain() },
-                { "Sleep Status Instructions 2", () => DebugMethodManager.Instance.SleepStatus2() },
-                { "Sleep Status Instructions 1", () => DebugMethodManager.Instance.SleepStatus1() },
-                { "Zzz Weapons Damage 1", () => DebugMethodManager.Instance.ZzzWeaponsDamage1() },
-                { "Shotgun Damage Instructions", () => DebugMethodManager.Instance.ShotgunDamage() },
-                { "M63 Damage", () => DebugMethodManager.Instance.M63Damage() },
-                { "Stun Grenade Damage", () => DebugMethodManager.Instance.StunNadeDamage() },
-                { "Knife and Fork Damage Instructions", () => DebugMethodManager.Instance.KnifeForkDamage() },
-                { "Stun Punch Triple", () => DebugMethodManager.Instance.TriplePunchDamage() },
-                { "Stun Roll Damage", () => DebugMethodManager.Instance.StunRollDamage() },
-                { "Most Lethal Weapons Damage", () => DebugMethodManager.Instance.MostLethalWeaponsDamage() },
-                { "Explosion Damage", () => DebugMethodManager.Instance.ExplosionDamage() },
-                { "Stun Punch Single", () => DebugMethodManager.Instance.SinglePunchDamage() },
-                { "Stun Punch Instructions", () => DebugMethodManager.Instance.StunPunchInstructions() },
-                { "Stun Punch Knock over Threshold", () => DebugMethodManager.Instance.PunchKnockOverThreshold() },
-                { "Throat Slit Damage", () => DebugMethodManager.Instance.ThroatSlitDamage() },
-                { "Piss Filter", () => DebugMethodManager.Instance.GetPissFilterValueAsString() },
-                { "Snake Long Sleep", () => DebugMethodManager.Instance.GetSnakeLongSleepValue() },
-                { "Force Direction", () => DebugMethodManager.Instance.GetForceDirectionValue() },
-                { "Snake Short Sleep", () => DebugMethodManager.Instance.GetSnakeShortSleepValue() },
-                { "Vomit Fire", () => DebugMethodManager.Instance.GetVomitFireValue() },
-                { "Box Crouch", () => DebugMethodManager.Instance.GetBoxCrouchValue() },
-                { "Bunny Hop", () => DebugMethodManager.Instance.GetBunnyHopValue() },
-                { "Fake Death", () => DebugMethodManager.Instance.GetFakeDeathValue() },
-                { "Alert Status", () => DebugMethodManager.Instance.ReadAlertStatus() },
-                { "Battery Drain Instructions", () => DebugMethodManager.Instance.ReadBatteryInstructions() },
-                { "Infinite Ammo and Reload Instructions", () => DebugMethodManager.Instance.ReadInfiniteAmmoAndReload() },
-                { "No HUD Partial", () => DebugMethodManager.Instance.GetPartialHudValue() },
-                { "Item and Weapon Window", () => DebugMethodManager.Instance.GetItemAndWeaponWindowValue() },
-                { "Real Time Item Swapping Instructions", () => DebugMethodManager.Instance.RealTimeWeaponItemSwapping() },
-                { "Light Near Snake", () => DebugMethodManager.Instance.GetLightNearSnakeValueAsString() },
-                { "Map Colour", () => DebugMethodManager.Instance.GetColourMapValueAsString() },
-                { "Sky Colour", () => DebugMethodManager.Instance.GetSkyColourValueAsString() },
-                { "Sky Value", () => DebugMethodManager.Instance.GetSkyChangingByteValueAsString() },
-                { "Current Difficulty Value", () => DebugMethodManager.Instance.GetDifficultyValue() },
-                { "Total Continues", () => DebugMethodManager.Instance.GetContinuesValue() },
-                { "Total Saves", () => DebugMethodManager.Instance.GetSavesValue() },
-                { "Total Alerts Triggered", () => DebugMethodManager.Instance.GetAlertsTriggeredValue() },
-                { "Total Humans Killed", () => DebugMethodManager.Instance.GetHumansKilledValue() },
-                { "Total Special Items Used", () => DebugMethodManager.Instance.GetSpecialItemsUsedValue() },
-                { "Total Plants and Animals Captured", () => DebugMethodManager.Instance.GetPlantsAndAnimalsCapturedValue() },
-                { "Total Serious Injuries", () => DebugMethodManager.Instance.GetSeriousInjuriesValue() },
-                { "Total Total Damage Taken", () => DebugMethodManager.Instance.GetTotalDamageTakenValue() },
-                { "Total Play Time", () => DebugMethodManager.Instance.GetPlayTimeValue() },
-                { "Total Life Med Used", () => DebugMethodManager.Instance.GetLifeMedsUsedValue() },
-                { "Map String", () => DebugMethodManager.Instance.GetMapStringValue() },
-                { "R_Sna", () => DebugMethodManager.Instance.GetR_SnaValue() },
-                { "Snake's Equipped Weapon", () => DebugMethodManager.Instance.GetSnakesEquippedWeaponValue() },
-                { "Snake's Equipped Item", () => DebugMethodManager.Instance.GetSnakesEquippedItemValue() },
-                { "Snake's Equipped Facepaint", () => DebugMethodManager.Instance.GetSnakesFacepaintValue() },
-                { "Snake's Equipped Camo", () => DebugMethodManager.Instance.GetSnakesCamoValue() },
-                { "Snake's Current Health", () => DebugMethodManager.Instance.GetSnakesCurrentHealthValue() },
-                { "Snake's Max Health", () => DebugMethodManager.Instance.GetSnakesMaxHealthValue() },
-                { "Snake's Current Stamina", () => DebugMethodManager.Instance.GetSnakesCurrentStaminaValue() },
-                { "Snake's Serious Injury 1", () => DebugMethodManager.Instance.GetSeriousInjury1Value() },
-                { "Snake's Serious Injury 2", () => DebugMethodManager.Instance.GetSeriousInjury2Value() },
-                { "Snake's Serious Injury 3", () => DebugMethodManager.Instance.GetSeriousInjury3Value() },
-                { "Snake's Serious Injury 4", () => DebugMethodManager.Instance.GetSeriousInjury4Value() },
-                { "Snake's Serious Injury 5", () => DebugMethodManager.Instance.GetSeriousInjury5Value() },
-                { "Snake's Serious Injury 6", () => DebugMethodManager.Instance.GetSeriousInjury6Value() },
-                { "Snake's Serious Injury 7", () => DebugMethodManager.Instance.GetSeriousInjury7Value() },
-                { "Snake's Serious Injury 8", () => DebugMethodManager.Instance.GetSeriousInjury8Value() },
-                { "Snake's Serious Injury 9", () => DebugMethodManager.Instance.GetSeriousInjury9Value() },
-                { "Snake's Serious Injury 10", () => DebugMethodManager.Instance.GetSeriousInjury10Value() },
-                { "Snake's Serious Injury 11", () => DebugMethodManager.Instance.GetSeriousInjury11Value() },
-                { "Snake's Serious Injury 12", () => DebugMethodManager.Instance.GetSeriousInjury12Value() },
-                { "Snake's Serious Injury 13", () => DebugMethodManager.Instance.GetSeriousInjury13Value() },
-                { "Snake's Serious Injury 14", () => DebugMethodManager.Instance.GetSeriousInjury14Value() },
-                { "Snake's Serious Injury 15", () => DebugMethodManager.Instance.GetSeriousInjury15Value() },
-                { "Snake's Serious Injury 16", () => DebugMethodManager.Instance.GetSeriousInjury16Value() },
-                { "Snake's Serious Injury 17", () => DebugMethodManager.Instance.GetSeriousInjury17Value() },
-                { "Snake's Serious Injury 18", () => DebugMethodManager.Instance.GetSeriousInjury18Value() },
-                { "Snake's Serious Injury 19", () => DebugMethodManager.Instance.GetSeriousInjury19Value() },
-                { "Snake's Serious Injury 20", () => DebugMethodManager.Instance.GetSeriousInjury20Value() },
-                { "Snake's Serious Injury 21", () => DebugMethodManager.Instance.GetSeriousInjury21Value() },
-                { "Snake's Serious Injury 22", () => DebugMethodManager.Instance.GetSeriousInjury22Value() },
-                { "Snake's Serious Injury 23", () => DebugMethodManager.Instance.GetSeriousInjury23Value() },
-                { "Snake's Serious Injury 24", () => DebugMethodManager.Instance.GetSeriousInjury24Value() },
-                { "Snake's Serious Injury 25", () => DebugMethodManager.Instance.GetSeriousInjury25Value() },
-                { "Snake's Serious Injury 26", () => DebugMethodManager.Instance.GetSeriousInjury26Value() },
-                { "Snake's Serious Injury 27", () => DebugMethodManager.Instance.GetSeriousInjury27Value() },
-                { "Snake's Serious Injury 28", () => DebugMethodManager.Instance.GetSeriousInjury28Value() },
-                { "Snake's Serious Injury 29", () => DebugMethodManager.Instance.GetSeriousInjury29Value() },
-                { "Snake's Serious Injury 30", () => DebugMethodManager.Instance.GetSeriousInjury30Value() },
-                { "Snake's Serious Injury 31", () => DebugMethodManager.Instance.GetSeriousInjury31Value() },
-                { "Snake's Serious Injury 32", () => DebugMethodManager.Instance.GetSeriousInjury32Value() },
-                { "Snake's Serious Injury 33", () => DebugMethodManager.Instance.GetSeriousInjury33Value() },
-                { "Snake's Serious Injury 34", () => DebugMethodManager.Instance.GetSeriousInjury34Value() },
-                { "Snake's Serious Injury 35", () => DebugMethodManager.Instance.GetSeriousInjury35Value() },
-                { "Snake's Serious Injury 36", () => DebugMethodManager.Instance.GetSeriousInjury36Value() },
-                { "Snake's Serious Injury 37", () => DebugMethodManager.Instance.GetSeriousInjury37Value() },
-                { "Snake's Serious Injury 38", () => DebugMethodManager.Instance.GetSeriousInjury38Value() },
-                { "Snake's Serious Injury 39", () => DebugMethodManager.Instance.GetSeriousInjury39Value() },
-                { "Snake's Serious Injury 40", () => DebugMethodManager.Instance.GetSeriousInjury40Value() },
-                { "Snake's Serious Injury 41", () => DebugMethodManager.Instance.GetSeriousInjury41Value() },
-                { "Snake's Serious Injury 42", () => DebugMethodManager.Instance.GetSeriousInjury42Value() },
-                { "Snake's Serious Injury 43", () => DebugMethodManager.Instance.GetSeriousInjury43Value() },
-                { "Snake's Serious Injury 44", () => DebugMethodManager.Instance.GetSeriousInjury44Value() },
-                { "Snake's Serious Injury 45", () => DebugMethodManager.Instance.GetSeriousInjury45Value() },
-                { "Snake's Serious Injury 46", () => DebugMethodManager.Instance.GetSeriousInjury46Value() },
-                { "Snake's Serious Injury 47", () => DebugMethodManager.Instance.GetSeriousInjury47Value() },
-                { "Snake's Serious Injury 48", () => DebugMethodManager.Instance.GetSeriousInjury48Value() },
-                { "Snake's Serious Injury 49", () => DebugMethodManager.Instance.GetSeriousInjury49Value() },
-                { "Snake's Serious Injury 50", () => DebugMethodManager.Instance.GetSeriousInjury50Value() },
-                { "Snake's Serious Injury 51", () => DebugMethodManager.Instance.GetSeriousInjury51Value() },
-                { "Snake's Serious Injury 52", () => DebugMethodManager.Instance.GetSeriousInjury52Value() },
-                { "Snake's Serious Injury 53", () => DebugMethodManager.Instance.GetSeriousInjury53Value() },
-                { "Snake's Serious Injury 54", () => DebugMethodManager.Instance.GetSeriousInjury54Value() },
-                { "Snake's Serious Injury 55", () => DebugMethodManager.Instance.GetSeriousInjury55Value() },
-                { "Snake's Serious Injury 56", () => DebugMethodManager.Instance.GetSeriousInjury56Value() },
-                { "Snake's Serious Injury 57", () => DebugMethodManager.Instance.GetSeriousInjury57Value() },
-                { "Snake's Serious Injury 58", () => DebugMethodManager.Instance.GetSeriousInjury58Value() },
-                { "Snake's Serious Injury 59", () => DebugMethodManager.Instance.GetSeriousInjury59Value() },
-                { "Snake's Serious Injury 60", () => DebugMethodManager.Instance.GetSeriousInjury60Value() },
-                { "Snake's Serious Injury 61", () => DebugMethodManager.Instance.GetSeriousInjury61Value() },
-                { "Snake's Serious Injury 62", () => DebugMethodManager.Instance.GetSeriousInjury62Value() },
-                { "Snake's Serious Injury 63", () => DebugMethodManager.Instance.GetSeriousInjury63Value() },
-                { "Snake's Serious Injury 64", () => DebugMethodManager.Instance.GetSeriousInjury64Value() },
-                { "Snake's Serious Injury 65", () => DebugMethodManager.Instance.GetSeriousInjury65Value() },
-                { "Snake's Serious Injury 66", () => DebugMethodManager.Instance.GetSeriousInjury66Value() },
-                { "Snake's Serious Injury 67", () => DebugMethodManager.Instance.GetSeriousInjury67Value() },
-                { "Snake's Serious Injury 68", () => DebugMethodManager.Instance.GetSeriousInjury68Value() },
-            };
-
-            foreach (var reading in LogMemoryAddresses)
-            {
-                string message = reading.Value.Invoke();
-                LoggingManager.Instance.Log($"{reading.Key}:\n{message}\n");
-            }
-        }
-
+       
         public static void LogAllWeaponsAndItemsAddresses()
         {
             LoggingManager.Instance.Log("Logging all weapons and items' addresses...");
@@ -308,34 +168,50 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
                 // Calculate the offset relative to the base address
                 long relativeOffset = weaponAddress.ToInt64() - baseAddress.ToInt64();
-                LoggingManager.Instance.Log($"{weapon.Name} - Address: {weaponAddress.ToString("X")} (METAL GEAR SOLID 3.exe+{relativeOffset:X})");
+                LoggingManager.Instance.Log($"{weapon.Name} - Address: {weaponAddress.ToString("X")} MGSDelta-Win64-Shipping.exe+{relativeOffset:X}");
 
+                // These methods in WeaponAddresses already handle the offset calculations
                 if (weapon.MaxAmmoOffset != IntPtr.Zero)
                 {
                     IntPtr maxAmmoAddress = WeaponAddresses.GetMaxAmmoAddress(weaponAddress);
                     relativeOffset = maxAmmoAddress.ToInt64() - baseAddress.ToInt64();
-                    LoggingManager.Instance.Log($"Max Ammo Address: {maxAmmoAddress.ToString("X")} (METAL GEAR SOLID 3.exe+{relativeOffset:X})");
+                    LoggingManager.Instance.Log($"Max Ammo Address: {maxAmmoAddress.ToString("X")} MGSDelta-Win64-Shipping.exe+{relativeOffset:X}");
                 }
 
                 if (weapon.ClipOffset != IntPtr.Zero)
                 {
                     IntPtr clipAddress = WeaponAddresses.GetClipAddress(weaponAddress);
                     relativeOffset = clipAddress.ToInt64() - baseAddress.ToInt64();
-                    LoggingManager.Instance.Log($"Clip Address: {clipAddress.ToString("X")} (METAL GEAR SOLID 3.exe+{relativeOffset:X})");
+                    LoggingManager.Instance.Log($"Clip Address: {clipAddress.ToString("X")} MGSDelta-Win64-Shipping.exe+{relativeOffset:X}");
                 }
 
                 if (weapon.MaxClipOffset != IntPtr.Zero)
                 {
                     IntPtr maxClipAddress = WeaponAddresses.GetMaxClipAddress(weaponAddress);
                     relativeOffset = maxClipAddress.ToInt64() - baseAddress.ToInt64();
-                    LoggingManager.Instance.Log($"Max Clip Address: {maxClipAddress.ToString("X")} (METAL GEAR SOLID 3.exe+{relativeOffset:X})");
+                    LoggingManager.Instance.Log($"Max Clip Address: {maxClipAddress.ToString("X")} MGSDelta-Win64-Shipping.exe+{relativeOffset:X}");
                 }
 
                 if (weapon.SuppressorToggleOffset != IntPtr.Zero)
                 {
                     IntPtr suppressorToggleAddress = WeaponAddresses.GetSuppressorToggleAddress(weaponAddress);
                     relativeOffset = suppressorToggleAddress.ToInt64() - baseAddress.ToInt64();
-                    LoggingManager.Instance.Log($"Suppressor Toggle Address: {suppressorToggleAddress.ToString("X")} (METAL GEAR SOLID 3.exe+{relativeOffset:X})");
+                    LoggingManager.Instance.Log($"Suppressor Toggle Address: {suppressorToggleAddress.ToString("X")} MGSDelta-Win64-Shipping.exe+{relativeOffset:X}");
+                }
+
+                // Add logging for the additional offsets we identified
+                if (weapon.WeaponIdOffset != IntPtr.Zero)
+                {
+                    IntPtr weaponIdAddress = WeaponAddresses.GetWeaponIdAddress(weaponAddress);
+                    relativeOffset = weaponIdAddress.ToInt64() - baseAddress.ToInt64();
+                    LoggingManager.Instance.Log($"Weapon ID Address: {weaponIdAddress.ToString("X")} MGSDelta-Win64-Shipping.exe+{relativeOffset:X}");
+                }
+
+                if (weapon.CqcFlagOffset != IntPtr.Zero)
+                {
+                    IntPtr cqcFlagAddress = WeaponAddresses.GetCqcFlagAddress(weaponAddress);
+                    relativeOffset = cqcFlagAddress.ToInt64() - baseAddress.ToInt64();
+                    LoggingManager.Instance.Log($"CQC Flag Address: {cqcFlagAddress.ToString("X")} MGSDelta-Win64-Shipping.exe+{relativeOffset:X}");
                 }
             }
 
@@ -364,6 +240,260 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             MemoryManager.NativeMethods.CloseHandle(processHandle);
             LoggingManager.Instance.Log("Finished logging weapons and items' addresses.");
         }
+       
+        /// <summary>
+        /// Indepth logging with Memory Addresses and the Values at time of method call
+        /// </summary>
+        public void LogAllMemoryAddressesandValues()
+        {
+            var LogMemoryAddresses = new Dictionary<string, Func<string>>()
+            {
+
+                { "Vomit Fire", () => GetVomitFireValue() },
+                { "Alert Status", () => ReadAlertStatus() },
+                { "Guard Invincibility", () => GetInvincibilityAddressValue() },
+                { "Most Weapons Damage", () => GetMostWeaponsDamageValue() },
+                { "Flame Damage", () => GetFlameDamageValue() },
+                { "Throat Slit Damage", () => GetThroatSlitDamageValue() },
+                { "SleepTimer1", () => GetSleepTimer1Value() },
+                { "SleepTimer2", () => GetSleepTimer2Value() },
+                { "SleepTimer3", () => GetSleepTimer3Value() },
+                { "Sleep Drain", () => GetSleepDrainValue() },
+                { "Tranq Head", () => GetTranqHeadshotValue() },
+                { "Tranq Body", () => GetTranqBodyShotValue() },
+                { "StunTimer1", () => GetStunTimer1Value() },
+                { "StunTimer2", () => GetStunTimer2Value() },
+                { "StunTimer3", () => GetStunTimer3Value() },
+                { "Stun Punch", () => GetStunPunchValue() },
+                { "Stun Grenade", () => GetStunGrenadeValue() },
+                { "Giant Damage Array", () => GetGiantDamageArrayValue() },
+                { "Damage Multiplier", () => GetDamageMultiValue() },
+                { "GetSnakeNoDamageValue", () => GetSnakeNoDamageValue() },
+                { "GetSnakeInstantLifeRecoveryValue", () => GetSnakeInstantLifeRecoveryValue() },
+                { "GetRestartStageValue", () => GetRestartStageValue() },
+                { "GetFilterValue1", () => GetFilterValue1() },
+                { "GetFilterColor1", () => GetFilterColor1() },
+                { "GetFilterLight1", () => GetFilterLight1() },
+                { "GetFilterLight2", () => GetFilterLight2() },
+                { "GetFilterAccurateColorR", () => GetFilterAccurateColorR() },
+                { "GetFilterAccurateColorG", () => GetFilterAccurateColorG() },
+                { "GetFilterAccurateColorB", () => GetFilterAccurateColorB() },
+                { "GetFilterSkyLight", () => GetFilterSkyLight() },
+                { "Fog Array", () => GetFogArrayValue() },
+                { "Delta Piss Filter to NOP", () => GetPissFilterNopValue() },
+                { "RGB Filter to NOP", () => GetRgbNopValue() },
+                { "RGB2 Filter to NOP", () => GetRgb2NopValue() },
+                { "Light of Sky to NOP", () => GetSkyLightNopValue() },
+            };
+
+            foreach (var reading in LogMemoryAddresses)
+            {
+                string message = reading.Value.Invoke();
+                LoggingManager.Instance.Log($"{reading.Key}:\n{message}\n");
+            }
+        }
+
+        #region String Methods for LogAllMemoryAddressesAndValues
+
+        public string GetVomitFireValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("ItemsTable", 30234, true, 1, DataType.UInt8);
+        }
+
+        public string ReadAlertStatus()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("AlertMemoryRegion", (int)AlertOffsets.AlertTriggerAdd, true, 1, DataType.UInt8);
+        }
+
+        #region GuardDamage Related Methods
+
+        public string GetInvincibilityAddressValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 11889, false, 8, DataType.ByteArray);
+        }
+
+        public string GetMostWeaponsDamageValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 102807, true, 4, DataType.Int32);
+        }
+
+        public string GetFlameDamageValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 4, false, 4, DataType.Int32);
+        }
+
+        public string GetThroatSlitDamageValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 397936, true, 4, DataType.Int32);
+        }
+
+        public string GetSleepTimer1Value()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 2161, true, 4, DataType.Int32);
+        }
+
+        public string GetSleepTimer2Value()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 2179, true, 4, DataType.Int32);
+        }
+
+        public string GetSleepTimer3Value()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 2191, true, 4, DataType.Int32);
+        }
+
+        public string GetSleepDrainValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 7797, true, 6, DataType.ByteArray);
+        }
+
+        public string GetTranqHeadshotValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 102698, true, 7, DataType.ByteArray);
+        }
+
+        public string GetTranqBodyShotValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 113777, true, 6, DataType.ByteArray);
+        }
+
+        public string GetStunTimer1Value()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 127, false, 4, DataType.Int32);
+        }
+
+        public string GetStunTimer2Value()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 109, false, 4, DataType.Int32);
+        }
+
+        public string GetStunTimer3Value()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 97, false, 4, DataType.Int32);
+        }
+
+        public string GetStunPunchValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 102286, true, 6, DataType.ByteArray);
+        }
+
+        public string GetStunGrenadeValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 100556, true, 6, DataType.ByteArray);
+        }
+
+        public string GetGiantDamageArrayValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 11872, false, 54, DataType.ByteArray);
+        }
+
+        public string GetDamageMultiValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 11849, false, 4, DataType.Float);
+        }
+
+        #endregion
+
+        public string GetRestartStageValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("StageRestart", 64, true, 1, DataType.ByteArray);
+        }
+
+        public string GetSnakeNoDamageValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("calcuateCamoIndexOffset", 5538, false, 4, DataType.ByteArray);
+        }
+
+        public string GetSnakeInstantLifeRecoveryValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("SnakeLifeRecovery", 4, false, 1, DataType.ByteArray);
+        }
+
+        public string GetFogArrayValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("Fog", 4, false, 4, DataType.ByteArray);
+        }
+
+        // Filter Values
+        // Piss Filter
+        public string GetPissFilterNopValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("Fog", 5402346, true, 32, DataType.ByteArray);
+        }
+        public string GetFilterValue1()// R?
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 38, true, 4, DataType.Float);
+        }
+        public string GetFilterValue2()// G?
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 42, true, 4, DataType.Float);
+        }
+        public string GetFilterValue3()// B?
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 46, true, 4, DataType.Float);
+        }
+        public string GetFilterValue4()// A?
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 50, true, 4, DataType.Float);
+        }
+
+
+        // Should look into if this is part of piss filter or the first RGB NOP
+        public string GetFilterColor1()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 54, true, 4, DataType.ByteArray);
+        }
+
+        public string GetFilterLight1()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 66, true, 4, DataType.ByteArray);
+        }
+
+        public string GetFilterLight2()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 82, true, 4, DataType.ByteArray);
+        }
+
+        // RGB Might be Floats since all are 4 bytes away from each other?
+        public string GetFilterAccurateColorR()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 70, true, 4, DataType.ByteArray);
+        }
+
+        public string GetFilterAccurateColorG()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 74, true, 4, DataType.ByteArray);
+        }
+
+        public string GetFilterAccurateColorB()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 78, true, 4, DataType.ByteArray);
+        }
+
+        public string GetFilterSkyLight()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 402, true, 8, DataType.ByteArray);
+        }
+
+        // Functions to NOP for filter effects
+        
+
+        public string GetRgbNopValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("Fog", 5402453, true, 32, DataType.ByteArray);
+        }
+
+        public string GetRgb2NopValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("Fog", 5402572, true, 32, DataType.ByteArray);
+        }
+
+        public string GetSkyLightNopValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("Fog", 5404871, true, 8, DataType.ByteArray);
+        }
+
+        #endregion
 
     }
 

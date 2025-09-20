@@ -77,7 +77,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         #region Base Address and Process Handling
 
-        // This gets the base address of the game from Constants.cs which is MGSDelta-Win64-Shipping.exe.text
+        // This gets the base address of the game from Constants.cs which is MGSDelta-Win64-Shipping.exe
         public static IntPtr PROCESS_BASE_ADDRESS = IntPtr.Zero;
 
         public static Process GetMGS3Process()
@@ -88,28 +88,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 // Just do nothing for now so the user isn't spammed with messages
             }
             return process;
-        }
-
-        /// <summary>
-        /// Check if the game is running before starting the application <br></br>
-        /// if the game isn't running then close the application
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void TrainerLooksForGame(object sender, EventArgs e)
-        {
-            var process = MemoryManager.GetMGS3Process();
-            if (process == null)
-            {
-                LoggingManager.Instance.Log("Game process not found. Prompting user to start the game.\n");
-                CustomMessageBoxManager.CustomMessageBox("Game process not found. \nIf the game is running please reach out to us on Discord and open a ticket", "Error");
-                LoggingManager.Instance.Log("Closing application.\n");
-                Application.Exit();
-            }
-            else
-            {
-                LoggingManager.Instance.Log("Game process found. Starting logging for this session.\nApplication started successfully.\n");
-            }
         }
 
         /// <summary>
@@ -142,7 +120,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             }
         }       
 
-
         public static bool ReadProcessMemory(IntPtr processHandle, IntPtr address, byte[] buffer, uint size, out int bytesRead)
         {
             return NativeMethods.ReadProcessMemory(processHandle, address, buffer, size, out bytesRead);
@@ -172,7 +149,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
             byte[] buffer = ReadMemoryBytes(processHandle, address, bytesToRead);
             string addressHex = $"0x{address.ToInt64():X}";
-            string moduleOffset = $"MGSDelta-Win64-Shipping.exe.text+{(address.ToInt64() - process.MainModule.BaseAddress.ToInt64()):X}";
+            string moduleOffset = $"MGSDelta-Win64-Shipping.exe+{(address.ToInt64() - process.MainModule.BaseAddress.ToInt64()):X}";
 
             if (buffer == null || buffer.Length != bytesToRead)
                 return $"Failed to read memory from: {moduleOffset} (Address: {addressHex}).";
@@ -250,14 +227,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         #region Memory Writing
 
-        /// <summary>
-        /// Writes a value of type T to the specified address in the target process.
-        /// </summary>
-        /// <typeparam name="T">Type of the value to write.</typeparam>
-        /// <param name="processHandle">Handle to the target process.</param>
-        /// <param name="address">Address in the target process to write to.</param>
-        /// <param name="value">Value to write.</param>
-        /// <returns>True if the write operation was successful; otherwise, false.</returns>
         public static bool WriteMemory<T>(IntPtr processHandle, IntPtr address, T value)
         {
             byte[] buffer;
@@ -265,6 +234,12 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             if (typeof(T) == typeof(byte[]))
             {
                 buffer = value as byte[];
+            }
+            // Don't remember why I put this in here
+            else if (typeof(T) == typeof(float))
+            {
+                float floatValue = (float)(object)value;
+                buffer = BitConverter.GetBytes(floatValue);
             }
             else
             {
@@ -283,7 +258,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             }
 
             return NativeMethods.WriteProcessMemory(processHandle, address, buffer, (uint)buffer.Length, out _);
-        }       
+        }
 
         /// <summary>
         /// Sets specific bits in a short value.
@@ -673,7 +648,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             if (lastFoundAddress != lastLoggedAobAddress)
             {
                 long lastRelativeOffset = lastFoundAddress.ToInt64() - baseAddress.ToInt64();
-                LoggingManager.Instance.Log($"Last instance of {aobName} AOB found at: {lastFoundAddress.ToString("X")} (MGSDelta-Win64-Shipping.exe.text+{lastRelativeOffset:X})");
+                LoggingManager.Instance.Log($"Last instance of {aobName} AOB found at: {lastFoundAddress.ToString("X")} (MGSDelta-Win64-Shipping.exe+{lastRelativeOffset:X})");
 
                 // Update the cached AOB address
                 lastLoggedAobAddress = lastFoundAddress;

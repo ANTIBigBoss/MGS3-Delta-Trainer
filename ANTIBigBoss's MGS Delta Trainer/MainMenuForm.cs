@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using static ANTIBigBoss_s_MGS_Delta_Trainer.HelperMethods;
 using System.Security.Principal;
 using System.Windows.Forms;
 
@@ -43,17 +44,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             CamoForm form3 = new();
             form3.Show();
             this.Hide();
-        }
-
-        private void DebugFormSwap_Click(object sender, EventArgs e)
-        {
-            LoggingManager.Instance.Log("User is changing to the Debug form from the Main Menu form.\n");
-            MemoryManager.UpdateLastFormLocation(this.Location);
-            MemoryManager.LogFormLocation(this, "DebugForm");
-            DebugForm form8 = new();
-            form8.Show();
-            this.Hide();
-        }
+        }       
 
         private void MainMenuForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -111,7 +102,40 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             LoggingManager.Instance.LogAOBAddresses();
             LoggingManager.Instance.LogAllMemoryAddressesandValues();
             //StringManager.Instance.DisplayEntirePointer();
-            CustomMessageBoxManager.CustomMessageBox("Information written to log file in: C:\\Users\\YourUserNameHere\\Documents\\MGS3 CT Log\\MGS3_MC_Cheat_Trainer_Log.txt", "Log Generated");
+            CustomFormManager.CustomMessageBox("Information written to log file in: C:\\Users\\YourUserNameHere\\Documents\\MGS3 CT Log\\MGS3_MC_Cheat_Trainer_Log.txt", "Log Generated");
+        }
+
+        private void StatsAndAlertForm_Click(object sender, EventArgs e)
+        {
+            LoggingManager.Instance.Log("User is changing to the Stats and Alert from the Main Menu.\n");
+            MemoryManager.UpdateLastFormLocation(this.Location);
+            MemoryManager.LogFormLocation(this, "StatsAndAlertForm");
+            StatsAndAlertForm form5 = new();
+            form5.Show();
+            this.Hide();
+        }
+
+        private void PatchNotesButton_Click(object sender, EventArgs e)
+        {
+            CustomFormManager.CustomMessageBox("" +
+                "Thanks for using my MGS3 Delta Trainer! - ANTIBigBoss\n\n" +
+                "Changelog History:\n" +
+                "Next update will feature the Game Stats feature from the old trainer that people have been asking for" +
+                "v1.0.0.4:\nAdded Misc page from the old trainer but with new options for tweaking, Reworked the Guard Damage options as the broke last game update, added in some filter/lighting editing, added in infinite ammo, no reload & infinite suppressors, added in an option that stops the battery from draining or recharging, restart stage option & difficultly changer also added to the new page.\n\n" +
+                "v1.0.0.3:\nFixed memory address issues from Konami's 1.1.3 update and removed Guard Damage options from Stats and Alert as there was inconsistent issues with guards being stuck as invincible.\n\n" +
+                "v1.0.0.2:\nPorted in the Stats and Alert functions from the original MGS3 Trainer\n\n" +
+                "v1.0.0.1:\nAdded in some extra items and fixed memory address issues from Konami's 1.1.2 update\n\n" +
+                "v1.0.0.0: Initial Release, ported over the Weapons, Items and Camo functions from the original MGS3 Trainer", "Patch Notes");
+        }
+
+        private void MiscFormSwap_Click(object sender, EventArgs e)
+        {
+            LoggingManager.Instance.Log("User is changing to the Misc page from the Main Menu.\n");
+            MemoryManager.UpdateLastFormLocation(this.Location);
+            MemoryManager.LogFormLocation(this, "MiscForm");
+            MiscForm form4 = new();
+            form4.Show();
+            this.Hide();
         }
     }
 }

@@ -194,6 +194,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             pictureBox54 = new PictureBox();
             SwapToItemsForm = new Button();
             SwapToWeaponsForm = new Button();
+            StatsAndAlertForm = new Button();
+            MiscFormSwap = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -2680,6 +2682,38 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             SwapToWeaponsForm.UseVisualStyleBackColor = true;
             SwapToWeaponsForm.Click += SwapToWeaponsForm_Click;
             // 
+            // StatsAndAlertForm
+            // 
+            StatsAndAlertForm.BackgroundImage = (Image)resources.GetObject("StatsAndAlertForm.BackgroundImage");
+            StatsAndAlertForm.Cursor = Cursors.Hand;
+            StatsAndAlertForm.FlatStyle = FlatStyle.Flat;
+            StatsAndAlertForm.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            StatsAndAlertForm.ImageAlign = ContentAlignment.TopCenter;
+            StatsAndAlertForm.ImeMode = ImeMode.NoControl;
+            StatsAndAlertForm.Location = new Point(302, 3);
+            StatsAndAlertForm.Name = "StatsAndAlertForm";
+            StatsAndAlertForm.Size = new Size(130, 31);
+            StatsAndAlertForm.TabIndex = 868;
+            StatsAndAlertForm.Text = "Stats/Alerts";
+            StatsAndAlertForm.UseVisualStyleBackColor = true;
+            StatsAndAlertForm.Click += StatsAndAlertForm_Click;
+            // 
+            // MiscFormSwap
+            // 
+            MiscFormSwap.BackgroundImage = (Image)resources.GetObject("MiscFormSwap.BackgroundImage");
+            MiscFormSwap.Cursor = Cursors.Hand;
+            MiscFormSwap.FlatStyle = FlatStyle.Flat;
+            MiscFormSwap.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            MiscFormSwap.ImageAlign = ContentAlignment.TopCenter;
+            MiscFormSwap.ImeMode = ImeMode.NoControl;
+            MiscFormSwap.Location = new Point(438, 3);
+            MiscFormSwap.Name = "MiscFormSwap";
+            MiscFormSwap.Size = new Size(130, 31);
+            MiscFormSwap.TabIndex = 869;
+            MiscFormSwap.Text = "Misc";
+            MiscFormSwap.UseVisualStyleBackColor = true;
+            MiscFormSwap.Click += MiscFormSwap_Click;
+            // 
             // CamoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -2688,6 +2722,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1134, 707);
+            Controls.Add(MiscFormSwap);
+            Controls.Add(StatsAndAlertForm);
             Controls.Add(SwapToItemsForm);
             Controls.Add(SwapToWeaponsForm);
             Controls.Add(pictureBox54);
@@ -3075,5 +3111,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private PictureBox pictureBox54;
         private Button SwapToItemsForm;
         private Button SwapToWeaponsForm;
+        private Button StatsAndAlertForm;
+        private Button MiscFormSwap;
     }
 }

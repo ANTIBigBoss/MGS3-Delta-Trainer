@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Buffers;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
+using System.Diagnostics;
 using static ANTIBigBoss_s_MGS_Delta_Trainer.MemoryManager;
+using static ANTIBigBoss_s_MGS_Delta_Trainer.HelperMethods;
 
 namespace ANTIBigBoss_s_MGS_Delta_Trainer
 {
+
+
 
     #region Base classes
     public class GameObject
@@ -33,7 +30,13 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public const int ClipOffset = 4;
         public const int MaxClipOffset = 6;
         public const int SuppressorToggleOffset = 16; // The offset for the suppressor toggle
-                                                      // Suppressor capacity is actually considered an item and not a weapon
+
+        // Newly Discovered information to log and add effects in for later
+        public const int WeaponIdOffset = -4;      
+        public const int CqcFlagOffset = -3; 
+        public const int WeaponIconIdOffset = -16;
+        public const int EquipWeapPosOffset = -12;
+        public const int FullWeaponBaseOffset = -36;
         public static IntPtr GetAddress(int index, MemoryManager memoryManager)
         {
             IntPtr aobResult = memoryManager.FindAob("WeaponsTable");
@@ -43,7 +46,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             }
             else
             {
-                MessageBox.Show("Weapons table AOB not found in memory.");
+                CustomFormManager.CustomMessageBox("Weapons table not found in MGS Delta's game memory.\nReasons this could happen include:\n\n1. Your game is not up to date on Steam.\n\n2.You're running a pirated copy (Trainer probably won't work, period.)\n\n3.Your game isn't running.\n\n4. You're running mods that alter MGS Delta's executable memory.\n\nIf none of these are applicable, open up a ticket at our Discord supplied in the Mod Description, and we'll help troubleshoot.", "Weapons Table Not Found");
                 return IntPtr.Zero;
             }
         }
@@ -67,25 +70,50 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         {
             return baseAddress + SuppressorToggleOffset;
         }
+
+        public static IntPtr GetWeaponIdAddress(IntPtr baseAddress)
+        {
+            return baseAddress + WeaponIdOffset;
+        }
+
+        public static IntPtr GetCqcFlagAddress(IntPtr baseAddress)
+        {
+            return baseAddress + CqcFlagOffset;
+        }
+
+        public static IntPtr GetWeaponIconIdAddress(IntPtr baseAddress)
+        {
+            return baseAddress + WeaponIconIdOffset;
+        }
+
+        public static IntPtr GetEquipWeapPosAddress(IntPtr baseAddress)
+        {
+            return baseAddress + EquipWeapPosOffset;
+        }
+
+        public static IntPtr GetFullWeaponBaseAddress(IntPtr baseAddress)
+        {
+            return baseAddress + FullWeaponBaseOffset;
+        }
+
     }
 
     public static class ItemAddresses
     {
-        public const int ItemOffset = 80; // The offset between items
-        public const int CurrentCapacityOffset = 0; // The offset for the current capacity
-        public const int MaxOffset = 2;   // The offset for the max value
+        public const int ItemOffset = 80;
+        public const int CurrentCapacityOffset = 0;
+        public const int MaxOffset = 2;
 
         public static IntPtr GetAddress(int index, MemoryManager memoryManager)
         {
             IntPtr aobResult = memoryManager.FindAob("ItemsTable");
             if (aobResult != IntPtr.Zero)
             {
-                // Calculate the specific item address
                 return IntPtr.Add(aobResult, AobManager.AOBs["ItemsTable"].Pattern.Length + 12 + (ItemOffset * index));
             }
             else
             {
-                MessageBox.Show("Items table AOB not found in memory.");
+                CustomFormManager.CustomMessageBox("Items table not found in MGS Delta's game memory.\nReasons this could happen include:\n\n1. Your game is not up to date on Steam.\n\n2.You're running a pirated copy (Trainer probably won't work, period.)\n\n3.Your game isn't running.\n\n4. You're running mods that alter MGS Delta's executable memory.\n\nIf none of these are applicable, open up a ticket at our Discord supplied in the Mod Description, and we'll help troubleshoot.", "Weapons Table Not Found");
                 return IntPtr.Zero;
             }
         }
@@ -99,14 +127,14 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
     public class Item : WeaponItemManager
     {
         public IntPtr MaxCapacityOffset { get; private set; }
-        public string AobKey { get; private set; } // A key to look up AOBs in Constants
-        public int Index { get; private set; } // Add this line
+        public string AobKey { get; private set; }
+        public int Index { get; private set; }
 
-        // Constructor for items without a max capacity
+        // Items without a max capacity
         public Item(string name, int index, string aobKey, bool hasMaxCapacity = false)
     : base(name, IntPtr.Zero) // Initially, we don't have the address
         {
-            Index = index; // Set the index
+            Index = index;
             AobKey = aobKey;
 
             if (hasMaxCapacity)
@@ -134,12 +162,16 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public IntPtr ClipOffset { get; private set; } = IntPtr.Zero;
         public IntPtr MaxClipOffset { get; private set; } = IntPtr.Zero;
         public IntPtr SuppressorToggleOffset { get; private set; } = IntPtr.Zero;
+        public IntPtr WeaponIdOffset { get; private set; } = IntPtr.Zero;
+        public IntPtr CqcFlagOffset { get; private set; } = IntPtr.Zero;
+        public IntPtr WeaponIconIdOffset { get; private set; } = IntPtr.Zero;
+
         public string AobKey { get; private set; }
         public int Index { get; private set; }
 
-
-        public Weapon(string name, int index, string aobKey, bool hasAmmo = false, bool hasClip = false,
-            bool hasSuppressorToggle = false)
+        public Weapon(string name, int index, string aobKey,
+            bool hasAmmo = false, bool hasClip = false, bool hasSuppressorToggle = false,
+            bool hasWeaponId = false, bool hasCqcFlag = false, bool hasWeaponIcon = false)
             : base(name, IntPtr.Zero)
         {
             Index = index;
@@ -160,6 +192,21 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             {
                 SuppressorToggleOffset = WeaponAddresses.GetSuppressorToggleAddress(this.MemoryOffset);
             }
+
+            if (hasWeaponId)
+            {
+                WeaponIdOffset = WeaponAddresses.GetWeaponIdAddress(this.MemoryOffset);
+            }
+
+            if (hasCqcFlag)
+            {
+                CqcFlagOffset = WeaponAddresses.GetCqcFlagAddress(this.MemoryOffset);
+            }
+
+            if (hasWeaponIcon)
+            {
+                WeaponIconIdOffset = WeaponAddresses.GetWeaponIconIdAddress(this.MemoryOffset);
+            }
         }
     }
 
@@ -170,41 +217,45 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
     /// </summary>
     public class MGS3UsableObjects
     {
-        // Weapons in delta are 88 bytes apart as opposed to the 80 they are in the original
+
         #region Weapons
+
         private static MemoryManager memoryManager = new MemoryManager();
 
-
-        public static readonly Weapon SurvivalKnife = new("Survival Knife", 0, "WeaponsTable", false, false, false);
-        public static readonly Weapon Fork = new("Fork", 1, "WeaponsTable", false, false, false);
-        public static readonly Weapon CigSpray = new("Cigspray", 2, "WeaponsTable", true, false, false); // Has ammo but no clip or suppressor
-        public static readonly Weapon Handkerchief = new("Handkerchief", 3, "WeaponsTable", true, false, false);
-        public static readonly Weapon MK22 = new("MK22", 4, "WeaponsTable", true, true, true);
-        public static readonly Weapon M1911A1 = new("M1911A1", 5, "WeaponsTable", true, true, true);
-        public static readonly Weapon EzGun = new("Ez Gun", 6, "WeaponsTable", false, false, false);
-        public static readonly Weapon SAA = new("SAA", 7, "WeaponsTable", true, true, false); // Has ammo and clips but no suppressor
-        public static readonly Weapon Patriot = new("Patriot", 8, "WeaponsTable", false, false, false);
-        public static readonly Weapon Scorpion = new("Scorpion", 9, "WeaponsTable", true, true, false);
-        public static readonly Weapon XM16E1 = new("XM16E1", 10, "WeaponsTable", true, true, true);
-        public static readonly Weapon AK47 = new("AK47", 11, "WeaponsTable", true, true, false);
-        public static readonly Weapon M63 = new("M63", 12, "WeaponsTable", true, true, false);
-        public static readonly Weapon M37 = new("M37", 13, "WeaponsTable", true, true, false);
-        public static readonly Weapon SVD = new("SVD", 14, "WeaponsTable", true, true, false);
-        public static readonly Weapon Mosin = new("Mosin", 15, "WeaponsTable", true, true, false);
-        public static readonly Weapon RPG7 = new("RPG7", 16, "WeaponsTable", true, true, false);
-        public static readonly Weapon Torch = new("Torch", 17, "WeaponsTable", false, false, false);
-        public static readonly Weapon Grenade = new("Grenade", 18, "WeaponsTable", true, false, false);
-        public static readonly Weapon WpGrenade = new("Wp Grenade", 19, "WeaponsTable", true, false, false);
-        public static readonly Weapon StunGrenade = new("Stun Grenade", 20, "WeaponsTable", true, false, false);
-        public static readonly Weapon ChaffGrenade = new("Chaff Grenade", 21, "WeaponsTable", true, false, false);
-        public static readonly Weapon SmokeGrenade = new("Smoke Grenade", 22, "WeaponsTable", true, false, false);
-        public static readonly Weapon EmptyMag = new("Empty Magazine", 23, "WeaponsTable", true, false, false);
-        public static readonly Weapon TNT = new("TNT", 24, "WeaponsTable", true, false, false);
-        public static readonly Weapon C3 = new("C3", 25, "WeaponsTable", true, false, false);
-        public static readonly Weapon Claymore = new("Claymore", 26, "WeaponsTable", true, false, false);
-        public static readonly Weapon Book = new("Book", 27, "WeaponsTable", true, false, false);
-        public static readonly Weapon Mousetrap = new("Mousetrap", 28, "WeaponsTable", true, false, false);
-        public static readonly Weapon DirectionalMic = new("Directional Microphone", 29, "WeaponsTable", false, false, false);
+        // Weapons in delta are 88 bytes apart as opposed to the 80 they are in the original MC port
+        public static readonly Weapon SurvivalKnife = new("Survival Knife", 0, "WeaponsTable", false, false, false, true, true, true);
+        public static readonly Weapon Fork = new("Fork", 1, "WeaponsTable", false, false, false, true, true, true);
+        public static readonly Weapon CigSpray = new("Cigspray", 2, "WeaponsTable", true, false, false, true, true, true); // Ammo+clips no supp
+        public static readonly Weapon Handkerchief = new("Handkerchief", 3, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon MK22 = new("MK22", 4, "WeaponsTable", true, true, true, true, true, true);
+        public static readonly Weapon M1911A1 = new("M1911A1", 5, "WeaponsTable", true, true, true, true, true, true);
+        public static readonly Weapon EzGun = new("Ez Gun", 6, "WeaponsTable", false, false, false, true, true, true);
+        public static readonly Weapon SAA = new("SAA", 7, "WeaponsTable", true, true, false, true, true, true); // Ammo+clips no supp
+        public static readonly Weapon Patriot = new("Patriot", 8, "WeaponsTable", false, false, false, true, true, true);
+        public static readonly Weapon Scorpion = new("Scorpion", 9, "WeaponsTable", true, true, false, true, true, true);
+        public static readonly Weapon XM16E1 = new("XM16E1", 10, "WeaponsTable", true, true, true, true, true, true);
+        public static readonly Weapon AK47 = new("AK47", 11, "WeaponsTable", true, true, false, true, true, true);
+        public static readonly Weapon M63 = new("M63", 12, "WeaponsTable", true, true, false, true, true, true);
+        public static readonly Weapon M37 = new("M37", 13, "WeaponsTable", true, true, false, true, true, true);
+        public static readonly Weapon SVD = new("SVD", 14, "WeaponsTable", true, true, false, true, true, true);
+        public static readonly Weapon Mosin = new("Mosin", 15, "WeaponsTable", true, true, false, true, true, true);
+        public static readonly Weapon RPG7 = new("RPG7", 16, "WeaponsTable", true, true, false, true, true, true);
+        public static readonly Weapon Torch = new("Torch", 17, "WeaponsTable", false, false, false, true, true, true);
+        public static readonly Weapon Grenade = new("Grenade", 18, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon WpGrenade = new("Wp Grenade", 19, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon StunGrenade = new("Stun Grenade", 20, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon ChaffGrenade = new("Chaff Grenade", 21, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon SmokeGrenade = new("Smoke Grenade", 22, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon EmptyMag = new("Empty Magazine", 23, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon TNT = new("TNT", 24, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon C3 = new("C3", 25, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon Claymore = new("Claymore", 26, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon Book = new("Book", 27, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon Mousetrap = new("Mousetrap", 28, "WeaponsTable", true, false, false, true, true, true);
+        public static readonly Weapon DirectionalMic = new("Directional Microphone", 29, "WeaponsTable", false, false, false, true, true, true);
+        public static readonly Weapon FoodItem1 = new("Food 1", 30, "WeaponsTable", false, false, false, true, true, true);
+        public static readonly Weapon FoodItem2 = new("Food 2", 31, "WeaponsTable", false, false, false, true, true, true);
+        public static readonly Weapon FoodItem3 = new("Food 3", 32, "WeaponsTable", false, false, false, true, true, true);
         // When I learn more on how to force certain food items to be in the 19 slots after will implement logic here
         #endregion
 
@@ -287,7 +338,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public static readonly Item Leaf = new("Leaf", 52, "ItemsTable", false);
         public static readonly Item TreeBark = new("Tree Bark", 53, "ItemsTable", false);
         public static readonly Item ChocoChip = new("Choco Chip", 54, "ItemsTable", false);
-        public static readonly Item Splitter = new("Splitter", 55, "ItemsTable", false);
+        public static readonly Item SplitterBody = new("Splitter", 55, "ItemsTable", false);
         public static readonly Item Raindrop = new("Raindrop", 56, "ItemsTable", false);
         public static readonly Item Squares = new("Squares", 57, "ItemsTable", false);
         public static readonly Item Water = new("Water", 58, "ItemsTable", false);
@@ -387,6 +438,390 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         #endregion
 
         #endregion
-       
+
+        #region Modifying Weapons/Items Methods
+
+        internal static void ToggleWeapon(Weapon weapon, bool enable)
+        {
+            short stateValue = enable ? (short)1 : (short)-1;
+
+            IntPtr weaponAddress = WeaponAddresses.GetAddress(weapon.Index, MemoryManager.Instance);
+            IntPtr processHandle = MemoryManager.OpenGameProcess(MemoryManager.GetMGS3Process());
+
+            if (weaponAddress != IntPtr.Zero)
+            {
+                MemoryManager.WriteMemory(processHandle, weaponAddress, stateValue);
+                LoggingManager.Instance.Log($"Toggled {weapon.Name} {(enable ? "on" : "off")}");
+
+                MemoryManager.NativeMethods.CloseHandle(processHandle);
+            }
+            else
+            {
+                LoggingManager.Instance.Log($"Failed to retrieve address for {weapon.Name}");
+                if (processHandle != IntPtr.Zero)
+                {
+                    MemoryManager.NativeMethods.CloseHandle(processHandle);
+                }
+            }
+        }
+
+        internal static void ToggleItemState(Item item, bool enable)
+        {
+            short stateValue = enable ? (short)1 : (short)-1;
+            IntPtr itemAddress = ItemAddresses.GetAddress(item.Index, MemoryManager.Instance);
+            IntPtr processHandle = MemoryManager.OpenGameProcess(MemoryManager.GetMGS3Process());
+
+            if (itemAddress != IntPtr.Zero && processHandle != IntPtr.Zero)
+            {
+                MemoryManager.WriteMemory(processHandle, itemAddress, stateValue);
+                LoggingManager.Instance.Log($"Toggled {item.Name} {(enable ? "on" : "off")}");
+
+                MemoryManager.NativeMethods.CloseHandle(processHandle);
+            }
+            else
+            {
+                LoggingManager.Instance.Log($"Failed to retrieve address or open process for {item.Name}");
+                if (processHandle != IntPtr.Zero)
+                {
+                    MemoryManager.NativeMethods.CloseHandle(processHandle);
+                }
+            }
+        }
+
+        internal static void ModifyItemCapacity(Item item, string itemCountStr)
+        {
+            if (!short.TryParse(itemCountStr, out short newCapacity))
+            {
+                LoggingManager.Instance.Log("Invalid item count string.");
+                return;
+            }
+
+            IntPtr itemAddress = ItemAddresses.GetAddress(item.Index, MemoryManager.Instance);
+
+            if (itemAddress != IntPtr.Zero)
+            {
+                IntPtr processHandle = MemoryManager.OpenGameProcess(MemoryManager.GetMGS3Process());
+
+                if (processHandle != IntPtr.Zero)
+                {
+                    IntPtr currentCapacityAddress = IntPtr.Add(itemAddress, ItemAddresses.CurrentCapacityOffset);
+                    IntPtr maxCapacityAddress = IntPtr.Add(itemAddress, item.MaxCapacityOffset.ToInt32());
+                    MemoryManager.WriteMemory(processHandle, currentCapacityAddress, newCapacity);
+                    MemoryManager.WriteMemory(processHandle, maxCapacityAddress, newCapacity);
+
+                    LoggingManager.Instance.Log($"Updated capacity for {item.Name} to {newCapacity}.");
+
+                    MemoryManager.NativeMethods.CloseHandle(processHandle);
+                }
+                else
+                {
+                    LoggingManager.Instance.Log("Failed to open process handle.");
+                }
+            }
+            else
+            {
+                LoggingManager.Instance.Log($"Failed to retrieve address for {item.Name}");
+            }
+        }
+
+        internal static void ModifyMaxItemCapacity(Item item, string itemCountStr)
+        {
+            if (!short.TryParse(itemCountStr, out short newCapacity))
+            {
+                LoggingManager.Instance.Log("Invalid capacity value.");
+                return;
+            }
+
+            IntPtr itemAddress = ItemAddresses.GetAddress(item.Index, MemoryManager.Instance);
+
+            if (itemAddress != IntPtr.Zero)
+            {
+                IntPtr processHandle = MemoryManager.OpenGameProcess(MemoryManager.GetMGS3Process());
+                if (processHandle != IntPtr.Zero)
+                {
+                    if (item.MaxCapacityOffset != IntPtr.Zero)
+                    {
+                        IntPtr maxCapacityAddress = IntPtr.Add(itemAddress, item.MaxCapacityOffset.ToInt32());
+
+                        MemoryManager.WriteMemory(processHandle, maxCapacityAddress, newCapacity);
+                    }
+                    else
+                    {
+                        MemoryManager.WriteMemory(processHandle, itemAddress, newCapacity);
+                    }
+
+                    LoggingManager.Instance.Log($"Updated max capacity for {item.Name} to {newCapacity}.");
+                    MemoryManager.NativeMethods.CloseHandle(processHandle);
+                }
+                else
+                {
+                    LoggingManager.Instance.Log("Failed to open process handle.");
+                }
+            }
+            else
+            {
+                LoggingManager.Instance.Log($"Failed to retrieve address for {item.Name}");
+            }
+        }
+
+        internal static void ModifyClipSize(Weapon weapon, string clipSize)
+        {
+            if (!short.TryParse(clipSize, out short newSize))
+            {
+                LoggingManager.Instance.Log("Invalid clip size value.");
+                return;
+            }
+
+            IntPtr weaponAddress = WeaponAddresses.GetAddress(weapon.Index, MemoryManager.Instance);
+            if (weaponAddress != IntPtr.Zero)
+            {
+                IntPtr processHandle = MemoryManager.OpenGameProcess(MemoryManager.GetMGS3Process());
+                if (processHandle != IntPtr.Zero)
+                {
+                    IntPtr clipSizeAddress = IntPtr.Add(weaponAddress, weapon.ClipOffset.ToInt32());
+                    MemoryManager.WriteMemory(processHandle, clipSizeAddress, newSize);
+                    LoggingManager.Instance.Log($"Updated clip size for {weapon.Name} to {newSize}.");
+                    MemoryManager.NativeMethods.CloseHandle(processHandle);
+                }
+                else
+                {
+                    LoggingManager.Instance.Log("Failed to open process handle.");
+                }
+            }
+            else
+            {
+                LoggingManager.Instance.Log($"Failed to retrieve address for {weapon.Name}");
+            }
+        }
+
+        internal static void ModifyMaxClipSize(Weapon weapon, string clipSize)
+        {
+            if (!short.TryParse(clipSize, out short newSize))
+            {
+                LoggingManager.Instance.Log("Invalid max clip size value.");
+                return;
+            }
+
+            IntPtr weaponAddress = WeaponAddresses.GetAddress(weapon.Index, MemoryManager.Instance);
+            if (weaponAddress != IntPtr.Zero)
+            {
+                IntPtr processHandle = MemoryManager.OpenGameProcess(MemoryManager.GetMGS3Process());
+                if (processHandle != IntPtr.Zero)
+                {
+                    IntPtr maxClipSizeAddress = IntPtr.Add(weaponAddress, weapon.MaxClipOffset.ToInt32());
+                    MemoryManager.WriteMemory(processHandle, maxClipSizeAddress, newSize);
+                    LoggingManager.Instance.Log($"Updated max clip size for {weapon.Name} to {newSize}.");
+                    MemoryManager.NativeMethods.CloseHandle(processHandle);
+                }
+                else
+                {
+                    LoggingManager.Instance.Log("Failed to open process handle.");
+                }
+            }
+            else
+            {
+                LoggingManager.Instance.Log($"Failed to retrieve address for {weapon.Name}");
+            }
+        }
+
+        internal static void ModifyCurrentAndMaxClipSize(Weapon weapon, string clipSize)
+        {
+            if (!short.TryParse(clipSize, out short newSize))
+            {
+                LoggingManager.Instance.Log("Invalid clip size value.");
+                return;
+            }
+
+            IntPtr weaponAddress = WeaponAddresses.GetAddress(weapon.Index, MemoryManager.Instance);
+            if (weaponAddress != IntPtr.Zero)
+            {
+                IntPtr processHandle = MemoryManager.OpenGameProcess(MemoryManager.GetMGS3Process());
+                if (processHandle != IntPtr.Zero)
+                {
+                    IntPtr clipSizeAddress = IntPtr.Add(weaponAddress, weapon.ClipOffset.ToInt32());
+                    IntPtr maxClipSizeAddress = IntPtr.Add(weaponAddress, weapon.MaxClipOffset.ToInt32());
+
+                    MemoryManager.WriteMemory(processHandle, clipSizeAddress, newSize);
+                    MemoryManager.WriteMemory(processHandle, maxClipSizeAddress, newSize);
+                    LoggingManager.Instance.Log($"Updated current and max clip sizes for {weapon.Name} to {newSize}.");
+
+                    MemoryManager.NativeMethods.CloseHandle(processHandle);
+                }
+                else
+                {
+                    LoggingManager.Instance.Log("Failed to open process handle.");
+                }
+            }
+            else
+            {
+                LoggingManager.Instance.Log($"Failed to retrieve address for {weapon.Name}");
+            }
+        }
+
+        internal static void ModifyAmmo(Weapon weapon, string ammoCount)
+        {
+            if (!short.TryParse(ammoCount, out short ammoValue))
+            {
+                LoggingManager.Instance.Log("Invalid ammo count value.");
+                return;
+            }
+
+            IntPtr weaponAddress = WeaponAddresses.GetAddress(weapon.Index, MemoryManager.Instance);
+            if (weaponAddress != IntPtr.Zero)
+            {
+                IntPtr processHandle = MemoryManager.OpenGameProcess(MemoryManager.GetMGS3Process());
+                if (processHandle != IntPtr.Zero)
+                {
+                    IntPtr currentAmmoAddress = IntPtr.Add(weaponAddress, WeaponAddresses.CurrentAmmoOffset);
+
+                    MemoryManager.WriteMemory(processHandle, currentAmmoAddress, ammoValue);
+                    LoggingManager.Instance.Log($"Updated ammo for {weapon.Name} to {ammoValue}.");
+
+                    MemoryManager.NativeMethods.CloseHandle(processHandle);
+                }
+                else
+                {
+                    LoggingManager.Instance.Log("Failed to open process handle.");
+                }
+            }
+            else
+            {
+                LoggingManager.Instance.Log($"Failed to retrieve address for {weapon.Name}");
+            }
+        }
+
+        internal static void ModifyMaxAmmo(Weapon weapon, string ammoCount)
+        {
+            if (!short.TryParse(ammoCount, out short ammoValue))
+            {
+                LoggingManager.Instance.Log("Invalid max ammo count value.");
+                return;
+            }
+
+            IntPtr weaponAddress = WeaponAddresses.GetAddress(weapon.Index, MemoryManager.Instance);
+            if (weaponAddress != IntPtr.Zero)
+            {
+                IntPtr processHandle = MemoryManager.OpenGameProcess(MemoryManager.GetMGS3Process());
+                if (processHandle != IntPtr.Zero)
+                {
+                    int offset = weapon.MaxAmmoOffset.ToInt32();
+                    IntPtr ammoAddress = IntPtr.Add(weaponAddress, offset);
+
+                    MemoryManager.WriteMemory(processHandle, ammoAddress, ammoValue);
+                    LoggingManager.Instance.Log($"Updated max ammo for {weapon.Name} to {ammoValue}.");
+
+                    MemoryManager.NativeMethods.CloseHandle(processHandle);
+                }
+                else
+                {
+                    LoggingManager.Instance.Log("Failed to open process handle.");
+                }
+            }
+            else
+            {
+                LoggingManager.Instance.Log($"Failed to retrieve address for {weapon.Name}");
+            }
+        }
+
+        internal static void ModifyCurrentAndMaxAmmo(Weapon weapon, string ammoCount)
+        {
+            if (!short.TryParse(ammoCount, out short ammoValue))
+            {
+                LoggingManager.Instance.Log("Invalid ammo count value.");
+                return;
+            }
+
+            IntPtr weaponAddress = WeaponAddresses.GetAddress(weapon.Index, MemoryManager.Instance);
+            if (weaponAddress != IntPtr.Zero)
+            {
+                IntPtr processHandle = MemoryManager.OpenGameProcess(MemoryManager.GetMGS3Process());
+                if (processHandle != IntPtr.Zero)
+                {
+                    IntPtr currentAmmoAddress = IntPtr.Add(weaponAddress, WeaponAddresses.CurrentAmmoOffset);
+                    IntPtr maxAmmoAddress = IntPtr.Add(weaponAddress, weapon.MaxAmmoOffset.ToInt32());
+                    MemoryManager.WriteMemory(processHandle, currentAmmoAddress, ammoValue);
+                    MemoryManager.WriteMemory(processHandle, maxAmmoAddress, ammoValue);
+                    LoggingManager.Instance.Log($"Updated current and max ammo for {weapon.Name} to {ammoValue}.");
+
+                    MemoryManager.NativeMethods.CloseHandle(processHandle);
+                }
+                else
+                {
+                    LoggingManager.Instance.Log("Failed to open process handle.");
+                }
+            }
+            else
+            {
+                LoggingManager.Instance.Log($"Failed to retrieve address for {weapon.Name}");
+            }
+        }
+
+        internal static void ToggleSuppressor(Weapon suppressableWeapon)
+        {
+            IntPtr suppressorAddress = IntPtr.Zero;
+            IntPtr weaponAddress = WeaponAddresses.GetAddress(suppressableWeapon.Index, MemoryManager.Instance);
+
+            if (weaponAddress != IntPtr.Zero)
+            {
+                suppressorAddress = IntPtr.Add(weaponAddress, suppressableWeapon.SuppressorToggleOffset.ToInt32());
+                LoggingManager.Instance.Log($"Suppressor address: {suppressorAddress}");
+            }
+            else
+            {
+                LoggingManager.Instance.Log($"Failed to retrieve address for {suppressableWeapon.Name}");
+                return;
+            }
+
+            Process process;
+
+            try
+            {
+                process = GetMGS3Process();
+            }
+            catch
+            {
+                LoggingManager.Instance.Log("Failed to retrieve MGS3 process");
+                return;
+            }
+
+            PROCESS_BASE_ADDRESS = process.MainModule.BaseAddress;
+            var processHandle = NativeMethods.OpenProcess(0x1F0FFF, false, process.Id);
+
+            if (!ReadWriteToggledSuppressorValue(processHandle, suppressorAddress))
+            {
+                LoggingManager.Instance.Log($"Failed to toggle suppressor for {suppressableWeapon.Name}");
+            }
+
+            NativeMethods.CloseHandle(processHandle);
+        }
+
+        public static bool ReadWriteToggledSuppressorValue(IntPtr processHandle, IntPtr address)
+        {
+            bool success = MemoryManager.NativeMethods.ReadProcessMemory(processHandle, address, out short currentValue, sizeof(short), out int bytesRead);
+            if (!success || bytesRead != sizeof(short))
+            {
+                LoggingManager.Instance.Log($"Failed to read suppressor value at {address}");
+                return false;
+            }
+
+            short valueToWrite = (currentValue == 16) ? (short)0 : (short)16;
+
+            try
+            {
+                success = MemoryManager.WriteMemory(processHandle, address, valueToWrite);
+                LoggingManager.Instance.Log($"Toggled suppressor to {(valueToWrite == 16 ? "on" : "off")}");
+                return success;
+            }
+            catch
+            {
+                LoggingManager.Instance.Log($"Failed to write suppressor value at {address}");
+                return false;
+            }
+        }
+
+        #endregion
+
+
     }
+
 }

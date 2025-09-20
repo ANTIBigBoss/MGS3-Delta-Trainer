@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using static ANTIBigBoss_s_MGS_Delta_Trainer.MGS3UsableObjects;
 
 namespace ANTIBigBoss_s_MGS_Delta_Trainer
 {
@@ -24,533 +25,533 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         private void AddWoodland_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Woodland, true);
+            ToggleItemState(Woodland, true);
         }
 
         private void RemoveWoodland_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Woodland, false);
+            ToggleItemState(Woodland, false);
         }
 
         private void AddBlackPaint_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.BlackFace, true);
+            ToggleItemState(BlackFace, true);
         }
 
         private void RemoveBlackPaint_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.BlackFace, false);
+            ToggleItemState(BlackFace, false);
         }
 
         private void AddWater_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.WaterFace, true);
+            ToggleItemState(WaterFace, true);
         }
 
         private void RemoveWaterPaint_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.WaterFace, false);
+            ToggleItemState(WaterFace, false);
         }
 
         private void AddDesert_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Desert, true);
+            ToggleItemState(Desert, true);
         }
 
         private void RemoveDesert_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Desert, false);
+            ToggleItemState(Desert, false);
         }
 
         private void AddSplitterPaint_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.SplitterFace, true);
+            ToggleItemState(SplitterFace, true);
         }
 
         private void RemoveSplitterPaint_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.SplitterFace, false);
+            ToggleItemState(SplitterFace, false);
         }
 
         private void AddSnowPaint_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.SnowFace, true);
+            ToggleItemState(SnowFace, true);
         }
 
         private void RemoveSnowPaint_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.SnowFace, false);
+            ToggleItemState(SnowFace, false);
         }
 
         private void AddKabuki_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Kabuki, true);
+            ToggleItemState(Kabuki, true);
         }
 
         private void RemoveKabuki_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Kabuki, false);
+            ToggleItemState(Kabuki, false);
         }
 
         private void AddZombie_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Zombie, true);
+            ToggleItemState(Zombie, true);
         }
 
         private void RemoveZombie_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Zombie, false);
+            ToggleItemState(Zombie, false);
         }
 
         private void AddOyama_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Oyama, true);
+            ToggleItemState(Oyama, true);
         }
 
         private void RemoveOyama_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Oyama, false);
+            ToggleItemState(Oyama, false);
         }
 
         private void AddMask_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Mask, true);
+            ToggleItemState(Mask, true);
         }
 
         private void RemoveMask_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Mask, false);
+            ToggleItemState(Mask, false);
         }
 
         private void AddGreen_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Green, true);
+            ToggleItemState(Green, true);
         }
 
         private void RemoveGreen_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Green, false);
+            ToggleItemState(Green, false);
         }
 
         private void AddBrown_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Brown, true);
+            ToggleItemState(Brown, true);
         }
 
         private void RemoveBrown_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Brown, false);
+            ToggleItemState(Brown, false);
         }
 
         private void AddInfinity_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Infinity, true);
+            ToggleItemState(Infinity, true);
         }
 
         private void RemoveInfinity_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Infinity, false);
+            ToggleItemState(Infinity, false);
         }
 
         private void AddSovietUnion_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.SovietUnion, true);
+            ToggleItemState(SovietUnion, true);
         }
 
         private void RemoveSovietUnion_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.SovietUnion, false);
+            ToggleItemState(SovietUnion, false);
         }
 
         private void AddUK_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.UK, true);
+            ToggleItemState(UK, true);
         }
 
         private void RemoveUK_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.UK, false);
+            ToggleItemState(UK, false);
         }
 
         private void AddFrance_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.France, true);
+            ToggleItemState(France, true);
         }
 
         private void RemoveFrance_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.France, false);
+            ToggleItemState(France, false);
         }
 
         private void AddGermany_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Germany, true);
+            ToggleItemState(Germany, true);
         }
 
         private void RemoveGermany_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Germany, false);
+            ToggleItemState(Germany, false);
         }
 
         private void AddItaly_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Italy, true);
+            ToggleItemState(Italy, true);
         }
 
         private void RemoveItaly_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Italy, false);
+            ToggleItemState(Italy, false);
         }
 
         private void AddSpain_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Spain, true);
+            ToggleItemState(Spain, true);
         }
 
         private void RemoveSpain_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Spain, false);
+            ToggleItemState(Spain, false);
         }
 
         private void AddSweden_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Sweden, true);
+            ToggleItemState(Sweden, true);
         }
 
         private void RemoveSweden_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Sweden, false);
+            ToggleItemState(Sweden, false);
         }
 
         private void AddJapan_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Japan, true);
+            ToggleItemState(Japan, true);
         }
 
         private void RemoveJapan_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Japan, false);
+            ToggleItemState(Japan, false);
         }
 
         private void AddUSA_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.USA, true);
+            ToggleItemState(USA, true);
         }
 
         private void RemoveUSA_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.USA, false);
+            ToggleItemState(USA, false);
         }
 
         private void AddOliveDrab_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.OliveDrab, true);
+            ToggleItemState(OliveDrab, true);
         }
 
         private void RemoveOliveDrab_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.OliveDrab, false);
+            ToggleItemState(OliveDrab, false);
         }
 
         private void AddTigerStripe_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.TigerStripe, true);
+            ToggleItemState(TigerStripe, true);
         }
 
         private void RemoveTigerStripe_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.TigerStripe, false);
+            ToggleItemState(TigerStripe, false);
         }
 
         private void AddLeaf_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Leaf, true);
+            ToggleItemState(Leaf, true);
         }
 
         private void RemoveLeaf_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Leaf, false);
+            ToggleItemState(Leaf, false);
         }
 
         private void AddTreeBark_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.TreeBark, true);
+            ToggleItemState(TreeBark, true);
         }
 
         private void RemoveTreeBark_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.TreeBark, false);
+            ToggleItemState(TreeBark, false);
         }
 
         private void AddChocoChip_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.ChocoChip, true);
+            ToggleItemState(ChocoChip, true);
         }
 
         private void RemoveChocoChip_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.ChocoChip, false);
+            ToggleItemState(ChocoChip, false);
         }
 
         private void AddSplitterBody_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Splitter, true);
+            ToggleItemState(SplitterBody, true);
         }
 
         private void RemoveSplitterBody_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Splitter, false);
+            ToggleItemState(SplitterBody, false);
         }
 
         private void AddRaindrop_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Raindrop, true);
+            ToggleItemState(Raindrop, true);
         }
 
         private void RemoveRaindrop_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Raindrop, false);
+            ToggleItemState(Raindrop, false);
         }
 
         private void AddSquare_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Squares, true);
+            ToggleItemState(Squares, true);
         }
 
         private void RemoveSquares_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Squares, false);
+            ToggleItemState(Squares, false);
         }
 
         private void AddWaterBody_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Water, true);
+            ToggleItemState(Water, true);
         }
 
         private void RemoveWaterBody_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Water, false);
+            ToggleItemState(Water, false);
         }
 
         private void AddBlackBody_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Black, true);
+            ToggleItemState(Black, true);
         }
 
         private void RemoveBlackBody_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Black, false);
+            ToggleItemState(Black, false);
         }
 
         private void AddSnowBody_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Snow, true);
+            ToggleItemState(Snow, true);
         }
 
         private void RemoveSnowBody_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Snow, false);
+            ToggleItemState(Snow, false);
         }
 
         private void AddSneakingSuit_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.SneakingSuit, true);
+            ToggleItemState(SneakingSuit, true);
         }
 
         private void RemoveSneakingSuit_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.SneakingSuit, false);
+            ToggleItemState(SneakingSuit, false);
         }
 
         private void AddScientist_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Scientist, true);
+            ToggleItemState(Scientist, true);
         }
 
         private void RemoveScientist_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Scientist, false);
+            ToggleItemState(Scientist, false);
         }
 
         private void AddOfficer_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Officer, true);
+            ToggleItemState(Officer, true);
         }
 
         private void RemoveOfficer_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Officer, false);
+            ToggleItemState(Officer, false);
         }
 
         private void AddMaintenance_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Maintenance, true);
+            ToggleItemState(Maintenance, true);
         }
 
         private void RemoveMaintenance_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Maintenance, false);
+            ToggleItemState(Maintenance, false);
         }
 
         private void AddTuxedo_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Tuxedo, true);
+            ToggleItemState(Tuxedo, true);
         }
 
         private void RemoveTuxedo_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Tuxedo, false);
+            ToggleItemState(Tuxedo, false);
         }
 
         private void AddHornetStripe_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.HornetStripe, true);
+            ToggleItemState(HornetStripe, true);
         }
 
         private void RemoveHornetStripe_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.HornetStripe, false);
+            ToggleItemState(HornetStripe, false);
         }
 
         private void AddMoss_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Moss, true);
+            ToggleItemState(Moss, true);
         }
 
         private void RemoveMoss_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Moss, false);
+            ToggleItemState(Moss, false);
         }
 
         private void Addfire_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Fire, true);
+            ToggleItemState(Fire, true);
         }
 
         private void RemoveFire_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Fire, false);
+            ToggleItemState(Fire, false);
         }
 
         private void AddSpirit_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Spirit, true);
+            ToggleItemState(Spirit, true);
         }
 
         private void RemoveSpirit_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Spirit, false);
+            ToggleItemState(Spirit, false);
         }
 
         private void AddColdWar_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.ColdWar, true);
+            ToggleItemState(ColdWar, true);
         }
 
         private void RemoveColdWar_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.ColdWar, false);
+            ToggleItemState(ColdWar, false);
         }
 
         private void AddSnake_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Snake, true);
+            ToggleItemState(Snake, true);
         }
 
         private void RemoveSnake_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Snake, false);
+            ToggleItemState(Snake, false);
         }
 
         private void AddGaKo_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.GaKo, true);
+            ToggleItemState(GaKo, true);
         }
 
         private void RemoveGaKo_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.GaKo, false);
+            ToggleItemState(GaKo, false);
         }
 
         private void AddDesertTiger_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.DesertTiger, true);
+            ToggleItemState(DesertTiger, true);
         }
 
         private void RemoveDesertTiger_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.DesertTiger, false);
+            ToggleItemState(DesertTiger, false);
         }
 
         private void AddDPM_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.DPM, true);
+            ToggleItemState(DPM, true);
         }
 
         private void RemoveDPM_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.DPM, false);
+            ToggleItemState(DPM, false);
         }
 
         private void AddFlecktarn_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Flecktarn, true);
+            ToggleItemState(Flecktarn, true);
         }
 
         private void RemoveFlecktarn_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Flecktarn, false);
+            ToggleItemState(Flecktarn, false);
         }
 
         private void AddAuscam_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Auscam, true);
+            ToggleItemState(Auscam, true);
         }
 
         private void RemoveAuscam_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Auscam, false);
+            ToggleItemState(Auscam, false);
         }
 
         private void AddAnimals_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Animals, true);
+            ToggleItemState(Animals, true);
         }
 
         private void RemoveAnimals_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Animals, false);
+            ToggleItemState(Animals, false);
         }
 
         private void AddFly_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Fly, true);
+            ToggleItemState(Fly, true);
         }
 
         private void RemoveFly_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Fly, false);
+            ToggleItemState(Fly, false);
         }
 
         private void AddSpider_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Spider, true);
+            ToggleItemState(Spider, true);
         }
 
         private void RemoveSpider_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Spider, false);
+            ToggleItemState(Spider, false);
         }
 
         private void AddBanana_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Banana, true);
+            ToggleItemState(Banana, true);
         }
 
         private void RemoveBanana_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleItemState(MGS3UsableObjects.Banana, false);
-        }        
+            ToggleItemState(Banana, false);
+        }
 
         private void SwapToWeaponsForm_Click(object sender, EventArgs e)
         {
@@ -570,6 +571,26 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             ItemForm form2 = new ItemForm();
             form2.Show();
             this.Hide();
-        }       
+        }
+
+        private void StatsAndAlertForm_Click(object sender, EventArgs e)
+        {
+            LoggingManager.Instance.Log("User is changing to the Stats and Alert from the camo form.\n");
+            MemoryManager.UpdateLastFormLocation(this.Location);
+            MemoryManager.LogFormLocation(this, "StatsAndAlertForm");
+            StatsAndAlertForm form5 = new();
+            form5.Show();
+            this.Hide();
+        }
+
+        private void MiscFormSwap_Click(object sender, EventArgs e)
+        {
+            LoggingManager.Instance.Log("User is changing to the Misc page from the Items Form.\n");
+            MemoryManager.UpdateLastFormLocation(this.Location);
+            MemoryManager.LogFormLocation(this, "MiscForm");
+            MiscForm form4 = new();
+            form4.Show();
+            this.Hide();
+        }
     }
 }

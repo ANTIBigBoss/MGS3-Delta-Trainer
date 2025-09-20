@@ -148,6 +148,10 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             MK22TextBox = new TextBox();
             SwapToItemsForm = new Button();
             SwapToCamoForm = new Button();
+            StatsAndAlertForm = new Button();
+            MiscFormSwap = new Button();
+            NoReloadCheckBox = new CheckBox();
+            InfiniteSuppressorsCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox31).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox29).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox30).BeginInit();
@@ -183,14 +187,13 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             // 
             InfAmmoNoReloadCheckBox.BackgroundImage = (Image)resources.GetObject("InfAmmoNoReloadCheckBox.BackgroundImage");
             InfAmmoNoReloadCheckBox.FlatStyle = FlatStyle.Flat;
-            InfAmmoNoReloadCheckBox.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            InfAmmoNoReloadCheckBox.Location = new Point(1001, 584);
+            InfAmmoNoReloadCheckBox.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
+            InfAmmoNoReloadCheckBox.Location = new Point(1002, 562);
             InfAmmoNoReloadCheckBox.Name = "InfAmmoNoReloadCheckBox";
-            InfAmmoNoReloadCheckBox.Size = new Size(154, 67);
+            InfAmmoNoReloadCheckBox.Size = new Size(154, 29);
             InfAmmoNoReloadCheckBox.TabIndex = 864;
-            InfAmmoNoReloadCheckBox.Text = "Infinite Ammo/ No Reload";
+            InfAmmoNoReloadCheckBox.Text = "Infinite Ammo";
             InfAmmoNoReloadCheckBox.UseVisualStyleBackColor = true;
-            InfAmmoNoReloadCheckBox.Visible = false;
             InfAmmoNoReloadCheckBox.CheckedChanged += InfAmmoNoReloadCheckBox_CheckedChanged;
             // 
             // AllTextbox
@@ -1682,12 +1685,74 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             SwapToCamoForm.UseVisualStyleBackColor = true;
             SwapToCamoForm.Click += SwapToCamoForm_Click;
             // 
+            // StatsAndAlertForm
+            // 
+            StatsAndAlertForm.BackgroundImage = (Image)resources.GetObject("StatsAndAlertForm.BackgroundImage");
+            StatsAndAlertForm.Cursor = Cursors.Hand;
+            StatsAndAlertForm.FlatStyle = FlatStyle.Flat;
+            StatsAndAlertForm.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            StatsAndAlertForm.ImageAlign = ContentAlignment.TopCenter;
+            StatsAndAlertForm.ImeMode = ImeMode.NoControl;
+            StatsAndAlertForm.Location = new Point(276, 6);
+            StatsAndAlertForm.Name = "StatsAndAlertForm";
+            StatsAndAlertForm.Size = new Size(130, 31);
+            StatsAndAlertForm.TabIndex = 867;
+            StatsAndAlertForm.Text = "Stats/Alerts";
+            StatsAndAlertForm.UseVisualStyleBackColor = true;
+            StatsAndAlertForm.Click += StatsAndAlertForm_Click;
+            // 
+            // MiscFormSwap
+            // 
+            MiscFormSwap.BackgroundImage = (Image)resources.GetObject("MiscFormSwap.BackgroundImage");
+            MiscFormSwap.Cursor = Cursors.Hand;
+            MiscFormSwap.FlatStyle = FlatStyle.Flat;
+            MiscFormSwap.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            MiscFormSwap.ImageAlign = ContentAlignment.TopCenter;
+            MiscFormSwap.ImeMode = ImeMode.NoControl;
+            MiscFormSwap.Location = new Point(412, 6);
+            MiscFormSwap.Name = "MiscFormSwap";
+            MiscFormSwap.Size = new Size(130, 31);
+            MiscFormSwap.TabIndex = 868;
+            MiscFormSwap.Text = "Misc";
+            MiscFormSwap.UseVisualStyleBackColor = true;
+            MiscFormSwap.Click += MiscFormSwap_Click;
+            // 
+            // NoReloadCheckBox
+            // 
+            NoReloadCheckBox.BackgroundImage = (Image)resources.GetObject("NoReloadCheckBox.BackgroundImage");
+            NoReloadCheckBox.FlatStyle = FlatStyle.Flat;
+            NoReloadCheckBox.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
+            NoReloadCheckBox.Location = new Point(1002, 597);
+            NoReloadCheckBox.Name = "NoReloadCheckBox";
+            NoReloadCheckBox.Size = new Size(154, 29);
+            NoReloadCheckBox.TabIndex = 869;
+            NoReloadCheckBox.Text = "No Reload";
+            NoReloadCheckBox.UseVisualStyleBackColor = true;
+            NoReloadCheckBox.CheckedChanged += NoReloadCheckBox_CheckedChanged;
+            // 
+            // InfiniteSuppressorsCheckBox
+            // 
+            InfiniteSuppressorsCheckBox.BackgroundImage = (Image)resources.GetObject("InfiniteSuppressorsCheckBox.BackgroundImage");
+            InfiniteSuppressorsCheckBox.FlatStyle = FlatStyle.Flat;
+            InfiniteSuppressorsCheckBox.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
+            InfiniteSuppressorsCheckBox.Location = new Point(1002, 633);
+            InfiniteSuppressorsCheckBox.Name = "InfiniteSuppressorsCheckBox";
+            InfiniteSuppressorsCheckBox.Size = new Size(154, 29);
+            InfiniteSuppressorsCheckBox.TabIndex = 870;
+            InfiniteSuppressorsCheckBox.Text = "Infinite Suppressors";
+            InfiniteSuppressorsCheckBox.UseVisualStyleBackColor = true;
+            InfiniteSuppressorsCheckBox.CheckedChanged += InfiniteSuppressorsCheckBox_CheckedChanged;
+            // 
             // WeaponForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1161, 707);
+            Controls.Add(InfiniteSuppressorsCheckBox);
+            Controls.Add(NoReloadCheckBox);
+            Controls.Add(MiscFormSwap);
+            Controls.Add(StatsAndAlertForm);
             Controls.Add(SwapToCamoForm);
             Controls.Add(SwapToItemsForm);
             Controls.Add(InfAmmoNoReloadCheckBox);
@@ -1958,5 +2023,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private TextBox MK22TextBox;
         private Button SwapToItemsForm;
         private Button SwapToCamoForm;
+        private Button StatsAndAlertForm;
+        private Button MiscFormSwap;
+        private CheckBox NoReloadCheckBox;
+        private CheckBox InfiniteSuppressorsCheckBox;
     }
 }

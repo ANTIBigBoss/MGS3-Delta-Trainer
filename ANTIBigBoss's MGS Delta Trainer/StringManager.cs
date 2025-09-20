@@ -236,86 +236,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 { LocationString.s211a, "Wig: Interior" },
                 { LocationString.ending, "Credits" }
             };
-
-        public string FindLocationStringDirectlyInRange()
-        {
-            Process process = GetMGS3Process();
-            if (process == null)
-            {
-                return "Game process not found.";
-            }
-
-            IntPtr processHandle = OpenGameProcess(process);
-            IntPtr baseAddress = process.MainModule.BaseAddress;
-            IntPtr startAddress = IntPtr.Add(baseAddress, 0x1D00000);
-            IntPtr endAddress = IntPtr.Add(baseAddress, 0x1E00000);
-            long size = endAddress.ToInt64() - startAddress.ToInt64();
-
-            foreach (StringManager.LocationString location in Enum.GetValues(typeof(StringManager.LocationString)))
-            {
-                var locationString = location.ToString();
-                byte[] pattern = Encoding.ASCII.GetBytes(locationString);
-                string mask = new string('x', pattern.Length);
-
-                IntPtr foundAddress =
-                    MemoryManager.Instance.ScanMemory(processHandle, startAddress, size, pattern, mask);
-                if (foundAddress != IntPtr.Zero)
-                {
-                    string areaName = StringManager.LocationAreaNames.TryGetValue(location, out var name)
-                        ? name
-                        : "Unknown Area";
-
-                    // Checking for cutscene indicators
-                    foreach (var suffix in new[] { "_0", "_1" })
-                    {
-                        byte[] cutscenePattern = Encoding.ASCII.GetBytes(locationString + suffix);
-                        IntPtr cutsceneFoundAddress = MemoryManager.Instance.ScanMemory(processHandle, startAddress,
-                            size, cutscenePattern, mask + "x" + "x");
-
-                        if (cutsceneFoundAddress != IntPtr.Zero)
-                        {
-                            NativeMethods.CloseHandle(processHandle);
-                            return
-                                $"Location String: {locationString}{suffix} (Cutscene) \nArea Name: {areaName} \nMemory Address: {cutsceneFoundAddress.ToString("X")}";
-                        }
-                    }
-
-                    NativeMethods.CloseHandle(processHandle);
-                    return
-                        $"Location String: {locationString} \nArea Name: {areaName} \nMemory Address: {foundAddress.ToString("X")}";
-                }
-            }
-
-            NativeMethods.CloseHandle(processHandle);
-            return "No Location String found in specified range.";
-        }
-
-        public string ExtractLocationStringFromResult(string result)
-        {
-            string[] parts = result.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            if (parts.Length > 0)
-            {
-                string locationStringPart = parts[0];
-                string[] locationStringParts =
-                    locationStringPart.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
-                if (locationStringParts.Length > 1)
-                {
-                    string locationString = locationStringParts[1].Trim();
-
-                    if (locationString.EndsWith("_0") || locationString.EndsWith("_1"))
-                    {
-                        return locationString + " (Cutscene)";
-                    }
-                    else
-                    {
-                        return locationString;
-                    }
-                }
-            }
-
-            return "Unknown";
-        }
-
+       
         public static string currentMapLocation = "";
         public static IntPtr cachedPointerAddress = IntPtr.Zero;
         public static IntPtr currentMemoryAddress = IntPtr.Zero;
@@ -326,45 +247,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public static bool isSnakeFakeDead = false;
         public static bool isAreaTransitioning = false;
         public static string lastLoggedLocation = "";
-        public static bool lastLoggedCutscene = false;
+        public static bool lastLoggedCutscene = false;     
 
-        public bool IsAreaTransitioning()
-        {
-            if (processHandle == IntPtr.Zero)
-            {
-                Process process = GetMGS3Process();
-                if (process == null) return false;
-                processHandle = OpenGameProcess(process);
-                if (processHandle == IntPtr.Zero) return false;
-            }
-
-            if (cachedAlphabetAddress == IntPtr.Zero)
-            {
-                cachedAlphabetAddress = MemoryManager.Instance.FindLastAob("Alphabet", "Death State/Area Transition");
-                if (cachedAlphabetAddress == IntPtr.Zero)
-                {
-                    return false;
-                }
-            }
-
-            IntPtr deathStateAddress = IntPtr.Subtract(cachedAlphabetAddress, (int)Constants.AnimationOffsets.RealDeathSub);
-            byte[] deathStateBytes = MemoryManager.ReadMemoryBytes(processHandle, deathStateAddress, 1);
-
-            if (deathStateBytes != null && deathStateBytes.Length > 0)
-            {
-                int currentState = deathStateBytes[0];
-                isAreaTransitioning = (currentState == 192);
-            }
-            else
-            {
-                LoggingManager.Instance.Log($"Failed to read death state from address: {deathStateAddress.ToString("X")}");
-                return false;
-            }
-
-            return isAreaTransitioning;
-        }
-
-        /* Reimplement once the main pointer stuff from MC is found in Delta
         public string GetCurrentLocation()
         {
             if (processHandle == IntPtr.Zero)
@@ -376,11 +260,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 if (processHandle == IntPtr.Zero) return "Failed to open game process.";
             }
 
-            if (cachedPointerAddress == IntPtr.Zero || currentMapLocation == "Map string not found.")
-            {
-                if (!AttemptPointerScan())
-                    return "Pattern not found in the specified range.";
-            }
+            
 
             string locationInfo = ScanCurrentLocation(out bool cutsceneLocal);
 
@@ -396,11 +276,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 LoggingManager.Instance.Log("Cutscene suffix or scenario changed. Treating as new area. Rescanning pointer.");
 
                 cachedPointerAddress = IntPtr.Zero;
-                if (!AttemptPointerScan())
-                {
-                    LoggingManager.Instance.Log("Pointer pattern not found after suffix change.");
-                    return "Pattern not found in the specified range.";
-                }
+                
 
                 locationInfo = ScanCurrentLocation(out cutsceneLocal);
                 currentMapLocation = locationInfo;
@@ -412,8 +288,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                     LoggingManager.Instance.Log($"Location changed (due to suffix change): {locationInfo} (Memory Address: {currentMemoryAddress.ToString("X")}){cutsceneText}");
                     lastLoggedLocation = locationInfo;
                     lastLoggedCutscene = isInCutscene;
-
-                    TimerManager.AttemptBossAobRefind();
                 }
 
                 return $"Pointer Pattern Address: {cachedPointerAddress.ToString("X")} \n" +
@@ -429,8 +303,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 lastLoggedLocation = locationInfo;
                 lastLoggedCutscene = isInCutscene;
 
-                TimerManager.AttemptBossAobRefind();
-
                 return $"Pointer Pattern Address: {cachedPointerAddress.ToString("X")} \n" +
                        $"Location String: {locationInfo} \n" +
                        $"Memory Address: {currentMemoryAddress.ToString("X")} \n" +
@@ -438,37 +310,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             }
 
             return "Location unchanged.";
-        }
-
-        private bool AttemptPointerScan()
-        {
-            int maxRetries = 1;
-            int retryDelayMs = 1000;
-
-            for (int attempt = 1; attempt <= maxRetries; attempt++)
-            {
-                cachedPointerAddress = ScanForPointerPattern();
-                if (cachedPointerAddress != IntPtr.Zero)
-                {
-                    LoggingManager.Instance.Log($"Pointer pattern found at address: {cachedPointerAddress.ToString("X")} on attempt {attempt}.");
-                    return true;
-                }
-                else
-                {
-                    cachedPointerAddress = ScanForBackupPointerPattern();
-                    if (cachedPointerAddress != IntPtr.Zero)
-                    {
-                        LoggingManager.Instance.Log($"Pointer pattern found at address: {cachedPointerAddress.ToString("X")} on attempt {attempt}.");
-                        return true;
-                    }
-                }
-
-                System.Threading.Thread.Sleep(retryDelayMs);
-            }
-
-            LoggingManager.Instance.Log("Pointer pattern not found after all retries.");
-            return false;
-        }
+        }        
 
         private string ScanCurrentLocation(out bool cutsceneLocal)
         {
@@ -486,59 +328,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             bool newSuffix = newLocation.Contains("_0") || newLocation.Contains("_1");
             return oldSuffix != newSuffix;
         }
-
-        public string GetCurrentMapLocation() => currentMapLocation;
-
-        public string GetCurrentMapString()
-        {
-            if (string.IsNullOrEmpty(currentMapLocation) || !currentMapLocation.Contains("-"))
-                return "Unknown";
-            return currentMapLocation.Split('-')[0].Trim();
-        }
-
-        public bool IsInCutscene() => isInCutscene;
-        public string GetCurrentMemoryAddress() => currentMemoryAddress.ToString("X");
-
-        public string GetCurrentBossMapString()
-        {
-            if (string.IsNullOrEmpty(currentMapLocation))
-            {
-                return "Unknown";
-            }
-            return currentMapLocation.Split('-')[0].Trim();
-        }
-
-        public string GetCurrentPointerAddress() => cachedPointerAddress.ToString("X");
-
-        public string DisplayEntirePointer()
-        {
-            IntPtr pointerAddress = cachedPointerAddress;
-
-            if (pointerAddress != IntPtr.Zero)
-            {
-                StringBuilder result = new StringBuilder();
-
-                foreach (Constants.MainPointerAddresses address in Enum.GetValues(typeof(Constants.MainPointerAddresses)))
-                {
-                    IntPtr addressToRead = IntPtr.Subtract(pointerAddress, (int)address);
-
-                    string value = MemoryManager.ReadMemoryValueAsString(
-                        processHandle: MemoryManager.OpenGameProcess(MemoryManager.GetMGS3Process()),
-                        address: addressToRead,
-                        bytesToRead: 4,
-                        dataType: Constants.DataType.Int32
-                    );
-
-                    result.AppendLine($"{address}: {value}\n");
-                }
-
-                return result.ToString();
-            }
-
-            return string.Empty;
-        }
-
-
+        
         private string ScanForLocationStrings(IntPtr pointerAddress, out IntPtr foundMemoryAddress)
         {
             foundMemoryAddress = IntPtr.Zero;
@@ -595,137 +385,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             isInCutscene = foundCutsceneLocal;
             return foundLocationString;
         }
-
-        private IntPtr ScanForPointerPattern()
-        {
-            Process processMain = GetMGS3Process();
-            if (processMain == null || processMain.MainModule == null) return IntPtr.Zero;
-
-            IntPtr baseAddress = processMain.MainModule.BaseAddress;
-            IntPtr startAddress = IntPtr.Add(baseAddress, 0x1DFFFFF);
-            IntPtr endAddress = IntPtr.Add(baseAddress, 0x1F00000);
-            long rangeSize = endAddress.ToInt64() - startAddress.ToInt64();
-
-            byte[] pattern = { 0x30, 0x75, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x2C, 0x01, 0x00, 0x00, 0x00 };
-            string mask = "xx????xxxxxx?";
-            
-
-            return MemoryManager.Instance.ScanMemory(processHandle, startAddress, rangeSize, pattern, mask);
-        }
-
-        private IntPtr ScanForBackupPointerPattern()
-        {
-            Process processMain = GetMGS3Process();
-            if (processMain == null || processMain.MainModule == null) return IntPtr.Zero;
-
-            IntPtr baseAddress = processMain.MainModule.BaseAddress;
-            IntPtr startAddress = IntPtr.Add(baseAddress, 0x1DFFFFF);
-            IntPtr endAddress = IntPtr.Add(baseAddress, 0x1F00000);
-            long rangeSize = endAddress.ToInt64() - startAddress.ToInt64();
-
-            byte[] pattern = { 0x00, 0x00, 0x2C, 0x01, 0x2C, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-            string mask = "??xxxxxxxxxxx";
-
-            return MemoryManager.Instance.ScanMemory(processHandle, startAddress, rangeSize, pattern, mask);
-        }
-
-        public bool IsSnakeDead()
-        {
-            if (processHandle == IntPtr.Zero)
-            {
-                Process process = GetMGS3Process();
-                if (process == null) return false;
-
-                processHandle = OpenGameProcess(process);
-                if (processHandle == IntPtr.Zero) return false;
-            }
-
-            if (cachedAlphabetAddress == IntPtr.Zero)
-            {
-                cachedAlphabetAddress = MemoryManager.Instance.FindLastAob("Alphabet", "Death State Address");
-                if (cachedAlphabetAddress == IntPtr.Zero)
-                {
-                    return false;
-                }
-            }
-
-            IntPtr deathStateAddress =
-                IntPtr.Subtract(cachedAlphabetAddress, (int)Constants.AnimationOffsets.RealDeathSub);
-            byte[] deathStateBytes = MemoryManager.ReadMemoryBytes(processHandle, deathStateAddress, 1);
-
-            if (deathStateBytes != null && deathStateBytes.Length > 0)
-            {
-                int currentState = deathStateBytes[0];
-                isSnakeDead = (currentState == 16 || currentState == 208);
-            }
-
-            return isSnakeDead;
-        }
-
-        public bool IsSnakeFakeDead()
-        {
-            if (processHandle == IntPtr.Zero)
-            {
-                Process process = GetMGS3Process();
-                if (process == null) return false;
-
-                processHandle = OpenGameProcess(process);
-                if (processHandle == IntPtr.Zero) return false;
-            }
-
-            if (cachedAlphabetAddress == IntPtr.Zero)
-            {
-                cachedAlphabetAddress = MemoryManager.Instance.FindLastAob("Alphabet", "Death State Address");
-                if (cachedAlphabetAddress == IntPtr.Zero)
-                {
-                    return false;
-                }
-            }
-
-            IntPtr deathStateAddress =
-                IntPtr.Subtract(cachedAlphabetAddress, (int)Constants.AnimationOffsets.FakeDeathSub);
-            byte[] deathStateBytes = MemoryManager.ReadMemoryBytes(processHandle, deathStateAddress, 1);
-
-            if (deathStateBytes != null && deathStateBytes.Length > 0)
-            {
-                int currentState = deathStateBytes[0];
-                isSnakeFakeDead = (currentState == 32);
-            }
-
-            return isSnakeFakeDead;
-        }
-
-        public int GetRawFakeDeathStateByte()
-        {
-            if (processHandle == IntPtr.Zero)
-            {
-                Process process = GetMGS3Process();
-                if (process == null) return 0;
-
-                processHandle = OpenGameProcess(process);
-                if (processHandle == IntPtr.Zero) return 0;
-            }
-
-            if (cachedAlphabetAddress == IntPtr.Zero)
-            {
-                cachedAlphabetAddress = MemoryManager.Instance.FindLastAob("Alphabet", "Death State Address");
-                if (cachedAlphabetAddress == IntPtr.Zero)
-                {
-                    return 0;
-                }
-            }
-
-            IntPtr deathStateAddress =
-                IntPtr.Subtract(cachedAlphabetAddress, (int)Constants.AnimationOffsets.FakeDeathSub);
-            byte[] deathStateBytes = MemoryManager.ReadMemoryBytes(processHandle, deathStateAddress, 1);
-
-            if (deathStateBytes != null && deathStateBytes.Length > 0)
-            {
-                return deathStateBytes[0];
-            }
-
-            return 0;
-        }
-        */
+                   
     }
 }

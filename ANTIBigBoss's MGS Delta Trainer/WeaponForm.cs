@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using static ANTIBigBoss_s_MGS_Delta_Trainer.MGS3UsableObjects;
 using System.Windows.Forms;
 
 namespace ANTIBigBoss_s_MGS_Delta_Trainer
@@ -73,6 +73,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             AllTextbox.Text = "999";
 
             CheckInfiniteAmmoStatus();
+            CheckNoReloadStatus();
+            CheckInfiniteSuppressorsStatus();
         }
 
         private const string CurrentAndMax = "Current/Max Ammo";
@@ -116,73 +118,73 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         #region Weapon Toggles
         private void AddPatriot_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.Patriot, true);
+            ToggleWeapon(Patriot, true);
             LoggingManager.Instance.Log("Added Patriot");
         }
 
         private void RemovePatriot_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.Patriot, false);
+            ToggleWeapon(Patriot, false);
             LoggingManager.Instance.Log("Removed Patriot");
         }
 
         private void AddEz_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.EzGun, true);
+            ToggleWeapon(EzGun, true);
             LoggingManager.Instance.Log("Added EZ Gun");
         }
 
         private void RemoveEz_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.EzGun, false);
+            ToggleWeapon(EzGun, false);
             LoggingManager.Instance.Log("Removed EZ Gun");
         }
 
         private void AddKnife_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.SurvivalKnife, true);
+            ToggleWeapon(SurvivalKnife, true);
             LoggingManager.Instance.Log("Added Survival Knife");
         }
 
         private void RemoveKnife_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.SurvivalKnife, false);
+            ToggleWeapon(SurvivalKnife, false);
             LoggingManager.Instance.Log("Removed Survival Knife");
         }
 
         private void AddFork_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.Fork, true);
+            ToggleWeapon(Fork, true);
             LoggingManager.Instance.Log("Added Fork");
         }
 
         private void RemoveFork_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.Fork, false);
+            ToggleWeapon(Fork, false);
             LoggingManager.Instance.Log("Removed Fork");
         }
 
         private void AddTorch_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.Torch, true);
+            ToggleWeapon(Torch, true);
             LoggingManager.Instance.Log("Added Torch");
         }
 
         private void RemoveTorch_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.Torch, false);
+            ToggleWeapon(Torch, false);
             LoggingManager.Instance.Log("Removed Torch");
         }
 
         private void AddDMic_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.DirectionalMic, true);
+            ToggleWeapon(DirectionalMic, true);
             LoggingManager.Instance.Log("Added Directional Mic");
         }
 
         private void RemoveDMic_Click(object sender, EventArgs e)
         {
-            ItemWeaponManager.ToggleWeapon(MGS3UsableObjects.DirectionalMic, false);
+            ToggleWeapon(DirectionalMic, false);
             LoggingManager.Instance.Log("Removed Directional Mic");
         }
         #endregion
@@ -200,31 +202,31 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedM1911A1Option)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.M1911A1, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(M1911A1, textBoxValue);
                     LoggingManager.Instance.Log("Changed M1911A1 Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.M1911A1, textBoxValue);
+                    ModifyAmmo(M1911A1, textBoxValue);
                     LoggingManager.Instance.Log("Changed M1911A1 Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.M1911A1, textBoxValue);
+                    ModifyMaxAmmo(M1911A1, textBoxValue);
                     LoggingManager.Instance.Log("Changed M1911A1 Max Ammo to: " + textBoxValue);
                     break;
                 case MaxAndCurrentClipSize:
-                    ItemWeaponManager.ModifyCurrentAndMaxClipSize(MGS3UsableObjects.M1911A1, textBoxValue);
+                    ModifyCurrentAndMaxClipSize(M1911A1, textBoxValue);
                     LoggingManager.Instance.Log("Changed M1911A1 Current and Max Clip Size to: " + textBoxValue);
                     break;
                 case ClipSize:
-                    ItemWeaponManager.ModifyClipSize(MGS3UsableObjects.M1911A1, textBoxValue);
+                    ModifyClipSize(M1911A1, textBoxValue);
                     LoggingManager.Instance.Log("Changed M1911A1 Clip Size to: " + textBoxValue);
                     break;
                 case MaxClipSize:
-                    ItemWeaponManager.ModifyMaxClipSize(MGS3UsableObjects.M1911A1, textBoxValue);
+                    ModifyMaxClipSize(M1911A1, textBoxValue);
                     LoggingManager.Instance.Log("Changed M1911A1 Max Clip Size to: " + textBoxValue);
                     break;
                 case SuppressorCount:
-                    ItemWeaponManager.ModifyItemCapacity(MGS3UsableObjects.M1911A1Surpressor, textBoxValue);
+                    ModifyItemCapacity(M1911A1Surpressor, textBoxValue);
                     LoggingManager.Instance.Log("Changed M1911A1 Suppressor Count to: " + textBoxValue);
                     break;
                 default:
@@ -247,31 +249,31 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedMK22Option)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.MK22, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(MK22, textBoxValue);
                     LoggingManager.Instance.Log("Changed MK22 Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.MK22, textBoxValue);
+                    ModifyAmmo(MK22, textBoxValue);
                     LoggingManager.Instance.Log("Changed MK22 Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.MK22, textBoxValue);
+                    ModifyMaxAmmo(MK22, textBoxValue);
                     LoggingManager.Instance.Log("Changed MK22 Max Ammo to: " + textBoxValue);
                     break;
                 case MaxAndCurrentClipSize:
-                    ItemWeaponManager.ModifyCurrentAndMaxClipSize(MGS3UsableObjects.MK22, textBoxValue);
+                    ModifyCurrentAndMaxClipSize(MK22, textBoxValue);
                     LoggingManager.Instance.Log("Changed MK22 Current and Max Clip Size to: " + textBoxValue);
                     break;
                 case ClipSize:
-                    ItemWeaponManager.ModifyClipSize(MGS3UsableObjects.MK22, textBoxValue);
+                    ModifyClipSize(MK22, textBoxValue);
                     LoggingManager.Instance.Log("Changed MK22 Clip Size to: " + textBoxValue);
                     break;
                 case MaxClipSize:
-                    ItemWeaponManager.ModifyMaxClipSize(MGS3UsableObjects.MK22, textBoxValue);
+                    ModifyMaxClipSize(MK22, textBoxValue);
                     LoggingManager.Instance.Log("Changed MK22 Max Clip Size to: " + textBoxValue);
                     break;
                 case SuppressorCount:
-                    ItemWeaponManager.ModifyItemCapacity(MGS3UsableObjects.MK22Surpressor, textBoxValue);
+                    ModifyItemCapacity(MK22Surpressor, textBoxValue);
                     LoggingManager.Instance.Log("Changed MK22 Suppressor Count to: " + textBoxValue);
                     break;
                 default:
@@ -294,31 +296,31 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedXM16E1Option)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.XM16E1, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(XM16E1, textBoxValue);
                     LoggingManager.Instance.Log("Changed XM16E1 Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.XM16E1, textBoxValue);
+                    ModifyAmmo(XM16E1, textBoxValue);
                     LoggingManager.Instance.Log("Changed XM16E1 Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.XM16E1, textBoxValue);
+                    ModifyMaxAmmo(XM16E1, textBoxValue);
                     LoggingManager.Instance.Log("Changed XM16E1 Max Ammo to: " + textBoxValue);
                     break;
                 case MaxAndCurrentClipSize:
-                    ItemWeaponManager.ModifyCurrentAndMaxClipSize(MGS3UsableObjects.XM16E1, textBoxValue);
+                    ModifyCurrentAndMaxClipSize(XM16E1, textBoxValue);
                     LoggingManager.Instance.Log("Changed XM16E1 Current and Max Clip Size to: " + textBoxValue);
                     break;
                 case ClipSize:
-                    ItemWeaponManager.ModifyClipSize(MGS3UsableObjects.XM16E1, textBoxValue);
+                    ModifyClipSize(XM16E1, textBoxValue);
                     LoggingManager.Instance.Log("Changed XM16E1 Clip Size to: " + textBoxValue);
                     break;
                 case MaxClipSize:
-                    ItemWeaponManager.ModifyMaxClipSize(MGS3UsableObjects.XM16E1, textBoxValue);
+                    ModifyMaxClipSize(XM16E1, textBoxValue);
                     LoggingManager.Instance.Log("Changed XM16E1 Max Clip Size to: " + textBoxValue);
                     break;
                 case SuppressorCount:
-                    ItemWeaponManager.ModifyItemCapacity(MGS3UsableObjects.XM16E1Surpressor, textBoxValue);
+                    ModifyItemCapacity(XM16E1Surpressor, textBoxValue);
                     LoggingManager.Instance.Log("Changed XM16E1 Suppressor Count to: " + textBoxValue);
                     break;
                 default:
@@ -341,27 +343,27 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedSAAOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.SAA, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(SAA, textBoxValue);
                     LoggingManager.Instance.Log("Changed SAA Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.SAA, textBoxValue);
+                    ModifyAmmo(SAA, textBoxValue);
                     LoggingManager.Instance.Log("Changed SAA Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.SAA, textBoxValue);
+                    ModifyMaxAmmo(SAA, textBoxValue);
                     LoggingManager.Instance.Log("Changed SAA Max Ammo to: " + textBoxValue);
                     break;
                 case MaxAndCurrentClipSize:
-                    ItemWeaponManager.ModifyCurrentAndMaxClipSize(MGS3UsableObjects.SAA, textBoxValue);
+                    ModifyCurrentAndMaxClipSize(SAA, textBoxValue);
                     LoggingManager.Instance.Log("Changed SAA Current and Max Clip Size to: " + textBoxValue);
                     break;
                 case ClipSize:
-                    ItemWeaponManager.ModifyClipSize(MGS3UsableObjects.SAA, textBoxValue);
+                    ModifyClipSize(SAA, textBoxValue);
                     LoggingManager.Instance.Log("Changed SAA Clip Size to: " + textBoxValue);
                     break;
                 case MaxClipSize:
-                    ItemWeaponManager.ModifyMaxClipSize(MGS3UsableObjects.SAA, textBoxValue);
+                    ModifyMaxClipSize(SAA, textBoxValue);
                     LoggingManager.Instance.Log("Changed SAA Max Clip Size to: " + textBoxValue);
                     break;
                 default:
@@ -384,27 +386,27 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedM37Option)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.M37, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(M37, textBoxValue);
                     LoggingManager.Instance.Log("Changed M37 Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.M37, textBoxValue);
+                    ModifyAmmo(M37, textBoxValue);
                     LoggingManager.Instance.Log("Changed M37 Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.M37, textBoxValue);
+                    ModifyMaxAmmo(M37, textBoxValue);
                     LoggingManager.Instance.Log("Changed M37 Max Ammo to: " + textBoxValue);
                     break;
                 case MaxAndCurrentClipSize:
-                    ItemWeaponManager.ModifyCurrentAndMaxClipSize(MGS3UsableObjects.M37, textBoxValue);
+                    ModifyCurrentAndMaxClipSize(M37, textBoxValue);
                     LoggingManager.Instance.Log("Changed M37 Current and Max Clip Size to: " + textBoxValue);
                     break;
                 case ClipSize:
-                    ItemWeaponManager.ModifyClipSize(MGS3UsableObjects.M37, textBoxValue);
+                    ModifyClipSize(M37, textBoxValue);
                     LoggingManager.Instance.Log("Changed M37 Clip Size to: " + textBoxValue);
                     break;
                 case MaxClipSize:
-                    ItemWeaponManager.ModifyMaxClipSize(MGS3UsableObjects.M37, textBoxValue);
+                    ModifyMaxClipSize(M37, textBoxValue);
                     LoggingManager.Instance.Log("Changed M37 Max Clip Size to: " + textBoxValue);
                     break;
                 default:
@@ -427,27 +429,27 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedSVDOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.SVD, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(SVD, textBoxValue);
                     LoggingManager.Instance.Log("Changed SVD Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.SVD, textBoxValue);
+                    ModifyAmmo(SVD, textBoxValue);
                     LoggingManager.Instance.Log("Changed SVD Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.SVD, textBoxValue);
+                    ModifyMaxAmmo(SVD, textBoxValue);
                     LoggingManager.Instance.Log("Changed SVD Max Ammo to: " + textBoxValue);
                     break;
                 case MaxAndCurrentClipSize:
-                    ItemWeaponManager.ModifyCurrentAndMaxClipSize(MGS3UsableObjects.SVD, textBoxValue);
+                    ModifyCurrentAndMaxClipSize(SVD, textBoxValue);
                     LoggingManager.Instance.Log("Changed SVD Current and Max Clip Size to: " + textBoxValue);
                     break;
                 case ClipSize:
-                    ItemWeaponManager.ModifyClipSize(MGS3UsableObjects.SVD, textBoxValue);
+                    ModifyClipSize(SVD, textBoxValue);
                     LoggingManager.Instance.Log("Changed SVD Clip Size to: " + textBoxValue);
                     break;
                 case MaxClipSize:
-                    ItemWeaponManager.ModifyMaxClipSize(MGS3UsableObjects.SVD, textBoxValue);
+                    ModifyMaxClipSize(SVD, textBoxValue);
                     LoggingManager.Instance.Log("Changed SVD Max Clip Size to: " + textBoxValue);
                     break;
                 default:
@@ -470,27 +472,27 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedMosinOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.Mosin, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(Mosin, textBoxValue);
                     LoggingManager.Instance.Log("Changed Mosin Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.Mosin, textBoxValue);
+                    ModifyAmmo(Mosin, textBoxValue);
                     LoggingManager.Instance.Log("Changed Mosin Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.Mosin, textBoxValue);
+                    ModifyMaxAmmo(Mosin, textBoxValue);
                     LoggingManager.Instance.Log("Changed Mosin Max Ammo to: " + textBoxValue);
                     break;
                 case MaxAndCurrentClipSize:
-                    ItemWeaponManager.ModifyCurrentAndMaxClipSize(MGS3UsableObjects.Mosin, textBoxValue);
+                    ModifyCurrentAndMaxClipSize(Mosin, textBoxValue);
                     LoggingManager.Instance.Log("Changed Mosin Current and Max Clip Size to: " + textBoxValue);
                     break;
                 case ClipSize:
-                    ItemWeaponManager.ModifyClipSize(MGS3UsableObjects.Mosin, textBoxValue);
+                    ModifyClipSize(Mosin, textBoxValue);
                     LoggingManager.Instance.Log("Changed Mosin Clip Size to: " + textBoxValue);
                     break;
                 case MaxClipSize:
-                    ItemWeaponManager.ModifyMaxClipSize(MGS3UsableObjects.Mosin, textBoxValue);
+                    ModifyMaxClipSize(Mosin, textBoxValue);
                     LoggingManager.Instance.Log("Changed Mosin Max Clip Size to: " + textBoxValue);
                     break;
                 default:
@@ -513,27 +515,27 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedRPG7Option)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.RPG7, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(RPG7, textBoxValue);
                     LoggingManager.Instance.Log("Changed RPG7 Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.RPG7, textBoxValue);
+                    ModifyAmmo(RPG7, textBoxValue);
                     LoggingManager.Instance.Log("Changed RPG7 Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.RPG7, textBoxValue);
+                    ModifyMaxAmmo(RPG7, textBoxValue);
                     LoggingManager.Instance.Log("Changed RPG7 Max Ammo to: " + textBoxValue);
                     break;
                 case MaxAndCurrentClipSize:
-                    ItemWeaponManager.ModifyCurrentAndMaxClipSize(MGS3UsableObjects.RPG7, textBoxValue);
+                    ModifyCurrentAndMaxClipSize(RPG7, textBoxValue);
                     LoggingManager.Instance.Log("Changed RPG7 Current and Max Clip Size to: " + textBoxValue);
                     break;
                 case ClipSize:
-                    ItemWeaponManager.ModifyClipSize(MGS3UsableObjects.RPG7, textBoxValue);
+                    ModifyClipSize(RPG7, textBoxValue);
                     LoggingManager.Instance.Log("Changed RPG7 Clip Size to: " + textBoxValue);
                     break;
                 case MaxClipSize:
-                    ItemWeaponManager.ModifyMaxClipSize(MGS3UsableObjects.RPG7, textBoxValue);
+                    ModifyMaxClipSize(RPG7, textBoxValue);
                     LoggingManager.Instance.Log("Changed RPG7 Max Clip Size to: " + textBoxValue);
                     break;
                 default:
@@ -556,27 +558,27 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedAK47Option)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.AK47, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(AK47, textBoxValue);
                     LoggingManager.Instance.Log("Changed AK47 Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.AK47, textBoxValue);
+                    ModifyAmmo(AK47, textBoxValue);
                     LoggingManager.Instance.Log("Changed AK47 Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.AK47, textBoxValue);
+                    ModifyMaxAmmo(AK47, textBoxValue);
                     LoggingManager.Instance.Log("Changed AK47 Max Ammo to: " + textBoxValue);
                     break;
                 case MaxAndCurrentClipSize:
-                    ItemWeaponManager.ModifyCurrentAndMaxClipSize(MGS3UsableObjects.AK47, textBoxValue);
+                    ModifyCurrentAndMaxClipSize(AK47, textBoxValue);
                     LoggingManager.Instance.Log("Changed AK47 Current and Max Clip Size to: " + textBoxValue);
                     break;
                 case ClipSize:
-                    ItemWeaponManager.ModifyClipSize(MGS3UsableObjects.AK47, textBoxValue);
+                    ModifyClipSize(AK47, textBoxValue);
                     LoggingManager.Instance.Log("Changed AK47 Clip Size to: " + textBoxValue);
                     break;
                 case MaxClipSize:
-                    ItemWeaponManager.ModifyMaxClipSize(MGS3UsableObjects.AK47, textBoxValue);
+                    ModifyMaxClipSize(AK47, textBoxValue);
                     LoggingManager.Instance.Log("Changed AK47 Max Clip Size to: " + textBoxValue);
                     break;
                 default:
@@ -599,27 +601,27 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedM63Option)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.M63, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(M63, textBoxValue);
                     LoggingManager.Instance.Log("Changed M63 Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.M63, textBoxValue);
+                    ModifyAmmo(M63, textBoxValue);
                     LoggingManager.Instance.Log("Changed M63 Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.M63, textBoxValue);
+                    ModifyMaxAmmo(M63, textBoxValue);
                     LoggingManager.Instance.Log("Changed M63 Max Ammo to: " + textBoxValue);
                     break;
                 case MaxAndCurrentClipSize:
-                    ItemWeaponManager.ModifyCurrentAndMaxClipSize(MGS3UsableObjects.M63, textBoxValue);
+                    ModifyCurrentAndMaxClipSize(M63, textBoxValue);
                     LoggingManager.Instance.Log("Changed M63 Current and Max Clip Size to: " + textBoxValue);
                     break;
                 case ClipSize:
-                    ItemWeaponManager.ModifyClipSize(MGS3UsableObjects.M63, textBoxValue);
+                    ModifyClipSize(M63, textBoxValue);
                     LoggingManager.Instance.Log("Changed M63 Clip Size to: " + textBoxValue);
                     break;
                 case MaxClipSize:
-                    ItemWeaponManager.ModifyMaxClipSize(MGS3UsableObjects.M63, textBoxValue);
+                    ModifyMaxClipSize(M63, textBoxValue);
                     LoggingManager.Instance.Log("Changed M63 Max Clip Size to: " + textBoxValue);
                     break;
                 default:
@@ -642,27 +644,27 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedScorpionOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.Scorpion, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(Scorpion, textBoxValue);
                     LoggingManager.Instance.Log("Changed Scorpion Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.Scorpion, textBoxValue);
+                    ModifyAmmo(Scorpion, textBoxValue);
                     LoggingManager.Instance.Log("Changed Scorpion Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.Scorpion, textBoxValue);
+                    ModifyMaxAmmo(Scorpion, textBoxValue);
                     LoggingManager.Instance.Log("Changed Scorpion Max Ammo to: " + textBoxValue);
                     break;
                 case MaxAndCurrentClipSize:
-                    ItemWeaponManager.ModifyCurrentAndMaxClipSize(MGS3UsableObjects.Scorpion, textBoxValue);
+                    ModifyCurrentAndMaxClipSize(Scorpion, textBoxValue);
                     LoggingManager.Instance.Log("Changed Scorpion Current and Max Clip Size to: " + textBoxValue);
                     break;
                 case ClipSize:
-                    ItemWeaponManager.ModifyClipSize(MGS3UsableObjects.Scorpion, textBoxValue);
+                    ModifyClipSize(Scorpion, textBoxValue);
                     LoggingManager.Instance.Log("Changed Scorpion Clip Size to: " + textBoxValue);
                     break;
                 case MaxClipSize:
-                    ItemWeaponManager.ModifyMaxClipSize(MGS3UsableObjects.Scorpion, textBoxValue);
+                    ModifyMaxClipSize(Scorpion, textBoxValue);
                     LoggingManager.Instance.Log("Changed Scorpion Max Clip Size to: " + textBoxValue);
                     break;
                 default:
@@ -685,15 +687,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedGrenadeOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.Grenade, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(Grenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Grenade Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.Grenade, textBoxValue);
+                    ModifyAmmo(Grenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Grenade Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.Grenade, textBoxValue);
+                    ModifyMaxAmmo(Grenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Grenade Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -717,15 +719,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedWpGrenadeOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.WpGrenade, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(WpGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Wp Grenade Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.WpGrenade, textBoxValue);
+                    ModifyAmmo(WpGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Wp Grenade Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.WpGrenade, textBoxValue);
+                    ModifyMaxAmmo(WpGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Wp Grenade Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -749,15 +751,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedSmokeGrenadeOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.SmokeGrenade, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(SmokeGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Smoke Grenade Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.SmokeGrenade, textBoxValue);
+                    ModifyAmmo(SmokeGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Smoke Grenade Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.SmokeGrenade, textBoxValue);
+                    ModifyMaxAmmo(SmokeGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Smoke Grenade Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -781,15 +783,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedStunGrenadeOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.StunGrenade, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(StunGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Stun Grenade Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.StunGrenade, textBoxValue);
+                    ModifyAmmo(StunGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Stun Grenade Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.StunGrenade, textBoxValue);
+                    ModifyMaxAmmo(StunGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Stun Grenade Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -813,15 +815,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedChaffGrenadeOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.ChaffGrenade, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(ChaffGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Chaff Grenade Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.ChaffGrenade, textBoxValue);
+                    ModifyAmmo(ChaffGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Chaff Grenade Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.ChaffGrenade, textBoxValue);
+                    ModifyMaxAmmo(ChaffGrenade, textBoxValue);
                     LoggingManager.Instance.Log("Changed Chaff Grenade Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -845,15 +847,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedMagazineOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.EmptyMag, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(EmptyMag, textBoxValue);
                     LoggingManager.Instance.Log("Changed Empty Magazine Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.EmptyMag, textBoxValue);
+                    ModifyAmmo(EmptyMag, textBoxValue);
                     LoggingManager.Instance.Log("Changed Empty Magazine Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.EmptyMag, textBoxValue);
+                    ModifyMaxAmmo(EmptyMag, textBoxValue);
                     LoggingManager.Instance.Log("Changed Empty Magazine Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -877,15 +879,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedHandkerchiefOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.Handkerchief, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(Handkerchief, textBoxValue);
                     LoggingManager.Instance.Log("Changed Handkerchief Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.Handkerchief, textBoxValue);
+                    ModifyAmmo(Handkerchief, textBoxValue);
                     LoggingManager.Instance.Log("Changed Handkerchief Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.Handkerchief, textBoxValue);
+                    ModifyMaxAmmo(Handkerchief, textBoxValue);
                     LoggingManager.Instance.Log("Changed Handkerchief Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -908,15 +910,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedCigSprayOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.CigSpray, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(CigSpray, textBoxValue);
                     LoggingManager.Instance.Log("Changed Cig Spray Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.CigSpray, textBoxValue);
+                    ModifyAmmo(CigSpray, textBoxValue);
                     LoggingManager.Instance.Log("Changed Cig Spray Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.CigSpray, textBoxValue);
+                    ModifyMaxAmmo(CigSpray, textBoxValue);
                     LoggingManager.Instance.Log("Changed Cig Spray Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -939,15 +941,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedTNTOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.TNT, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(TNT, textBoxValue);
                     LoggingManager.Instance.Log("Changed TNT Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.TNT, textBoxValue);
+                    ModifyAmmo(TNT, textBoxValue);
                     LoggingManager.Instance.Log("Changed TNT Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.TNT, textBoxValue);
+                    ModifyMaxAmmo(TNT, textBoxValue);
                     LoggingManager.Instance.Log("Changed TNT Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -970,15 +972,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedBookOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.Book, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(Book, textBoxValue);
                     LoggingManager.Instance.Log("Changed Book Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.Book, textBoxValue);
+                    ModifyAmmo(Book, textBoxValue);
                     LoggingManager.Instance.Log("Changed Book Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.Book, textBoxValue);
+                    ModifyMaxAmmo(Book, textBoxValue);
                     LoggingManager.Instance.Log("Changed Book Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -1001,15 +1003,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedClaymoreOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.Claymore, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(Claymore, textBoxValue);
                     LoggingManager.Instance.Log("Changed Claymore Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.Claymore, textBoxValue);
+                    ModifyAmmo(Claymore, textBoxValue);
                     LoggingManager.Instance.Log("Changed Claymore Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.Claymore, textBoxValue);
+                    ModifyMaxAmmo(Claymore, textBoxValue);
                     LoggingManager.Instance.Log("Changed Claymore Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -1032,15 +1034,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             switch (selectedMousetrapOption)
             {
                 case CurrentAndMax:
-                    ItemWeaponManager.ModifyCurrentAndMaxAmmo(MGS3UsableObjects.Mousetrap, textBoxValue);
+                    ModifyCurrentAndMaxAmmo(Mousetrap, textBoxValue);
                     LoggingManager.Instance.Log("Changed Mousetrap Current and Max Ammo to: " + textBoxValue);
                     break;
                 case CurrentAmmo:
-                    ItemWeaponManager.ModifyAmmo(MGS3UsableObjects.Mousetrap, textBoxValue);
+                    ModifyAmmo(Mousetrap, textBoxValue);
                     LoggingManager.Instance.Log("Changed Mousetrap Current Ammo to: " + textBoxValue);
                     break;
                 case MaxAmmo:
-                    ItemWeaponManager.ModifyMaxAmmo(MGS3UsableObjects.Mousetrap, textBoxValue);
+                    ModifyMaxAmmo(Mousetrap, textBoxValue);
                     LoggingManager.Instance.Log("Changed Mousetrap Max Ammo to: " + textBoxValue);
                     break;
                 default:
@@ -1065,9 +1067,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
                 if (weapon != null)
                 {
-                    ItemWeaponManager.ModifyAmmo(weapon, ammoValue.ToString());
+                    ModifyAmmo(weapon, ammoValue.ToString());
                     LoggingManager.Instance.Log("Changed " + weaponName + " Current Ammo to: " + ammoValue);
-                    ItemWeaponManager.ModifyMaxAmmo(weapon, ammoValue.ToString());
+                    ModifyMaxAmmo(weapon, ammoValue.ToString());
                     LoggingManager.Instance.Log("Changed " + weaponName + " Max Ammo to: " + ammoValue);
                 }
             }
@@ -1077,60 +1079,96 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         {
             switch (name)
             {
-                case "M1911A1": return MGS3UsableObjects.M1911A1;
-                case "MK22": return MGS3UsableObjects.MK22;
-                case "XM16E1": return MGS3UsableObjects.XM16E1;
-                case "SAA": return MGS3UsableObjects.SAA;
-                case "M37": return MGS3UsableObjects.M37;
-                case "SVD": return MGS3UsableObjects.SVD;
-                case "AK-47": return MGS3UsableObjects.AK47;
-                case "Mosin Nagant": return MGS3UsableObjects.Mosin;
-                case "RPG-7": return MGS3UsableObjects.RPG7;
-                case "M63": return MGS3UsableObjects.M63;
-                case "Scorpion": return MGS3UsableObjects.Scorpion;
-                case "Grenade": return MGS3UsableObjects.Grenade;
-                case "Wp Grenade": return MGS3UsableObjects.WpGrenade;
-                case "Smoke Grenade": return MGS3UsableObjects.SmokeGrenade;
-                case "Stun Grenade": return MGS3UsableObjects.StunGrenade;
-                case "Chaff Grenade": return MGS3UsableObjects.ChaffGrenade;
-                case "Empty Magazine": return MGS3UsableObjects.EmptyMag;
-                case "Handkerchief": return MGS3UsableObjects.Handkerchief;
-                case "Cig Spray": return MGS3UsableObjects.CigSpray;
-                case "C3": return MGS3UsableObjects.C3;
-                case "TNT": return MGS3UsableObjects.TNT;
-                case "Book": return MGS3UsableObjects.Book;
-                case "Claymore": return MGS3UsableObjects.Claymore;
-                case "Mousetrap": return MGS3UsableObjects.Mousetrap;
+                case "M1911A1": return M1911A1;
+                case "MK22": return MK22;
+                case "XM16E1": return XM16E1;
+                case "SAA": return SAA;
+                case "M37": return M37;
+                case "SVD": return SVD;
+                case "AK-47": return AK47;
+                case "Mosin Nagant": return Mosin;
+                case "RPG-7": return RPG7;
+                case "M63": return M63;
+                case "Scorpion": return Scorpion;
+                case "Grenade": return Grenade;
+                case "Wp Grenade": return WpGrenade;
+                case "Smoke Grenade": return SmokeGrenade;
+                case "Stun Grenade": return StunGrenade;
+                case "Chaff Grenade": return ChaffGrenade;
+                case "Empty Magazine": return EmptyMag;
+                case "Handkerchief": return Handkerchief;
+                case "Cig Spray": return CigSpray;
+                case "C3": return C3;
+                case "TNT": return TNT;
+                case "Book": return Book;
+                case "Claymore": return Claymore;
+                case "Mousetrap": return Mousetrap;
                 default: return null;
             }
+        }
+
+        public void CheckInfiniteAmmoStatus()
+        {
+            if (EffectManager.Instance.IsInfiniteAmmoDisabled())
+            {
+                InfAmmoNoReloadCheckBox.Checked = false;
+            }
+            else
+            {
+                InfAmmoNoReloadCheckBox.Checked = true;
+            }
+        }
+
+        public void CheckNoReloadStatus()
+        {
+            if (EffectManager.Instance.IsNoReloadDisabled())
+            {
+                NoReloadCheckBox.Checked = false;
+            }
+            else
+            {
+                NoReloadCheckBox.Checked = true;
+            }
+        }
+
+        public void CheckInfiniteSuppressorsStatus()
+        {
+            InfiniteSuppressorsCheckBox.Checked = TimerManager.IsInfiniteSuppressorEnabled;
         }
 
         private void InfAmmoNoReloadCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (InfAmmoNoReloadCheckBox.Checked)
             {
-                MiscManager.Instance.EnableInfAmmoAndReload();
+                EffectManager.Instance.EnableInfiniteAmmo();
             }
-
             else
             {
-                MiscManager.Instance.DisableInfAmmoAndReload();
+                EffectManager.Instance.DisableInfiniteAmmo();
+            }
+        }
+        private void InfiniteSuppressorsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (InfiniteSuppressorsCheckBox.Checked)
+            {
+                TimerManager.ToggleInfiniteSuppressor(true);
+            }
+            else
+            {
+                TimerManager.ToggleInfiniteSuppressor(false);
             }
         }
 
-        public void CheckInfiniteAmmoStatus()
+        private void NoReloadCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (!MiscManager.Instance.IsAmmoAndReloadFinite())
+            if (NoReloadCheckBox.Checked)
             {
-
-                InfAmmoNoReloadCheckBox.Checked = true;
+                EffectManager.Instance.EnableNoReload();
             }
-
             else
             {
-                InfAmmoNoReloadCheckBox.Checked = false;
+                EffectManager.Instance.DisableNoReload();
             }
-
         }
 
         private void SwapToItemsForm_Click(object sender, EventArgs e)
@@ -1152,6 +1190,26 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             form3.Show();
             this.Hide();
 
+        }
+
+        private void StatsAndAlertForm_Click(object sender, EventArgs e)
+        {
+            LoggingManager.Instance.Log("User is changing to the Stats and Alert from the Weapon form.\n");
+            MemoryManager.UpdateLastFormLocation(this.Location);
+            MemoryManager.LogFormLocation(this, "StatsAndAlertForm");
+            StatsAndAlertForm form5 = new();
+            form5.Show();
+            this.Hide();
+        }
+
+        private void MiscFormSwap_Click(object sender, EventArgs e)
+        {
+            LoggingManager.Instance.Log("User is changing to the Misc page from the Weapons Form.\n");
+            MemoryManager.UpdateLastFormLocation(this.Location);
+            MemoryManager.LogFormLocation(this, "MiscForm");
+            MiscForm form4 = new();
+            form4.Show();
+            this.Hide();
         }
     }
 }
