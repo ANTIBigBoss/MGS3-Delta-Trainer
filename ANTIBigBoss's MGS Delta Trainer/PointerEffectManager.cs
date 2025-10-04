@@ -13,19 +13,32 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         private static readonly Dictionary<int, string> DifficultyMappings = new()
         {
-            { 10, "Very Easy" },
-            { 20, "Easy" },
-            { 30, "Normal" },
-            { 40, "Hard" },
-            { 50, "Extreme" },
-            { 60, "European Extreme" }
+        { 10, "Very Easy" },
+        { 20, "Easy" },
+        { 30, "Normal" },
+        { 40, "Hard" },
+        { 50, "Extreme" },
+        { 60, "European Extreme" }
         };
+
+        private static readonly Dictionary<int, string> SpecialItemCombos = new()
+        {
+        { 0, "NOT USED" },
+        { 1, "STEALTH CAMO USED" },
+        { 2, "INFINITY FACEPAINT USED" },
+        { 3, "STEALTH CAMO + INFINITY FACEPAINT USED" },
+        { 4, "EZ GUN USED" },
+        { 5, "STEALTH CAMO + EZ GUN USED" },
+        { 6, "INFINITY FACEPAINT + EZ GUN USED" },
+        { 7, "STEALTH CAMO + INFINITY FACEPAINT + EZ GUN USED" }
+        };
+
+        #region Read Methods (Pointer-based)
 
         public string ReadDifficulty()
         {
-            string difficultyValue = HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes", (int)MainPointerAddresses.DifficultySub, 1, DataType.UInt8);
-
-            if (int.TryParse(difficultyValue, out int difficultyKey) && DifficultyMappings.TryGetValue(difficultyKey, out string description))
+            byte difficultyValue = GetStatByte(GameStats.Difficulty);
+            if (DifficultyMappings.TryGetValue(difficultyValue, out string description))
             {
                 return description;
             }
@@ -34,135 +47,145 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         public string ReadPlayTime()
         {
-            string playTimeValue = HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes", (int)MainPointerAddresses.PlayTimeSub, 4, DataType.UInt32);
-
-            if (uint.TryParse(playTimeValue, out uint totalFrames))
+            uint totalFrames = GetStatUInt(GameStats.GameTime);
+            if (totalFrames > 0)
             {
                 uint totalSeconds = totalFrames / 60;
                 TimeSpan timeSpan = TimeSpan.FromSeconds(totalSeconds);
                 int hours = (int)timeSpan.TotalHours;
                 string formattedTime = $"{hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
                 LoggingManager.Instance.Log($"Formatted PlayTime: {formattedTime}");
-
                 return formattedTime;
             }
-
             return "00:00:00";
         }
 
-
         public string ReadContinues()
         {
-            return HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes", (int)MainPointerAddresses.ContinuesSub, 2, DataType.UInt16);
+            ushort continues = GetStatUShort(GameStats.Continues);
+            return continues.ToString();
         }
 
         public string ReadSaves()
         {
-            return HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes", (int)MainPointerAddresses.SavesSub, 2, DataType.UInt16);
+            ushort saves = GetStatUShort(GameStats.Saves);
+            return saves.ToString();
         }
 
         public string ReadAlertsTriggered()
         {
-            return HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes", (int)MainPointerAddresses.AlertsTriggeredSub, 2, DataType.UInt16);
+            ushort alerts = GetStatUShort(GameStats.AlertsTriggered);
+            return alerts.ToString();
         }
 
         public string ReadHumansKilled()
         {
-            return HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes", (int)MainPointerAddresses.HumansKilledSub, 2, DataType.UInt16);
+            ushort kills = GetStatUShort(GameStats.Kills);
+            return kills.ToString();
         }
 
         public string ReadTimesSeriouslyInjured()
         {
-            return HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes", (int)MainPointerAddresses.SeriousInjuriesSub, 2, DataType.UInt16);
+            ushort injuries = GetStatUShort(GameStats.SeriousInjury);
+            return injuries.ToString();
         }
 
         public string ReadTotalDamageTaken()
         {
-            return HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes", (int)MainPointerAddresses.TotalDamageTakenSubTest, 2, DataType.UInt16);
+            ushort damage = GetStatUShort(GameStats.TotalDamage);
+            return damage.ToString();
         }
 
         public string ReadLifeMedsUsed()
         {
-            return HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes", (int)MainPointerAddresses.LifeMedsUsedSub, 2, DataType.UInt16);
+            ushort lifeMeds = GetStatUShort(GameStats.LifeMeds);
+            return lifeMeds.ToString();
         }
 
         public string ReadPlantsAndAnimalsCaptured()
         {
-            return HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes",
-                (int)MainPointerAddresses.PlantsAndAnimalsCapturedSub, 1, DataType.UInt8);
+            byte plants = GetStatByte(GameStats.PlantsAndAnimalsCaptured);
+            return plants.ToString();
         }
 
         public string ReadMealsEaten()
         {
-            return HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes", (int)MainPointerAddresses.MealsEatenSub, 2, DataType.UInt16);
+            ushort meals = GetStatUShort(GameStats.MealsEaten);
+            return meals.ToString();
         }
-
-        // Stealth = 1, Infinity FP = 2, Ez Gun = 4. Adding the totals tells what you used. 
-        private static readonly Dictionary<int, string> SpecialItemCombos = new()
-            {
-                { 0, "NOT USED" },
-                { 1, "STEALTH CAMO USED" },
-                { 2, "INFINITY FACEPAINT USED" },
-                { 3, "STEALTH CAMO + INFINITY FACEPAINT USED" },
-                { 4, "EZ GUN USED" },
-                { 5, "STEALTH CAMO + EZ GUN USED" },
-                { 6, "INFINITY FACEPAINT + EZ GUN USED" },
-                { 7, "STEALTH CAMO + INFINITY FACEPAINT + EZ GUN USED" }
-            };
 
         public string ReadSpecialItemsUsed()
         {
-            string specialItemUsedValue = HelperMethods.Instance.ReadMemoryValueOnlyAsString("PointerBytes", (int)MainPointerAddresses.SpecialItemsUsedSub, 1, DataType.UInt8);
-
-            if (int.TryParse(specialItemUsedValue, out int specialItemUsedKey) && SpecialItemCombos.TryGetValue(specialItemUsedKey, out string description))
+            byte specialItems = GetStatByte(GameStats.SpecialItems);
+            if (SpecialItemCombos.TryGetValue(specialItems, out string description))
             {
                 return description;
             }
-
             return "Unable to determine usage";
         }
 
-        /// <summary>
-        /// Generic method to write a value to memory.
-        /// </summary>
-        private bool WriteStat<T>(string aobKey, int offset, T value)
+        #endregion
+
+        #region Write Methods (Pointer-based)
+
+        public bool WriteDifficulty(byte value) => WriteStat(GameStats.Difficulty, value);
+        public bool WritePlayTime(uint value) => WriteStat(GameStats.GameTime, value);
+        public bool WriteContinues(ushort value) => WriteStat(GameStats.Continues, value);
+        public bool WriteSaves(ushort value) => WriteStat(GameStats.Saves, value);
+        public bool WriteAlertsTriggered(ushort value) => WriteStat(GameStats.AlertsTriggered, value);
+        public bool WriteHumansKilled(ushort value) => WriteStat(GameStats.Kills, value);
+        public bool WriteTimesSeriouslyInjured(ushort value) => WriteStat(GameStats.SeriousInjury, value);
+        public bool WriteTotalDamageTaken(ushort value) => WriteStat(GameStats.TotalDamage, value);
+        public bool WriteLifeMedsUsed(ushort value) => WriteStat(GameStats.LifeMeds, value);
+        public bool WritePlantsAndAnimalsCaptured(byte value) => WriteStat(GameStats.PlantsAndAnimalsCaptured, value);
+        public bool WriteMealsEaten(ushort value) => WriteStat(GameStats.MealsEaten, value);
+        public bool WriteSpecialItemsUsed(byte value) => WriteStat(GameStats.SpecialItems, value);
+
+        #endregion
+
+        #region Helper Methods for Pointer Access
+
+        private byte GetStatByte(int offset)
         {
-            nint processHandle = HelperMethods.Instance.GetProcessHandle();
-            if (processHandle == nint.Zero)
-            {
-                LoggingManager.Instance.Log("Failed to get process handle for writing.");
-                return false;
-            }
-
-            nint targetAddress = HelperMethods.Instance.GetTargetAddress(processHandle, aobKey, offset);
-            if (targetAddress == nint.Zero)
-            {
-                LoggingManager.Instance.Log("Failed to get target address for writing.");
-                return false;
-            }
-
-            bool success = MemoryManager.WriteMemory(processHandle, targetAddress, value);
-            if (!success)
-            {
-                LoggingManager.Instance.Log($"Failed to write value at offset {offset:X}.");
-            }
-            return success;
+            byte[] bytes = HelperMethods.Instance.ReadPointerBytes(Constants.MainPointerRegionOffset, offset, 1);
+            return bytes != null && bytes.Length == 1 ? bytes[0] : (byte)0;
         }
 
-        public bool WriteDifficulty(byte value) => WriteStat("PointerBytes", (int)MainPointerAddresses.DifficultySub, value);
+        private ushort GetStatUShort(int offset)
+        {
+            byte[] bytes = HelperMethods.Instance.ReadPointerBytes(Constants.MainPointerRegionOffset, offset, 2);
+            return bytes != null && bytes.Length == 2 ? BitConverter.ToUInt16(bytes, 0) : (ushort)0;
+        }
 
-        public bool WritePlayTime(uint framesValue) => WriteStat("PointerBytes", (int)MainPointerAddresses.PlayTimeSub, framesValue);
+        private uint GetStatUInt(int offset)
+        {
+            byte[] bytes = HelperMethods.Instance.ReadPointerBytes(Constants.MainPointerRegionOffset, offset, 4);
+            return bytes != null && bytes.Length == 4 ? BitConverter.ToUInt32(bytes, 0) : 0;
+        }
 
-        public bool WriteAlertsTriggered(ushort value) => WriteStat("PointerBytes", (int)MainPointerAddresses.AlertsTriggeredSub, value);
-        public bool WriteSaves(ushort value) => WriteStat("PointerBytes", (int)MainPointerAddresses.SavesSub, value);
-        public bool WriteContinues(ushort value) => WriteStat("PointerBytes", (int)MainPointerAddresses.ContinuesSub, value);
-        public bool WriteHumansKilled(ushort value) => WriteStat("PointerBytes", (int)MainPointerAddresses.HumansKilledSub, value);
-        public bool WriteTimesSeriouslyInjured(ushort value) => WriteStat("PointerBytes", (int)MainPointerAddresses.SeriousInjuriesSub, value);
-        public bool WriteMealsEaten(ushort value) => WriteStat("PointerBytes", (int)MainPointerAddresses.MealsEatenSub, value);
-        public bool WriteLifeMedsUsed(ushort value) => WriteStat("PointerBytes", (int)MainPointerAddresses.LifeMedsUsedSub, value);
-        public bool WritePlantsAndAnimalsCaptured(byte value) => WriteStat("PointerBytes", (int)MainPointerAddresses.PlantsAndAnimalsCapturedSub, value);
-        public bool WriteSpecialItemsUsed(byte value) => WriteStat("PointerBytes", (int)MainPointerAddresses.SpecialItemsUsedSub, value);
-        public bool WriteTotalDamageTaken(ushort value) => WriteStat("PointerBytes", (int)MainPointerAddresses.TotalDamageTakenSubTest, value);
+        private bool WriteStat<T>(int offset, T value) where T : struct
+        {
+            return HelperMethods.Instance.WriteToPointer(Constants.MainPointerRegionOffset, offset, value);
+        }
+
+        #endregion
+
+        #region Static Methods for Difficulty (for form compatibility)
+
+        public static byte GetDifficultyValue()
+        {
+            byte[] difficultyBytes = HelperMethods.Instance.ReadPointerBytes(
+                Constants.MainPointerRegionOffset, GameStats.Difficulty, 1);
+            return difficultyBytes != null && difficultyBytes.Length == 1 ? difficultyBytes[0] : (byte)30;
+        }
+
+        public static bool SetDifficultyValue(byte difficultyValue)
+        {
+            return HelperMethods.Instance.WriteToPointer(
+                Constants.MainPointerRegionOffset, GameStats.Difficulty, difficultyValue);
+        }
+
+        #endregion
 
 
         public string ProjectedRank(string difficulty)
@@ -179,17 +202,17 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             string specialItemsUsed = ReadSpecialItemsUsed();
             string formattedPlayTime = ReadPlayTime();
             TimeSpan playTime = SafeParseTime(formattedPlayTime);
-            LoggingManager.Instance.Log($"Play Time for Rank Projection: {playTime}");
+            //LoggingManager.Instance.Log($"Play Time for Rank Projection: {playTime}");
 
             var rankConditions = new List<RankCondition>
     {
     // Top Performance Ranks
-    new RankCondition("FoxHound", "Extreme/European Extreme", maxPlayTimeMinutes: 5 * 60, maxSaves: 25, maxContinues: 0, specialItems: "Not Used", maxLifeMeds: 0, maxKills: 0, maxAlerts: 0, maxDamageBars: 5, maxInjuries: 20),
-    new RankCondition("Fox", "Hard/Extreme/European Extreme", maxPlayTimeMinutes: 5 * 60, maxSaves: 35, maxContinues: 0, specialItems: "Not Used", maxLifeMeds: 0, maxKills: 0, maxAlerts: 3, maxDamageBars: 5, maxInjuries: 20),
-    new RankCondition("Doberman", "Normal/Hard/Extreme/European Extreme", maxPlayTimeMinutes: 5 * 60 + 30, maxSaves: 50, maxContinues: 0, specialItems: "Not Used", maxLifeMeds: 0, maxKills: 0, maxAlerts: 5, maxDamageBars: 5),
+    new RankCondition("FoxHound", "Extreme/European Extreme", maxPlayTimeMinutes: 5 * 60, maxSaves: 25, maxContinues: 0, specialItems: "NOT USED", maxLifeMeds: 0, maxKills: 0, maxAlerts: 0, maxDamageBars: 5, maxInjuries: 20),
+    new RankCondition("Fox", "Hard/Extreme/European Extreme", maxPlayTimeMinutes: 5 * 60, maxSaves: 35, maxContinues: 0, specialItems: "NOT USED", maxLifeMeds: 0, maxKills: 0, maxAlerts: 3, maxDamageBars: 5, maxInjuries: 20),
+    new RankCondition("Doberman", "Normal/Hard/Extreme/European Extreme", maxPlayTimeMinutes: 5 * 60 + 30, maxSaves: 50, maxContinues: 0, specialItems: "NOT USED", maxLifeMeds: 0, maxKills: 0, maxAlerts: 5, maxDamageBars: 5),
 
 
-    new RankCondition("Hound", "Easy/Normal/Hard/Extreme/European Extreme", maxPlayTimeMinutes: 6 * 60, maxSaves: 25, maxContinues: 0, specialItems: "Not Used", maxLifeMeds: 0, maxKills: 0, maxAlerts: 10),
+    new RankCondition("Hound", "Easy/Normal/Hard/Extreme/European Extreme", maxPlayTimeMinutes: 6 * 60, maxSaves: 25, maxContinues: 0, specialItems: "NOT USED", maxLifeMeds: 0, maxKills: 0, maxAlerts: 10),
 
     // Extreme Playtime Ranks
     new RankCondition("Chicken", "Very Easy/Easy", minPlayTimeMinutes: 50 * 60, minSaves: 100, minContinues: 60,
@@ -202,7 +225,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                       specialItems: "Allowed", minLifeMeds: 10, minKills: 250, minAlerts: 250, minDamageBars: 30),
 
     // Special Titles
-    new RankCondition("Chameleon", "Any", maxKills: 0),
+    new RankCondition("Chameleon", "Any", maxAlerts: 0),
     new RankCondition("Markhor", "Any", minPlantsCaptured: 48),
     new RankCondition("Pigeon", "Any", maxKills: 0),
 
@@ -381,9 +404,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                     if (SpecialItems == "Allowed")
                     {
                     }
-                    else if (SpecialItems == "Not Used")
+                    else if (SpecialItems == "NOT USED")
                     {
-                        if (specialItems != "Not Used") return false;
+                        if (specialItems != "NOT USED") return false;
                     }
                     else
                     {
@@ -393,9 +416,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
                 return true;
             }
-
-
-
 
             private string NormalizeDifficulty(string difficulty)
             {
@@ -412,7 +432,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             }
         }
 
-
         private int SafeParse(string value)
         {
             return int.TryParse(value, out int result) ? result : 0;
@@ -420,7 +439,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         private TimeSpan SafeParseTime(string value)
         {
-            LoggingManager.Instance.Log($"Parsing PlayTime value: '{value}'");
+            //LoggingManager.Instance.Log($"Parsing PlayTime value: '{value}'");
             var parts = value.Split(':');
             if (parts.Length == 3
                 && int.TryParse(parts[0], out int hours)
@@ -541,64 +560,23 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                     _ => Constants.Offsets.Health.Current
                 };
 
-                // Read current value using your new ReadPointerBytes
                 byte[] currentBytes = HelperMethods.Instance.ReadPointerBytes(
                     Constants.MainPointerRegionOffset, valueOffset, sizeof(short));
                 if (currentBytes == null) return;
 
                 short currentValue = BitConverter.ToInt16(currentBytes, 0);
 
-                // Calculate new value
                 short newValue = (short)(setExactValue
                     ? Math.Max(0, Math.Min(value, short.MaxValue))
                     : Math.Max(0, Math.Min(currentValue + value, short.MaxValue)));
 
-                // Write new value using your new WriteToPointer
                 HelperMethods.Instance.WriteToPointer(
                     Constants.MainPointerRegionOffset, valueOffset, newValue);
             }
             catch
             {
-                
+
             }
         }
-
-        #region Difficulty Changer
-        public static string GetCurrentDifficulty()
-        {
-            byte[] difficultyBytes = HelperMethods.Instance.ReadPointerBytes(0, GameStats.Difficulty, 1);
-            if (difficultyBytes != null && difficultyBytes.Length == 1)
-            {
-                int difficultyValue = difficultyBytes[0];
-                if (DifficultyMappings.TryGetValue(difficultyValue, out string difficultyName))
-                {
-                    return difficultyName;
-                }
-            }
-            return "Unknown";
-        }
-
-        public static byte GetDifficultyValue()
-        {
-            byte[] difficultyBytes = HelperMethods.Instance.ReadPointerBytes(
-                Constants.MainPointerRegionOffset, GameStats.Difficulty, 1);
-            if (difficultyBytes != null && difficultyBytes.Length == 1)
-            {
-                return difficultyBytes[0];
-            }
-            return 30;
-        }
-
-        public static bool SetDifficultyValue(byte difficultyValue)
-        {
-            return HelperMethods.Instance.WriteToPointer(
-                Constants.MainPointerRegionOffset, GameStats.Difficulty, difficultyValue);
-        }
-
-        public static Dictionary<int, string> GetDifficultyMappings()
-        {
-            return DifficultyMappings;
-        }
-        #endregion
     }
 }

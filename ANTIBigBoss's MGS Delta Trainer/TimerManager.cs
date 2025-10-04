@@ -197,10 +197,33 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         {
             if (!infiniteSuppressorEnabled) return;
 
+            // Check if game process is running before proceeding
+            if (!IsGameRunning())
+            {
+                // Game is not running, stop the timer
+                infiniteSuppressorEnabled = false;
+                SuppressorTimer.Stop();
+                LoggingManager.Instance.Log("Game process not found. Stopping Infinite Suppressor timer.");
+                return;
+            }
+
             // Maintain all three suppressors directly
             MaintainSuppressor(MGS3UsableObjects.M1911A1Surpressor);
             MaintainSuppressor(MGS3UsableObjects.MK22Surpressor);
             MaintainSuppressor(MGS3UsableObjects.XM16E1Surpressor);
+        }
+
+        private static bool IsGameRunning()
+        {
+            try
+            {
+                var process = MemoryManager.GetMGS3Process();
+                return process != null && !process.HasExited;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>

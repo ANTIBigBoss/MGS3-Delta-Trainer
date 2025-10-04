@@ -196,6 +196,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             SwapToWeaponsForm = new Button();
             StatsAndAlertForm = new Button();
             MiscFormSwap = new Button();
+            GameStatsFormSwap = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -2714,6 +2715,22 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             MiscFormSwap.UseVisualStyleBackColor = true;
             MiscFormSwap.Click += MiscFormSwap_Click;
             // 
+            // GameStatsFormSwap
+            // 
+            GameStatsFormSwap.BackgroundImage = (Image)resources.GetObject("GameStatsFormSwap.BackgroundImage");
+            GameStatsFormSwap.Cursor = Cursors.Hand;
+            GameStatsFormSwap.FlatStyle = FlatStyle.Flat;
+            GameStatsFormSwap.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            GameStatsFormSwap.ImageAlign = ContentAlignment.TopCenter;
+            GameStatsFormSwap.ImeMode = ImeMode.NoControl;
+            GameStatsFormSwap.Location = new Point(574, 3);
+            GameStatsFormSwap.Name = "GameStatsFormSwap";
+            GameStatsFormSwap.Size = new Size(130, 31);
+            GameStatsFormSwap.TabIndex = 873;
+            GameStatsFormSwap.Text = "Game Stats";
+            GameStatsFormSwap.UseVisualStyleBackColor = true;
+            GameStatsFormSwap.Click += GameStatsFormSwap_Click;
+            // 
             // CamoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -2722,6 +2739,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1134, 707);
+            Controls.Add(GameStatsFormSwap);
             Controls.Add(MiscFormSwap);
             Controls.Add(StatsAndAlertForm);
             Controls.Add(SwapToItemsForm);
@@ -3113,5 +3131,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private Button SwapToWeaponsForm;
         private Button StatsAndAlertForm;
         private Button MiscFormSwap;
+        private Button GameStatsFormSwap;
     }
 }

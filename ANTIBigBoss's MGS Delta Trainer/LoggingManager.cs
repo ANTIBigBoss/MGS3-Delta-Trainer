@@ -199,20 +199,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                     LoggingManager.Instance.Log($"Suppressor Toggle Address: {suppressorToggleAddress.ToString("X")} MGSDelta-Win64-Shipping.exe+{relativeOffset:X}");
                 }
 
-                // Add logging for the additional offsets we identified
-                if (weapon.WeaponIdOffset != IntPtr.Zero)
-                {
-                    IntPtr weaponIdAddress = WeaponAddresses.GetWeaponIdAddress(weaponAddress);
-                    relativeOffset = weaponIdAddress.ToInt64() - baseAddress.ToInt64();
-                    LoggingManager.Instance.Log($"Weapon ID Address: {weaponIdAddress.ToString("X")} MGSDelta-Win64-Shipping.exe+{relativeOffset:X}");
-                }
-
-                if (weapon.CqcFlagOffset != IntPtr.Zero)
-                {
-                    IntPtr cqcFlagAddress = WeaponAddresses.GetCqcFlagAddress(weaponAddress);
-                    relativeOffset = cqcFlagAddress.ToInt64() - baseAddress.ToInt64();
-                    LoggingManager.Instance.Log($"CQC Flag Address: {cqcFlagAddress.ToString("X")} MGSDelta-Win64-Shipping.exe+{relativeOffset:X}");
-                }
             }
 
             LoggingManager.Instance.Log("Items:");
@@ -477,7 +463,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         // Functions to NOP for filter effects
         
-
         public string GetRgbNopValue()
         {
             return HelperMethods.Instance.ReadMemoryValue("Fog", 5402453, true, 32, DataType.ByteArray);
@@ -496,10 +481,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         #endregion
 
     }
-
 }
-
-
 
 /* Button to implement later to locate the log file/folder
 

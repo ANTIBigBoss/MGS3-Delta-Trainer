@@ -24,3 +24,4 @@ C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-w
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\win-x64\ref\ANTIBigBoss's MGS Delta Trainer.dll
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\win-x64\ANTIBigBoss_s_MGS_Delta_Trainer.StatsAndAlertForm.resources
 C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\win-x64\ANTIBigBoss_s_MGS_Delta_Trainer.MiscForm.resources
+C:\Users\Mitch\source\repos\ANTIBigBoss's MGS Delta Trainer\obj\Release\net8.0-windows\win-x64\ANTIBigBoss_s_MGS_Delta_Trainer.GameStatsForm.resources

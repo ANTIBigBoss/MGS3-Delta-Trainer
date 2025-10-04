@@ -592,5 +592,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             form4.Show();
             this.Hide();
         }
+
+        private void GameStatsFormSwap_Click(object sender, EventArgs e)
+        {
+            LoggingManager.Instance.Log("User is changing to the Game Stats page from the Camo Form.\n");
+            MemoryManager.UpdateLastFormLocation(this.Location);
+            MemoryManager.LogFormLocation(this, "GameStatsForm");
+            GameStatsForm form7 = new();
+            form7.Show();
+            this.Hide();
+        }
     }
 }

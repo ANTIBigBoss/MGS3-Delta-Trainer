@@ -39,6 +39,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             StatsAndAlertForm = new Button();
             PatchNotesButton = new Button();
             MiscFormSwap = new Button();
+            GameStatsFormSwap = new Button();
             SuspendLayout();
             // 
             // CamoFormSwap
@@ -103,7 +104,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             LogAOBs.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             LogAOBs.ImageAlign = ContentAlignment.TopCenter;
             LogAOBs.ImeMode = ImeMode.NoControl;
-            LogAOBs.Location = new Point(730, 420);
+            LogAOBs.Location = new Point(730, 481);
             LogAOBs.Name = "LogAOBs";
             LogAOBs.Size = new Size(426, 41);
             LogAOBs.TabIndex = 560;
@@ -138,7 +139,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             PatchNotesButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             PatchNotesButton.ImageAlign = ContentAlignment.TopCenter;
             PatchNotesButton.ImeMode = ImeMode.NoControl;
-            PatchNotesButton.Location = new Point(730, 478);
+            PatchNotesButton.Location = new Point(730, 539);
             PatchNotesButton.Name = "PatchNotesButton";
             PatchNotesButton.Size = new Size(426, 41);
             PatchNotesButton.TabIndex = 563;
@@ -164,6 +165,24 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             MiscFormSwap.UseVisualStyleBackColor = false;
             MiscFormSwap.Click += MiscFormSwap_Click;
             // 
+            // GameStatsFormSwap
+            // 
+            GameStatsFormSwap.BackColor = SystemColors.ActiveBorder;
+            GameStatsFormSwap.BackgroundImage = (Image)resources.GetObject("GameStatsFormSwap.BackgroundImage");
+            GameStatsFormSwap.BackgroundImageLayout = ImageLayout.Center;
+            GameStatsFormSwap.Cursor = Cursors.Hand;
+            GameStatsFormSwap.FlatStyle = FlatStyle.Flat;
+            GameStatsFormSwap.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            GameStatsFormSwap.ImageAlign = ContentAlignment.TopCenter;
+            GameStatsFormSwap.ImeMode = ImeMode.NoControl;
+            GameStatsFormSwap.Location = new Point(730, 421);
+            GameStatsFormSwap.Name = "GameStatsFormSwap";
+            GameStatsFormSwap.Size = new Size(426, 41);
+            GameStatsFormSwap.TabIndex = 565;
+            GameStatsFormSwap.Text = "Game Stats";
+            GameStatsFormSwap.UseVisualStyleBackColor = false;
+            GameStatsFormSwap.Click += GameStatsFormSwap_Click;
+            // 
             // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -171,6 +190,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1185, 702);
+            Controls.Add(GameStatsFormSwap);
             Controls.Add(MiscFormSwap);
             Controls.Add(PatchNotesButton);
             Controls.Add(StatsAndAlertForm);
@@ -182,7 +202,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "ANTIBigBoss's MGS3 Delta Trainer - Main Menu - Version 1.0.0.5";
+            Text = "ANTIBigBoss's MGS3 Delta Trainer - Main Menu - Version 1.0.0.6";
             Load += MainMenuForm_Load;
             ResumeLayout(false);
         }
@@ -195,5 +215,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private Button StatsAndAlertForm;
         private Button PatchNotesButton;
         private Button MiscFormSwap;
+        private Button GameStatsFormSwap;
     }
 }

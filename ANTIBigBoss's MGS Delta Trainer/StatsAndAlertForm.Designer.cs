@@ -103,6 +103,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             SwapToWeaponsForm = new Button();
             MiscFormSwap = new Button();
             InfLifeSnakeCheckBox = new CheckBox();
+            GameStatsFormSwap = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
@@ -1040,12 +1041,29 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             InfLifeSnakeCheckBox.UseVisualStyleBackColor = true;
             InfLifeSnakeCheckBox.CheckedChanged += InfLifeSnakeCheckBox_CheckedChanged;
             // 
+            // GameStatsFormSwap
+            // 
+            GameStatsFormSwap.BackgroundImage = (Image)resources.GetObject("GameStatsFormSwap.BackgroundImage");
+            GameStatsFormSwap.Cursor = Cursors.Hand;
+            GameStatsFormSwap.FlatStyle = FlatStyle.Flat;
+            GameStatsFormSwap.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            GameStatsFormSwap.ImageAlign = ContentAlignment.TopCenter;
+            GameStatsFormSwap.ImeMode = ImeMode.NoControl;
+            GameStatsFormSwap.Location = new Point(589, 12);
+            GameStatsFormSwap.Name = "GameStatsFormSwap";
+            GameStatsFormSwap.Size = new Size(130, 31);
+            GameStatsFormSwap.TabIndex = 910;
+            GameStatsFormSwap.Text = "Game Stats";
+            GameStatsFormSwap.UseVisualStyleBackColor = true;
+            GameStatsFormSwap.Click += GameStatsFormSwap_Click;
+            // 
             // StatsAndAlertForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1166, 707);
+            Controls.Add(GameStatsFormSwap);
             Controls.Add(InfLifeSnakeCheckBox);
             Controls.Add(MiscFormSwap);
             Controls.Add(SwapToCamoForm);
@@ -1179,5 +1197,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private RadioButton GuardsTake2xDamageRadio;
         private Button MiscFormSwap;
         private CheckBox InfLifeSnakeCheckBox;
+        private Button GameStatsFormSwap;
     }
 }

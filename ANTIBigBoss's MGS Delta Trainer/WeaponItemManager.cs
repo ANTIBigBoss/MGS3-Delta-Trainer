@@ -6,8 +6,6 @@ using static ANTIBigBoss_s_MGS_Delta_Trainer.HelperMethods;
 namespace ANTIBigBoss_s_MGS_Delta_Trainer
 {
 
-
-
     #region Base classes
     public class GameObject
     {
@@ -31,12 +29,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public const int MaxClipOffset = 6;
         public const int SuppressorToggleOffset = 16; // The offset for the suppressor toggle
 
-        // Newly Discovered information to log and add effects in for later
-        public const int WeaponIdOffset = -4;      
-        public const int CqcFlagOffset = -3; 
-        public const int WeaponIconIdOffset = -16;
-        public const int EquipWeapPosOffset = -12;
-        public const int FullWeaponBaseOffset = -36;
         public static IntPtr GetAddress(int index, MemoryManager memoryManager)
         {
             IntPtr aobResult = memoryManager.FindAob("WeaponsTable");
@@ -70,32 +62,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         {
             return baseAddress + SuppressorToggleOffset;
         }
-
-        public static IntPtr GetWeaponIdAddress(IntPtr baseAddress)
-        {
-            return baseAddress + WeaponIdOffset;
-        }
-
-        public static IntPtr GetCqcFlagAddress(IntPtr baseAddress)
-        {
-            return baseAddress + CqcFlagOffset;
-        }
-
-        public static IntPtr GetWeaponIconIdAddress(IntPtr baseAddress)
-        {
-            return baseAddress + WeaponIconIdOffset;
-        }
-
-        public static IntPtr GetEquipWeapPosAddress(IntPtr baseAddress)
-        {
-            return baseAddress + EquipWeapPosOffset;
-        }
-
-        public static IntPtr GetFullWeaponBaseAddress(IntPtr baseAddress)
-        {
-            return baseAddress + FullWeaponBaseOffset;
-        }
-
     }
 
     public static class ItemAddresses
@@ -162,19 +128,16 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public IntPtr ClipOffset { get; private set; } = IntPtr.Zero;
         public IntPtr MaxClipOffset { get; private set; } = IntPtr.Zero;
         public IntPtr SuppressorToggleOffset { get; private set; } = IntPtr.Zero;
-        public IntPtr WeaponIdOffset { get; private set; } = IntPtr.Zero;
-        public IntPtr CqcFlagOffset { get; private set; } = IntPtr.Zero;
-        public IntPtr WeaponIconIdOffset { get; private set; } = IntPtr.Zero;
+        public string AobKey { get; private set; } // A key to look up AOBs in Constants
+        public int Index { get; private set; } // Add this line
 
-        public string AobKey { get; private set; }
-        public int Index { get; private set; }
 
-        public Weapon(string name, int index, string aobKey,
-            bool hasAmmo = false, bool hasClip = false, bool hasSuppressorToggle = false,
-            bool hasWeaponId = false, bool hasCqcFlag = false, bool hasWeaponIcon = false)
-            : base(name, IntPtr.Zero)
+        // Constructor for a weapon
+        public Weapon(string name, int index, string aobKey, bool hasAmmo = false, bool hasClip = false,
+            bool hasSuppressorToggle = false)
+            : base(name, IntPtr.Zero) // Initially, we don't have the address
         {
-            Index = index;
+            Index = index; // Set the index
             AobKey = aobKey;
 
             if (hasAmmo)
@@ -192,71 +155,51 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             {
                 SuppressorToggleOffset = WeaponAddresses.GetSuppressorToggleAddress(this.MemoryOffset);
             }
-
-            if (hasWeaponId)
-            {
-                WeaponIdOffset = WeaponAddresses.GetWeaponIdAddress(this.MemoryOffset);
-            }
-
-            if (hasCqcFlag)
-            {
-                CqcFlagOffset = WeaponAddresses.GetCqcFlagAddress(this.MemoryOffset);
-            }
-
-            if (hasWeaponIcon)
-            {
-                WeaponIconIdOffset = WeaponAddresses.GetWeaponIconIdAddress(this.MemoryOffset);
-            }
         }
     }
 
     #endregion
 
-    /// <summary>
-    /// A class for all the items in MGS3 Delta
-    /// </summary>
     public class MGS3UsableObjects
     {
-
+        /* It's a little messier but I thinking listing based on the table's data structure is better in the long run
+        Here's how the table works:
+        The Index is our sequential 80 bytes the 3 bools are for Max Ammo, Clip, Max Clip and Suppressor Toggle
+        */
         #region Weapons
-
         private static MemoryManager memoryManager = new MemoryManager();
 
-        // Weapons in delta are 88 bytes apart as opposed to the 80 they are in the original MC port
-        public static readonly Weapon SurvivalKnife = new("Survival Knife", 0, "WeaponsTable", false, false, false, true, true, true);
-        public static readonly Weapon Fork = new("Fork", 1, "WeaponsTable", false, false, false, true, true, true);
-        public static readonly Weapon CigSpray = new("Cigspray", 2, "WeaponsTable", true, false, false, true, true, true); // Ammo+clips no supp
-        public static readonly Weapon Handkerchief = new("Handkerchief", 3, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon MK22 = new("MK22", 4, "WeaponsTable", true, true, true, true, true, true);
-        public static readonly Weapon M1911A1 = new("M1911A1", 5, "WeaponsTable", true, true, true, true, true, true);
-        public static readonly Weapon EzGun = new("Ez Gun", 6, "WeaponsTable", false, false, false, true, true, true);
-        public static readonly Weapon SAA = new("SAA", 7, "WeaponsTable", true, true, false, true, true, true); // Ammo+clips no supp
-        public static readonly Weapon Patriot = new("Patriot", 8, "WeaponsTable", false, false, false, true, true, true);
-        public static readonly Weapon Scorpion = new("Scorpion", 9, "WeaponsTable", true, true, false, true, true, true);
-        public static readonly Weapon XM16E1 = new("XM16E1", 10, "WeaponsTable", true, true, true, true, true, true);
-        public static readonly Weapon AK47 = new("AK47", 11, "WeaponsTable", true, true, false, true, true, true);
-        public static readonly Weapon M63 = new("M63", 12, "WeaponsTable", true, true, false, true, true, true);
-        public static readonly Weapon M37 = new("M37", 13, "WeaponsTable", true, true, false, true, true, true);
-        public static readonly Weapon SVD = new("SVD", 14, "WeaponsTable", true, true, false, true, true, true);
-        public static readonly Weapon Mosin = new("Mosin", 15, "WeaponsTable", true, true, false, true, true, true);
-        public static readonly Weapon RPG7 = new("RPG7", 16, "WeaponsTable", true, true, false, true, true, true);
-        public static readonly Weapon Torch = new("Torch", 17, "WeaponsTable", false, false, false, true, true, true);
-        public static readonly Weapon Grenade = new("Grenade", 18, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon WpGrenade = new("Wp Grenade", 19, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon StunGrenade = new("Stun Grenade", 20, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon ChaffGrenade = new("Chaff Grenade", 21, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon SmokeGrenade = new("Smoke Grenade", 22, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon EmptyMag = new("Empty Magazine", 23, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon TNT = new("TNT", 24, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon C3 = new("C3", 25, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon Claymore = new("Claymore", 26, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon Book = new("Book", 27, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon Mousetrap = new("Mousetrap", 28, "WeaponsTable", true, false, false, true, true, true);
-        public static readonly Weapon DirectionalMic = new("Directional Microphone", 29, "WeaponsTable", false, false, false, true, true, true);
-        public static readonly Weapon FoodItem1 = new("Food 1", 30, "WeaponsTable", false, false, false, true, true, true);
-        public static readonly Weapon FoodItem2 = new("Food 2", 31, "WeaponsTable", false, false, false, true, true, true);
-        public static readonly Weapon FoodItem3 = new("Food 3", 32, "WeaponsTable", false, false, false, true, true, true);
-        // When I learn more on how to force certain food items to be in the 19 slots after will implement logic here
+
+        public static readonly Weapon SurvivalKnife = new("Survival Knife", 0, "WeaponsTable", false, false, false);
+        public static readonly Weapon Fork = new("Fork", 1, "WeaponsTable", false, false, false);
+        public static readonly Weapon CigSpray = new("Cigspray", 2, "WeaponsTable", true, false, false); // Has ammo but no clip or suppressor
+        public static readonly Weapon Handkerchief = new("Handkerchief", 3, "WeaponsTable", true, false, false);
+        public static readonly Weapon MK22 = new("MK22", 4, "WeaponsTable", true, true, true);
+        public static readonly Weapon M1911A1 = new("M1911A1", 5, "WeaponsTable", true, true, true);
+        public static readonly Weapon EzGun = new("Ez Gun", 6, "WeaponsTable", false, false, false);
+        public static readonly Weapon SAA = new("SAA", 7, "WeaponsTable", true, true, false); // Has ammo and clips but no suppressor
+        public static readonly Weapon Patriot = new("Patriot", 8, "WeaponsTable", false, false, false);
+        public static readonly Weapon Scorpion = new("Scorpion", 9, "WeaponsTable", true, true, false);
+        public static readonly Weapon XM16E1 = new("XM16E1", 10, "WeaponsTable", true, true, true);
+        public static readonly Weapon AK47 = new("AK47", 11, "WeaponsTable", true, true, false);
+        public static readonly Weapon M63 = new("M63", 12, "WeaponsTable", true, true, false);
+        public static readonly Weapon M37 = new("M37", 13, "WeaponsTable", true, true, false);
+        public static readonly Weapon SVD = new("SVD", 14, "WeaponsTable", true, true, false);
+        public static readonly Weapon Mosin = new("Mosin", 15, "WeaponsTable", true, true, false);
+        public static readonly Weapon RPG7 = new("RPG7", 16, "WeaponsTable", true, true, false);
+        public static readonly Weapon Torch = new("Torch", 17, "WeaponsTable", false, false, false);
+        public static readonly Weapon Grenade = new("Grenade", 18, "WeaponsTable", true, false, false);
+        public static readonly Weapon WpGrenade = new("Wp Grenade", 19, "WeaponsTable", true, false, false);
+        public static readonly Weapon StunGrenade = new("Stun Grenade", 20, "WeaponsTable", true, false, false);
+        public static readonly Weapon ChaffGrenade = new("Chaff Grenade", 21, "WeaponsTable", true, false, false);
+        public static readonly Weapon SmokeGrenade = new("Smoke Grenade", 22, "WeaponsTable", true, false, false);
+        public static readonly Weapon EmptyMag = new("Empty Magazine", 23, "WeaponsTable", true, false, false);
+        public static readonly Weapon TNT = new("TNT", 24, "WeaponsTable", true, false, false);
+        public static readonly Weapon C3 = new("C3", 25, "WeaponsTable", true, false, false);
+        public static readonly Weapon Claymore = new("Claymore", 26, "WeaponsTable", true, false, false);
+        public static readonly Weapon Book = new("Book", 27, "WeaponsTable", true, false, false);
+        public static readonly Weapon Mousetrap = new("Mousetrap", 28, "WeaponsTable", true, false, false);
+        public static readonly Weapon DirectionalMic = new("Directional Microphone", 29, "WeaponsTable", false, false, false);
         #endregion
 
         #region Items

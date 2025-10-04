@@ -235,7 +235,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         public const string PROCESS_NAME = "MGSDelta-Win64-Shipping";
 
-        internal const int MainPointerRegionOffset = 0xC534038;
+        internal const int MainPointerRegionOffset = 0xC53D038;
 
         // Will laugh if these work the exact same way in Delta: THEY DID LMAO
         public static class InjuryData
@@ -322,7 +322,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 public const int MealsEaten = 0x46;
                 public const int GameTime = 0x4C;
                 public const int LifeMeds = 0x6D8;
-
             }
 
             public static class SnakesGear

@@ -152,6 +152,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             MiscFormSwap = new Button();
             NoReloadCheckBox = new CheckBox();
             InfiniteSuppressorsCheckBox = new CheckBox();
+            GameStatsFormSwap = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox31).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox29).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox30).BeginInit();
@@ -1743,12 +1744,29 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             InfiniteSuppressorsCheckBox.UseVisualStyleBackColor = true;
             InfiniteSuppressorsCheckBox.CheckedChanged += InfiniteSuppressorsCheckBox_CheckedChanged;
             // 
+            // GameStatsFormSwap
+            // 
+            GameStatsFormSwap.BackgroundImage = (Image)resources.GetObject("GameStatsFormSwap.BackgroundImage");
+            GameStatsFormSwap.Cursor = Cursors.Hand;
+            GameStatsFormSwap.FlatStyle = FlatStyle.Flat;
+            GameStatsFormSwap.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            GameStatsFormSwap.ImageAlign = ContentAlignment.TopCenter;
+            GameStatsFormSwap.ImeMode = ImeMode.NoControl;
+            GameStatsFormSwap.Location = new Point(548, 6);
+            GameStatsFormSwap.Name = "GameStatsFormSwap";
+            GameStatsFormSwap.Size = new Size(130, 31);
+            GameStatsFormSwap.TabIndex = 871;
+            GameStatsFormSwap.Text = "Game Stats";
+            GameStatsFormSwap.UseVisualStyleBackColor = true;
+            GameStatsFormSwap.Click += GameStatsFormSwap_Click;
+            // 
             // WeaponForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1161, 707);
+            Controls.Add(GameStatsFormSwap);
             Controls.Add(InfiniteSuppressorsCheckBox);
             Controls.Add(NoReloadCheckBox);
             Controls.Add(MiscFormSwap);
@@ -2027,5 +2045,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private Button MiscFormSwap;
         private CheckBox NoReloadCheckBox;
         private CheckBox InfiniteSuppressorsCheckBox;
+        private Button GameStatsFormSwap;
     }
 }

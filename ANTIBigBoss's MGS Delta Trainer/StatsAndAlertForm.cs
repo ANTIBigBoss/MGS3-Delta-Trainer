@@ -569,6 +569,16 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             this.Hide();
         }
 
+        private void GameStatsFormSwap_Click(object sender, EventArgs e)
+        {
+            LoggingManager.Instance.Log("User is changing to the Game Stats page from the Stats & Alerts Form.\n");
+            MemoryManager.UpdateLastFormLocation(this.Location);
+            MemoryManager.LogFormLocation(this, "GameStatsForm");
+            GameStatsForm form7 = new();
+            form7.Show();
+            this.Hide();
+        }
+
         private void InfLifeSnakeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (InfLifeSnakeCheckBox.Checked)
@@ -590,5 +600,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
             InfLifeSnakeCheckBox.Checked = isInstantRecoveryEnabled && isNoDamageTakenEnabled;
         }
+
+        
     }
 }

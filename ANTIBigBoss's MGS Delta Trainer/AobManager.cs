@@ -80,8 +80,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                     "WeaponsTable", // 00 00 AA 77 63 00
                     (new byte[] { 0x00, 0x00, 0xAA, 0x77, 0x63, 0x00 },
                         "x x x x x x",
-                        new IntPtr(0x13400000),
-                        new IntPtr(0x135FEEEE)
+                        new IntPtr(0x135C0000),
+                        new IntPtr(0x135F0000)
                         )
                 },
 
@@ -114,8 +114,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
                 {
                     "Fog", // 75 05 40 B6 01 EB 03 40 32 F6 48 8B 4C 24 48 48 85 C9 74 05 E8 04 23 F7 FE 40 84 F6
-                    (new byte[] { 0x75, 0x05, 0x40, 0xB6, 0x01, 0xEB, 0x03, 0x40, 0x32, 0xF6, 0x48, 0x8B, 0x4C, 0x24, 0x48, 0x48, 0x85, 0xC9, 0x74, 0x05, 0xE8, 0x04, 0x23, 0xF7, 0xFE, 0x40, 0x84, 0xF6 },
-                        "x x x x x x x x x x x x x x x x x x x x x x x x x x x x",
+                    (new byte[] { 0x75, 0x05, 0x40, 0xB6, 0x01, 0xEB, 0x03, 0x40, 0x32, 0xF6, 0x48, 0x8B, 0x4C, 0x24, 0x48 },
+                        "x x x x x x x x x x x x x x x",
                         new IntPtr(0x1000000),
                         new IntPtr(0x4000000)
                     )
@@ -153,8 +153,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                     "PlayerStatusCheck", // 8B D1 B8 01 00 00 00 83 E1 1F D3 E0 8B CA 48 C1
                     (new byte[] { 0x8B, 0xD1, 0xB8, 0x01, 0x00, 0x00, 0x00, 0x83, 0xE1, 0x1F, 0xD3, 0xE0, 0x8B, 0xCA, 0x48, 0xC1 },
                         "x x x x x x x x x x x x x x x x",
-                        new IntPtr(0x6000000),
-                        new IntPtr(0x8000000)
+                        new IntPtr(0x7000000),
+                        new IntPtr(0x9000000)
                     )
                 },
 

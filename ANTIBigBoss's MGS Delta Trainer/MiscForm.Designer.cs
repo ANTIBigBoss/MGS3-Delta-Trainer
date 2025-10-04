@@ -82,6 +82,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             WorldLightingTextbox = new TextBox();
             ChangeDifficultyButton = new Button();
             DifficultyChangeDropdown = new ComboBox();
+            GameStatsFormSwap = new Button();
             ((System.ComponentModel.ISupportInitialize)PissFilterRTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PissFilterGTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PissFilterBTrackBar).BeginInit();
@@ -738,12 +739,29 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             DifficultyChangeDropdown.Size = new Size(165, 23);
             DifficultyChangeDropdown.TabIndex = 907;
             // 
+            // GameStatsFormSwap
+            // 
+            GameStatsFormSwap.BackgroundImage = (Image)resources.GetObject("GameStatsFormSwap.BackgroundImage");
+            GameStatsFormSwap.Cursor = Cursors.Hand;
+            GameStatsFormSwap.FlatStyle = FlatStyle.Flat;
+            GameStatsFormSwap.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            GameStatsFormSwap.ImageAlign = ContentAlignment.TopCenter;
+            GameStatsFormSwap.ImeMode = ImeMode.NoControl;
+            GameStatsFormSwap.Location = new Point(588, 13);
+            GameStatsFormSwap.Name = "GameStatsFormSwap";
+            GameStatsFormSwap.Size = new Size(130, 31);
+            GameStatsFormSwap.TabIndex = 909;
+            GameStatsFormSwap.Text = "Game Stats";
+            GameStatsFormSwap.UseVisualStyleBackColor = true;
+            GameStatsFormSwap.Click += GameStatsFormSwap_Click;
+            // 
             // MiscForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1166, 707);
+            Controls.Add(GameStatsFormSwap);
             Controls.Add(ChangeDifficultyButton);
             Controls.Add(DifficultyChangeDropdown);
             Controls.Add(Minus1WorldLight);
@@ -863,5 +881,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private TextBox WorldLightingTextbox;
         private Button ChangeDifficultyButton;
         private ComboBox DifficultyChangeDropdown;
+        private Button GameStatsFormSwap;
     }
 }

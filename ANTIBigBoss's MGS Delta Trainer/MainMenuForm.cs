@@ -44,7 +44,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             CamoForm form3 = new();
             form3.Show();
             this.Hide();
-        }       
+        }
 
         private void MainMenuForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -117,10 +117,11 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         private void PatchNotesButton_Click(object sender, EventArgs e)
         {
-            CustomFormManager.CustomMessageBox("" +
+            CustomFormManager.CustomMessageBox("\n" +
                 "Thanks for using my MGS3 Delta Trainer! - ANTIBigBoss\n\n" +
-                "Changelog History:\n" +
-                "Next update will feature the Game Stats feature from the old trainer that people have been asking for" +
+                "Changelog History:\n\n" +
+                "v1.0.0.6:\nPorted over the Game Stats feature from the original Master Collection Trainer. Fixed the bug of title/rank image not showing up properly from the old trainer.\n\n" +
+                "v1.0.0.5:\nFixed memory address issues from Konami's 1.1.4 update.\n\n" +
                 "v1.0.0.4:\nAdded Misc page from the old trainer but with new options for tweaking, Reworked the Guard Damage options as the broke last game update, added in some filter/lighting editing, added in infinite ammo, no reload & infinite suppressors, added in an option that stops the battery from draining or recharging, restart stage option & difficultly changer also added to the new page.\n\n" +
                 "v1.0.0.3:\nFixed memory address issues from Konami's 1.1.3 update and removed Guard Damage options from Stats and Alert as there was inconsistent issues with guards being stuck as invincible.\n\n" +
                 "v1.0.0.2:\nPorted in the Stats and Alert functions from the original MGS3 Trainer\n\n" +
@@ -135,6 +136,16 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             MemoryManager.LogFormLocation(this, "MiscForm");
             MiscForm form4 = new();
             form4.Show();
+            this.Hide();
+        }
+
+        private void GameStatsFormSwap_Click(object sender, EventArgs e)
+        {
+            LoggingManager.Instance.Log("User is changing to the Game Stats page from the Main Menu.\n");
+            MemoryManager.UpdateLastFormLocation(this.Location);
+            MemoryManager.LogFormLocation(this, "GameStatsForm");
+            GameStatsForm form7 = new();
+            form7.Show();
             this.Hide();
         }
     }

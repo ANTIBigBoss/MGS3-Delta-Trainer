@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
-using System.Windows.Forms; // For MessageBox
-using static ANTIBigBoss_s_MGS_Delta_Trainer.Constants;
-using static ANTIBigBoss_s_MGS_Delta_Trainer.HelperMethods;
-
-// Use MemoryManager
-using static ANTIBigBoss_s_MGS_Delta_Trainer.MemoryManager;
 
 namespace ANTIBigBoss_s_MGS_Delta_Trainer
 {
@@ -46,9 +39,10 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         // Infinite Ammo Methods
         // TODO: Confirm that FilterInstructions is close to avoid 300000+ bytes of distance between effects
+        // Reminder: The large range broke the WeaponsForm on Delta Version 1.1.4 find a new one
         public bool IsInfiniteAmmoDisabled()
         {
-            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("PlayerStatusCheck", 332309, false, 5);
+            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("PlayerStatusCheck", 336277, false, 5);
             byte[] noInfiniteAmmoBytes = { 0x66, 0xFF, 0x49, 0x28, 0x48 };
 
             return currentBytes != null && currentBytes.SequenceEqual(noInfiniteAmmoBytes);
@@ -57,19 +51,19 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public bool EnableInfiniteAmmo()
         {
             byte[] infiniteAmmoBytes = { 0x0F, 0x1F, 0x40, 0x00, 0x48 };
-            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 332309, false, infiniteAmmoBytes);
+            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336277, false, infiniteAmmoBytes);
         }
 
         public bool DisableInfiniteAmmo()
         {
             byte[] noInfiniteAmmoBytes = { 0x66, 0xFF, 0x49, 0x28, 0x48 };
-            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 332309, false, noInfiniteAmmoBytes);
+            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336277, false, noInfiniteAmmoBytes);
         }
 
         // No Reload Methods
         public bool IsNoReloadDisabled()
         {
-            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("PlayerStatusCheck", 332320, false, 7);
+            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("PlayerStatusCheck", 336288, false, 7);
             byte[] noInfiniteAmmoBytes = { 0x66, 0xFF, 0xC8, 0x66, 0x89, 0x41, 0x2C };
 
             return currentBytes != null && currentBytes.SequenceEqual(noInfiniteAmmoBytes);
@@ -78,13 +72,13 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public bool EnableNoReload()
         {
             byte[] infiniteAmmoBytes = { 0x0F, 0x1F, 0x80, 0x00, 0x00, 0x00, 0x00 };
-            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 332320, false, infiniteAmmoBytes);
+            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336288, false, infiniteAmmoBytes);
         }
 
         public bool DisableNoReload()
         {
             byte[] disableNoReloadBytes = { 0x66, 0xFF, 0x49, 0x28, 0x48 };
-            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 332320, false, disableNoReloadBytes);
+            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336288, false, disableNoReloadBytes);
         }
 
         #endregion

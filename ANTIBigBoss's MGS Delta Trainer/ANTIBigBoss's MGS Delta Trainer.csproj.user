@@ -7,6 +7,9 @@
     <Compile Update="CamoForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="GameStatsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ItemForm.cs">
       <SubType>Form</SubType>
     </Compile>

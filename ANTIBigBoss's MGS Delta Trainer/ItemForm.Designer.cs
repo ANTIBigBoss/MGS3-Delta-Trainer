@@ -137,6 +137,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             StatsAndAlertForm = new Button();
             MiscFormSwap = new Button();
             BatteryDrainCheckBox = new CheckBox();
+            GameStatsFormSwap = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -1605,6 +1606,22 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             BatteryDrainCheckBox.UseVisualStyleBackColor = false;
             BatteryDrainCheckBox.CheckedChanged += BatteryDrainCheckBox_CheckedChanged;
             // 
+            // GameStatsFormSwap
+            // 
+            GameStatsFormSwap.BackgroundImage = (System.Drawing.Image)resources.GetObject("GameStatsFormSwap.BackgroundImage");
+            GameStatsFormSwap.Cursor = Cursors.Hand;
+            GameStatsFormSwap.FlatStyle = FlatStyle.Flat;
+            GameStatsFormSwap.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            GameStatsFormSwap.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            GameStatsFormSwap.ImeMode = ImeMode.NoControl;
+            GameStatsFormSwap.Location = new System.Drawing.Point(582, 12);
+            GameStatsFormSwap.Name = "GameStatsFormSwap";
+            GameStatsFormSwap.Size = new System.Drawing.Size(130, 31);
+            GameStatsFormSwap.TabIndex = 872;
+            GameStatsFormSwap.Text = "Game Stats";
+            GameStatsFormSwap.UseVisualStyleBackColor = true;
+            GameStatsFormSwap.Click += GameStatsFormSwap_Click;
+            // 
             // ItemForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1613,6 +1630,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             BackgroundImage = (System.Drawing.Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new System.Drawing.Size(1161, 707);
+            Controls.Add(GameStatsFormSwap);
             Controls.Add(MiscFormSwap);
             Controls.Add(BatteryDrainCheckBox);
             Controls.Add(StatsAndAlertForm);
@@ -1873,5 +1891,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private Button StatsAndAlertForm;
         private Button MiscFormSwap;
         private CheckBox BatteryDrainCheckBox;
+        private Button GameStatsFormSwap;
     }
 }

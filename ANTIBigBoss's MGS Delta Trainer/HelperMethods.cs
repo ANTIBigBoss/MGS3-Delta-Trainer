@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using static ANTIBigBoss_s_MGS_Delta_Trainer.Constants;
-using static ANTIBigBoss_s_MGS_Delta_Trainer.MemoryManager;
 
 namespace ANTIBigBoss_s_MGS_Delta_Trainer
 {
@@ -323,7 +322,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         #endregion
 
-
         #region Custom Form Classes
 
         internal class ColouredProgressBar : ProgressBar
@@ -371,8 +369,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                     MinimizeBox = false,
                     MaximizeBox = false,
                     BackColor = SurvivalViewerColor,
-                    // Set a temporary size, will be recalculated later
-                    Size = new Size(300, 150)
+                    Padding = new Padding(0),
+                    MinimumSize = new Size(400, 200),
+                    MaximumSize = new Size(800, 600)
                 };
 
                 Panel titleBarPanel = new Panel()
@@ -394,7 +393,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 };
                 titleBarPanel.Controls.Add(titleLabel);
 
-                _lastClick = Point.Empty;
+                Point _lastClick = Point.Empty;
                 titleBarPanel.MouseDown += (sender, e) =>
                 {
                     if (e.Button == MouseButtons.Left)
@@ -412,81 +411,446 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                     }
                 };
 
-                // 1. Create the message label and let it auto-size
+                Panel mainContainer = new Panel()
+                {
+                    Dock = DockStyle.Fill,
+                    BackColor = SurvivalViewerColor,
+                    Padding = new Padding(20)
+                };
+                messageBoxForm.Controls.Add(mainContainer);
+
+                Panel scrollPanel = new Panel()
+                {
+                    Dock = DockStyle.Fill,
+                    AutoScroll = true,
+                    BackColor = MGS3ButtonColor,
+                    Padding = new Padding(15),
+                    MinimumSize = new Size(0, 100)
+                };
+                mainContainer.Controls.Add(scrollPanel);
+
                 Label messageLabel = new Label()
                 {
                     Text = message,
-                    AutoSize = true, // This is the key property
+                    AutoSize = true,
+                    MaximumSize = new Size(500, 0), // Constrain width for word wrapping
                     ForeColor = Color.Black,
                     BackColor = MGS3ButtonColor,
                     Font = new Font("Segoe UI", 11.25f, FontStyle.Bold),
-                    // Position it initially, will be centered later
-                    Location = new Point(20, titleBarPanel.Bottom + 20),
-                    // Set maximum width to prevent it from going off-screen
-                    MaximumSize = new Size(440, 0)
                 };
-                messageBoxForm.Controls.Add(messageLabel);
+                scrollPanel.Controls.Add(messageLabel);
 
-                // 2. Create the buttons
+                Panel buttonPanel = new Panel()
+                {
+                    Dock = DockStyle.Bottom,
+                    Height = 60,
+                    BackColor = SurvivalViewerColor
+                };
+                mainContainer.Controls.Add(buttonPanel);
+
                 Button copyButton = new Button()
                 {
                     Text = "Copy",
-                    Width = 75,
-                    Height = 30,
-                    Font = new Font("Segoe UI", 11.25f, FontStyle.Bold),
-                    BackColor = MGS3ButtonColor,
-                    ForeColor = Color.Black,
-                    // DialogResult will close the form, so we use Click event for copy
-                    DialogResult = DialogResult.None
-                };
-                copyButton.Click += (sender, e) => Clipboard.SetText(message);
-                messageBoxForm.Controls.Add(copyButton);
-
-                Button okButton = new Button()
-                {
-                    Text = "Ok",
-                    Width = 75,
-                    Height = 30,
-                    DialogResult = DialogResult.OK, // This will auto-close the form
+                    Width = 80,
+                    Height = 35,
                     Font = new Font("Segoe UI", 11.25f, FontStyle.Bold),
                     BackColor = MGS3ButtonColor,
                     ForeColor = Color.Black
                 };
-                messageBoxForm.Controls.Add(okButton);
+                copyButton.Click += (sender, e) => Clipboard.SetText(message);
 
-                // 3. Now that all controls are added, we can calculate the layout
-                // Force the form to layout its controls so we can get accurate sizes
-                messageBoxForm.PerformLayout();
+                Button okButton = new Button()
+                {
+                    Text = "OK",
+                    Width = 80,
+                    Height = 35,
+                    Font = new Font("Segoe UI", 11.25f, FontStyle.Bold),
+                    BackColor = MGS3ButtonColor,
+                    ForeColor = Color.Black
+                };
+                okButton.Click += (sender, e) => messageBoxForm.Close();
 
-                // --- Calculate Dynamic Sizes and Positions ---
+                void PositionButtons()
+                {
+                    int totalButtonWidth = copyButton.Width + okButton.Width + 20;
+                    int left = (buttonPanel.Width - totalButtonWidth) / 2;
+                    int top = (buttonPanel.Height - copyButton.Height) / 2;
 
-                // Calculate required form width based on the widest element (message or buttons)
-                int requiredMessageWidth = messageLabel.Width + 40; // + padding
-                int requiredButtonWidth = (copyButton.Width * 2) + 60; // 2 buttons + spacing
+                    copyButton.Location = new Point(left, top);
+                    okButton.Location = new Point(left + copyButton.Width + 20, top);
+                }
 
-                // Form width is the larger of: message width, button row width, or a minimum
-                int formWidth = Math.Max(requiredMessageWidth, requiredButtonWidth);
-                formWidth = Math.Max(formWidth, 300); // Enforce a minimum width
+                buttonPanel.Controls.Add(copyButton);
+                buttonPanel.Controls.Add(okButton);
 
-                // Calculate form height based on content
-                int verticalPadding = 20;
-                int buttonTop = messageLabel.Bottom + verticalPadding;
-                int formHeight = buttonTop + copyButton.Height + verticalPadding;
+                messageBoxForm.Load += (sender, e) =>
+                {
+                    int optimalWidth = Math.Min(Math.Max(messageLabel.Width + 100, 400), 800);
 
-                // Apply the calculated size to the form
-                messageBoxForm.ClientSize = new Size(formWidth, formHeight);
+                    int contentHeight = messageLabel.Height + 150;
+                    int optimalHeight = Math.Min(Math.Max(contentHeight, 200), 600);
 
-                // 4. Center the message label now that we know the form's final width
-                messageLabel.Left = (messageBoxForm.ClientSize.Width - messageLabel.Width) / 2;
+                    messageBoxForm.Size = new Size(optimalWidth, optimalHeight);
+                    PositionButtons();
+                };
 
-                // 5. Position the buttons next to each other in the center
-                int totalButtonWidth = copyButton.Width + okButton.Width + 20; // 20px space between
-                int buttonStartX = (messageBoxForm.ClientSize.Width - totalButtonWidth) / 2;
-
-                copyButton.Location = new Point(buttonStartX, buttonTop);
-                okButton.Location = new Point(buttonStartX + copyButton.Width + 20, buttonTop);
+                messageBoxForm.Resize += (sender, e) => PositionButtons();
 
                 messageBoxForm.ShowDialog();
+            }
+
+            // This one is mostly just for the button in GameStatsForm to edit their stats
+            public static void ShowEditStatsDialog(PointerEffectManager pointerManager)
+            {
+                Form editForm = new Form()
+                {
+                    FormBorderStyle = FormBorderStyle.None,
+                    Text = "Edit Stats",
+                    StartPosition = FormStartPosition.CenterScreen,
+                    MinimizeBox = false,
+                    MaximizeBox = false,
+                    BackColor = SurvivalViewerColor,
+                    Width = 500,
+                    Height = 500
+                };
+
+                Panel titleBarPanel = new Panel()
+                {
+                    Dock = DockStyle.Top,
+                    Height = SystemInformation.CaptionHeight,
+                    BackColor = MGS3ButtonColor,
+                };
+                editForm.Controls.Add(titleBarPanel);
+
+                Label titleLabel = new Label()
+                {
+                    Text = "Edit Stats",
+                    AutoSize = true,
+                    ForeColor = Color.Black,
+                    BackColor = MGS3ButtonColor,
+                    Font = new Font("Segoe UI", 11.25f, FontStyle.Bold),
+                    Location = new Point(10, (titleBarPanel.Height - 20) / 2)
+                };
+                titleBarPanel.Controls.Add(titleLabel);
+
+                titleBarPanel.MouseDown += (sender, e) =>
+                {
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        _lastClick = e.Location;
+                    }
+                };
+
+                titleBarPanel.MouseMove += (sender, e) =>
+                {
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        editForm.Left += e.X - _lastClick.X;
+                        editForm.Top += e.Y - _lastClick.Y;
+                    }
+                };
+
+                Panel inputPanel = new Panel()
+                {
+                    BackColor = MGS3ButtonColor,
+                    Dock = DockStyle.Fill
+                };
+                editForm.Controls.Add(inputPanel);
+
+                string difficultyCurrent = pointerManager.ReadDifficulty();
+                string playTimeCurrent = pointerManager.ReadPlayTime();
+                string savesCurrent = pointerManager.ReadSaves();
+                string continuesCurrent = pointerManager.ReadContinues();
+                string alertsCurrent = pointerManager.ReadAlertsTriggered();
+                string humansKilledCurrent = pointerManager.ReadHumansKilled();
+                string injuriesCurrent = pointerManager.ReadTimesSeriouslyInjured();
+                string totalDamageCurrent = pointerManager.ReadTotalDamageTaken();
+                string mealsCurrent = pointerManager.ReadMealsEaten();
+                string lifeMedsCurrent = pointerManager.ReadLifeMedsUsed();
+                string specialItemsCurrent = pointerManager.ReadSpecialItemsUsed();
+
+                int topOffset = 40;
+                int leftOffset = 20;
+                int spacing = 40;
+
+                Label CreateLabel(string text)
+                {
+                    return new Label
+                    {
+                        Text = text,
+                        AutoSize = true,
+                        ForeColor = Color.Black,
+                        BackColor = MGS3ButtonColor,
+                        Font = new Font("Segoe UI", 10f, FontStyle.Bold),
+                        Location = new Point(leftOffset, topOffset)
+                    };
+                }
+
+                TextBox CreateNumericTextBox(string defaultValue)
+                {
+                    TextBox tb = new TextBox
+                    {
+                        Width = 100,
+                        Location = new Point(leftOffset + 180, topOffset - 2),
+                        Font = new Font("Segoe UI", 10f),
+                        BackColor = Color.White,
+                        ForeColor = Color.Black,
+                        Text = defaultValue
+                    };
+
+                    tb.KeyPress += (s, e) =>
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    };
+
+                    return tb;
+                }
+
+                Label diffLabel = CreateLabel("Difficulty:");
+                inputPanel.Controls.Add(diffLabel);
+
+                ComboBox difficultyCombo = new ComboBox
+                {
+                    Location = new Point(leftOffset + 180, topOffset - 2),
+                    Width = 150,
+                    Font = new Font("Segoe UI", 10f),
+                    DropDownStyle = ComboBoxStyle.DropDownList,
+                    BackColor = Color.White,
+                    ForeColor = Color.Black,
+                    Items = { "Very Easy", "Easy", "Normal", "Hard", "Extreme", "European Extreme" }
+                };
+                inputPanel.Controls.Add(difficultyCombo);
+
+                if (difficultyCombo.Items.Contains(difficultyCurrent))
+                    difficultyCombo.SelectedItem = difficultyCurrent;
+                else
+                    difficultyCombo.SelectedIndex = 0;
+
+                topOffset += spacing;
+
+                Label playTimeLabel = CreateLabel("Play Time (HH:MM:SS):");
+                inputPanel.Controls.Add(playTimeLabel);
+                TextBox playTimeBox = new TextBox
+                {
+                    Width = 100,
+                    Location = new Point(leftOffset + 180, topOffset - 2),
+                    Font = new Font("Segoe UI", 10f),
+                    BackColor = Color.White,
+                    ForeColor = Color.Black,
+                    Text = playTimeCurrent
+                };
+                inputPanel.Controls.Add(playTimeBox);
+                topOffset += spacing;
+
+                Label savesLabel = CreateLabel("Saves (0-9999)");
+                inputPanel.Controls.Add(savesLabel);
+                TextBox savesBox = CreateNumericTextBox(savesCurrent);
+                inputPanel.Controls.Add(savesBox);
+                topOffset += spacing;
+
+                Label continuesLabel = CreateLabel("Continues (0-9999)");
+                inputPanel.Controls.Add(continuesLabel);
+                TextBox continuesBox = CreateNumericTextBox(continuesCurrent);
+                inputPanel.Controls.Add(continuesBox);
+                topOffset += spacing;
+
+                Label alertsLabel = CreateLabel("Alerts Triggered (0-9999)");
+                inputPanel.Controls.Add(alertsLabel);
+                TextBox alertsBox = CreateNumericTextBox(alertsCurrent);
+                inputPanel.Controls.Add(alertsBox);
+                topOffset += spacing;
+
+                Label humansLabel = CreateLabel("Humans Killed (0-9999)");
+                inputPanel.Controls.Add(humansLabel);
+                TextBox humansBox = CreateNumericTextBox(humansKilledCurrent);
+                inputPanel.Controls.Add(humansBox);
+                topOffset += spacing;
+
+                Label injuriesLabel = CreateLabel("Injuries (0-9999)");
+                inputPanel.Controls.Add(injuriesLabel);
+                TextBox injuriesBox = CreateNumericTextBox(injuriesCurrent);
+                inputPanel.Controls.Add(injuriesBox);
+                topOffset += spacing;
+
+                Label totalDamageLabel = CreateLabel("Damage Taken (0-9999)");
+                inputPanel.Controls.Add(totalDamageLabel);
+                TextBox totalDamageBox = CreateNumericTextBox(totalDamageCurrent);
+                inputPanel.Controls.Add(totalDamageBox);
+                topOffset += spacing;
+
+                Label lifeMedsLabel = CreateLabel("Life Meds Used (0-9999)");
+                inputPanel.Controls.Add(lifeMedsLabel);
+                TextBox lifeMedsBox = CreateNumericTextBox(lifeMedsCurrent);
+                inputPanel.Controls.Add(lifeMedsBox);
+                topOffset += spacing;
+
+                Label mealsLabel = CreateLabel("Meals Eaten (0-9999)");
+                inputPanel.Controls.Add(mealsLabel);
+                TextBox mealsBox = CreateNumericTextBox(mealsCurrent);
+                inputPanel.Controls.Add(mealsBox);
+                topOffset += spacing;
+
+                Label specialItemsLabel = CreateLabel("Special Items Used");
+                inputPanel.Controls.Add(specialItemsLabel);
+
+                ComboBox specialItemsCombo = new ComboBox
+                {
+                    Location = new Point(leftOffset + 180, topOffset - 2),
+                    Width = 285,
+                    Font = new Font("Segoe UI", 10f),
+                    DropDownStyle = ComboBoxStyle.DropDownList,
+                    BackColor = Color.White,
+                    ForeColor = Color.Black,
+                    Items =
+        {
+            "Not Used",
+            "Stealth Camo Used",
+            "Infinity Facepaint Used",
+            "Stealth Camo + Infinity Facepaint Used",
+            "Ez Gun Used",
+            "Stealth Camo + Ez Gun Used",
+            "Infinity Facepaint + Ez Gun Used",
+            "Stealth Camo + Infinity Facepaint + Ez Gun Used"
+        }
+                };
+                inputPanel.Controls.Add(specialItemsCombo);
+                topOffset += spacing;
+
+                if (specialItemsCombo.Items.Contains(specialItemsCurrent))
+                    specialItemsCombo.SelectedItem = specialItemsCurrent;
+                else
+                    specialItemsCombo.SelectedIndex = 0;
+
+                Button submitButton = new Button
+                {
+                    Text = "Submit",
+                    Width = 75,
+                    Height = 30,
+                    BackColor = MGS3ButtonColor,
+                    ForeColor = Color.Black,
+                    Font = new Font("Segoe UI", 11.25f, FontStyle.Bold),
+                    Location = new Point(editForm.ClientSize.Width / 2 - 85, topOffset + 20)
+                };
+                inputPanel.Controls.Add(submitButton);
+
+                Button cancelButton = new Button
+                {
+                    Text = "Cancel",
+                    Width = 75,
+                    Height = 30,
+                    BackColor = MGS3ButtonColor,
+                    ForeColor = Color.Black,
+                    Font = new Font("Segoe UI", 11.25f, FontStyle.Bold),
+                    Location = new Point(editForm.ClientSize.Width / 2 + 10, topOffset + 20)
+                };
+                inputPanel.Controls.Add(cancelButton);
+
+                cancelButton.Click += (s, e) => editForm.Close();
+
+                submitButton.Click += (s, e) =>
+                {
+                    if (difficultyCombo.SelectedItem == null)
+                    {
+                        CustomMessageBox("Please select a difficulty.", "Input Error");
+                        return;
+                    }
+
+                    string selectedDifficulty = (string)difficultyCombo.SelectedItem;
+                    byte diffVal;
+                    switch (selectedDifficulty)
+                    {
+                        case "Very Easy": diffVal = 10; break;
+                        case "Easy": diffVal = 20; break;
+                        case "Normal": diffVal = 30; break;
+                        case "Hard": diffVal = 40; break;
+                        case "Extreme": diffVal = 50; break;
+                        case "European Extreme": diffVal = 60; break;
+                        default: diffVal = 30; break;
+                    }
+
+                    if (!TimeSpan.TryParseExact(playTimeBox.Text, "hh\\:mm\\:ss", null, out TimeSpan newTime))
+                    {
+                        CustomMessageBox("Invalid PlayTime. Use HH:MM:SS format.", "Input Error");
+                        return;
+                    }
+                    uint frames = (uint)newTime.TotalSeconds * 60;
+
+                    bool CheckUshortLimit(TextBox tb, string fieldName, out ushort val)
+                    {
+                        val = 0;
+                        if (!ushort.TryParse(tb.Text, out ushort result))
+                        {
+                            CustomMessageBox($"{fieldName} must be a number.", "Input Error");
+                            return false;
+                        }
+                        if (result > 9999)
+                        {
+                            CustomMessageBox($"{fieldName} cannot exceed 9999.", "Input Error");
+                            return false;
+                        }
+                        val = result;
+                        return true;
+                    }
+
+                    if (!CheckUshortLimit(alertsBox, "Alerts Triggered", out ushort alertsVal)) return;
+                    if (!CheckUshortLimit(savesBox, "Saves", out ushort savesVal)) return;
+                    if (!CheckUshortLimit(continuesBox, "Continues", out ushort continuesVal)) return;
+                    if (!CheckUshortLimit(humansBox, "Humans Killed", out ushort humansVal)) return;
+                    if (!CheckUshortLimit(injuriesBox, "Injuries", out ushort injVal)) return;
+                    if (!CheckUshortLimit(mealsBox, "Meals Eaten", out ushort mealsVal)) return;
+                    if (!CheckUshortLimit(lifeMedsBox, "Life Meds Used", out ushort lifeMedsVal)) return;
+                    if (!CheckUshortLimit(totalDamageBox, "Damage Taken", out ushort damageVal)) return;
+
+                    if (specialItemsCombo.SelectedItem == null)
+                    {
+                        CustomMessageBox("Please select a Special Items usage.", "Input Error");
+                        return;
+                    }
+
+                    string selectedSpecialItems = (string)specialItemsCombo.SelectedItem;
+                    byte specialItemsVal;
+                    switch (selectedSpecialItems)
+                    {
+                        case "Not Used": specialItemsVal = 0; break;
+                        case "Stealth Camo Used": specialItemsVal = 1; break;
+                        case "Infinity Facepaint Used": specialItemsVal = 2; break;
+                        case "Stealth Camo + Infinity Facepaint Used": specialItemsVal = 3; break;
+                        case "Ez Gun Used": specialItemsVal = 4; break;
+                        case "Stealth Camo + Ez Gun Used": specialItemsVal = 5; break;
+                        case "Infinity Facepaint + Ez Gun Used": specialItemsVal = 6; break;
+                        case "Stealth Camo + Infinity Facepaint + Ez Gun Used": specialItemsVal = 7; break;
+                        default: specialItemsVal = 0; break;
+                    }
+
+                    bool success = true;
+                    success &= pointerManager.WriteDifficulty(diffVal);
+                    success &= pointerManager.WritePlayTime(frames);
+                    success &= pointerManager.WriteAlertsTriggered(alertsVal);
+                    success &= pointerManager.WriteSaves(savesVal);
+                    success &= pointerManager.WriteContinues(continuesVal);
+                    success &= pointerManager.WriteHumansKilled(humansVal);
+                    success &= pointerManager.WriteTimesSeriouslyInjured(injVal);
+                    success &= pointerManager.WriteMealsEaten(mealsVal);
+                    success &= pointerManager.WriteLifeMedsUsed(lifeMedsVal);
+                    success &= pointerManager.WriteTotalDamageTaken(damageVal);
+                    success &= pointerManager.WriteSpecialItemsUsed(specialItemsVal);
+
+                    if (success)
+                    {
+                        CustomMessageBox("Stats updated successfully!", "Success");
+                        editForm.Close();
+                    }
+                    else
+                    {
+                        CustomMessageBox("Some writes failed. Check logs.", "Write Error");
+                    }
+                };
+
+                editForm.Height = topOffset + 120;
+                editForm.ShowDialog();
             }
         }
     }
