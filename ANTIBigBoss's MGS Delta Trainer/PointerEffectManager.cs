@@ -54,7 +54,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 TimeSpan timeSpan = TimeSpan.FromSeconds(totalSeconds);
                 int hours = (int)timeSpan.TotalHours;
                 string formattedTime = $"{hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
-                LoggingManager.Instance.Log($"Formatted PlayTime: {formattedTime}");
+                // LoggingManager.Instance.Log($"Formatted PlayTime: {formattedTime}");
                 return formattedTime;
             }
             return "00:00:00";

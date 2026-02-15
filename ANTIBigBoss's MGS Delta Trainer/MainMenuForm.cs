@@ -99,9 +99,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private void LogAOBs_Click(object sender, EventArgs e)
         {
             LoggingManager.LogAllWeaponsAndItemsAddresses();
-            LoggingManager.Instance.LogAOBAddresses();
+            
             LoggingManager.Instance.LogAllMemoryAddressesandValues();
-            //StringManager.Instance.DisplayEntirePointer();
             CustomFormManager.CustomMessageBox("Information written to log file in: C:\\Users\\YourUserNameHere\\Documents\\MGS3 CT Log\\MGS3_MC_Cheat_Trainer_Log.txt", "Log Generated");
         }
 
@@ -120,6 +119,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             CustomFormManager.CustomMessageBox("\n" +
                 "Thanks for using my MGS3 Delta Trainer! - ANTIBigBoss\n\n" +
                 "Changelog History:\n\n" +
+                "v1.0.0.9:\nFixed Memory address issues from Konami's descriptive v1.2.4 update that did 'Minor bug fixes and adjustments. along with text fixes.'\n\n" +
+                "v1.0.0.8:\nFixed Memory address issues from Konami's descriptive v1.2.3 update that did 'Minor bug fixes and adjustments.'\n\n" +
+                "v1.0.0.7:\nPatched a reported issue with altering play time, exceeding 24 Hours was bugged, Game Stats form will allow editing of time past 24 Hours now. Added in an additional Colour Filter to edit in the Misc Form. Fixed memory address issues from Delta's 1.2.1 update.\n\n" +
                 "v1.0.0.6:\nPorted over the Game Stats feature from the original Master Collection Trainer. Fixed the bug of title/rank image not showing up properly from the old trainer.\n\n" +
                 "v1.0.0.5:\nFixed memory address issues from Konami's 1.1.4 update.\n\n" +
                 "v1.0.0.4:\nAdded Misc page from the old trainer but with new options for tweaking, Reworked the Guard Damage options as the broke last game update, added in some filter/lighting editing, added in infinite ammo, no reload & infinite suppressors, added in an option that stops the battery from draining or recharging, restart stage option & difficultly changer also added to the new page.\n\n" +

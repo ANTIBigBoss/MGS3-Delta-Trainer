@@ -12,7 +12,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
     {
         private bool updatingValues = false;
         private const float MIN_FILTER_VALUE = 0f;
-        private const float MAX_FILTER_VALUE = 1000f;
+        private const float MAX_FILTER_VALUE = 10f;
 
         public MiscForm()
         {
@@ -33,6 +33,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             InitializeFilterControls();
             UpdatePissFilterControlsState();
             UpdateLightColourControlsState();
+            UpdateExtraLightColourControlsState();
             UpdateWorldLightControlsState();
             UpdateFogCheckboxState();
             InitializeDifficultyDropdown();
@@ -126,52 +127,77 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         {
 
             PissFilterRTrackBar.Minimum = 0;
-            PissFilterRTrackBar.Maximum = 100000;
-            PissFilterRTrackBar.TickFrequency = 1000;
-            PissFilterRTrackBar.SmallChange = 100;
-            PissFilterRTrackBar.LargeChange = 1000;
+            PissFilterRTrackBar.Maximum = 100; // 100 * 0.1 = 10.0
+            PissFilterRTrackBar.TickFrequency = 10; // Every 1.0
+            PissFilterRTrackBar.SmallChange = 1; // 0.1
+            PissFilterRTrackBar.LargeChange = 10; // 1.0
 
             PissFilterGTrackBar.Minimum = 0;
-            PissFilterGTrackBar.Maximum = 100000;
-            PissFilterGTrackBar.TickFrequency = 1000;
-            PissFilterGTrackBar.SmallChange = 100;
-            PissFilterGTrackBar.LargeChange = 1000;
+            PissFilterGTrackBar.Maximum = 100;
+            PissFilterGTrackBar.TickFrequency = 10;
+            PissFilterGTrackBar.SmallChange = 1;
+            PissFilterGTrackBar.LargeChange = 10;
 
             PissFilterBTrackBar.Minimum = 0;
-            PissFilterBTrackBar.Maximum = 100000;
-            PissFilterBTrackBar.TickFrequency = 1000;
-            PissFilterBTrackBar.SmallChange = 100;
-            PissFilterBTrackBar.LargeChange = 1000;
+            PissFilterBTrackBar.Maximum = 100;
+            PissFilterBTrackBar.TickFrequency = 10;
+            PissFilterBTrackBar.SmallChange = 1;
+            PissFilterBTrackBar.LargeChange = 10;
 
             PissFilterATrackBar.Minimum = 0;
-            PissFilterATrackBar.Maximum = 100000;
-            PissFilterATrackBar.TickFrequency = 1000;
-            PissFilterATrackBar.SmallChange = 100;
-            PissFilterATrackBar.LargeChange = 1000;
+            PissFilterATrackBar.Maximum = 100;
+            PissFilterATrackBar.TickFrequency = 10;
+            PissFilterATrackBar.SmallChange = 1;
+            PissFilterATrackBar.LargeChange = 10;
 
+            // Light Colour TrackBars - changed to max 10 with 0.1 increments
             LightColourRTrackBar.Minimum = 0;
-            LightColourRTrackBar.Maximum = 100000;
-            LightColourRTrackBar.TickFrequency = 1000;
-            LightColourRTrackBar.SmallChange = 100;
-            LightColourRTrackBar.LargeChange = 1000;
+            LightColourRTrackBar.Maximum = 100;
+            LightColourRTrackBar.TickFrequency = 10;
+            LightColourRTrackBar.SmallChange = 1;
+            LightColourRTrackBar.LargeChange = 10;
 
             LightColourGTrackBar.Minimum = 0;
-            LightColourGTrackBar.Maximum = 100000;
-            LightColourGTrackBar.TickFrequency = 1000;
-            LightColourGTrackBar.SmallChange = 100;
-            LightColourGTrackBar.LargeChange = 1000;
+            LightColourGTrackBar.Maximum = 100;
+            LightColourGTrackBar.TickFrequency = 10;
+            LightColourGTrackBar.SmallChange = 1;
+            LightColourGTrackBar.LargeChange = 10;
 
             LightColourBTrackBar.Minimum = 0;
-            LightColourBTrackBar.Maximum = 100000;
-            LightColourBTrackBar.TickFrequency = 1000;
-            LightColourBTrackBar.SmallChange = 100;
-            LightColourBTrackBar.LargeChange = 1000;
+            LightColourBTrackBar.Maximum = 100;
+            LightColourBTrackBar.TickFrequency = 10;
+            LightColourBTrackBar.SmallChange = 1;
+            LightColourBTrackBar.LargeChange = 10;
 
             LightColourATrackBar.Minimum = 0;
-            LightColourATrackBar.Maximum = 100000;
-            LightColourATrackBar.TickFrequency = 1000;
-            LightColourATrackBar.SmallChange = 100;
-            LightColourATrackBar.LargeChange = 1000;
+            LightColourATrackBar.Maximum = 100;
+            LightColourATrackBar.TickFrequency = 10;
+            LightColourATrackBar.SmallChange = 1;
+            LightColourATrackBar.LargeChange = 10;
+
+            ExtraLightColourRTrackBar.Minimum = 0;
+            ExtraLightColourRTrackBar.Maximum = 100;
+            ExtraLightColourRTrackBar.TickFrequency = 10;
+            ExtraLightColourRTrackBar.SmallChange = 1;
+            ExtraLightColourRTrackBar.LargeChange = 10;
+
+            ExtraLightColourGTrackBar.Minimum = 0;
+            ExtraLightColourGTrackBar.Maximum = 100;
+            ExtraLightColourGTrackBar.TickFrequency = 10;
+            ExtraLightColourGTrackBar.SmallChange = 1;
+            ExtraLightColourGTrackBar.LargeChange = 10;
+
+            ExtraLightColourBTrackBar.Minimum = 0;
+            ExtraLightColourBTrackBar.Maximum = 100;
+            ExtraLightColourBTrackBar.TickFrequency = 10;
+            ExtraLightColourBTrackBar.SmallChange = 1;
+            ExtraLightColourBTrackBar.LargeChange = 10;
+
+            ExtraLightColourATrackBar.Minimum = 0;
+            ExtraLightColourATrackBar.Maximum = 100;
+            ExtraLightColourATrackBar.TickFrequency = 10;
+            ExtraLightColourATrackBar.SmallChange = 1;
+            ExtraLightColourATrackBar.LargeChange = 10;
 
             WorldLightingTrackBar.Minimum = -200;
             WorldLightingTrackBar.Maximum = 26;
@@ -313,16 +339,16 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 float aValue = EffectManager.Instance.GetFilterValue4Float();
 
                 PissFilterRTextbox.Text = rValue.ToString("F2", CultureInfo.InvariantCulture);
-                PissFilterRTrackBar.Value = (int)(rValue * 100);
+                PissFilterRTrackBar.Value = (int)(rValue * 10);
 
                 PissFilterGTextbox.Text = gValue.ToString("F2", CultureInfo.InvariantCulture);
-                PissFilterGTrackBar.Value = (int)(gValue * 100);
+                PissFilterGTrackBar.Value = (int)(gValue * 10);
 
                 PissFilterBTextbox.Text = bValue.ToString("F2", CultureInfo.InvariantCulture);
-                PissFilterBTrackBar.Value = (int)(bValue * 100);
+                PissFilterBTrackBar.Value = (int)(bValue * 10);
 
                 PissFilterATextbox.Text = aValue.ToString("F2", CultureInfo.InvariantCulture);
-                PissFilterATrackBar.Value = (int)(aValue * 100);
+                PissFilterATrackBar.Value = (int)(aValue * 10);
 
                 // Light Colour
                 float lightRValue = EffectManager.Instance.GetLightColourValue1Float();
@@ -331,16 +357,16 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 float lightAValue = EffectManager.Instance.GetLightColourValue4Float();
 
                 LightColourRTextbox.Text = lightRValue.ToString("F2", CultureInfo.InvariantCulture);
-                LightColourRTrackBar.Value = (int)(lightRValue * 100);
+                LightColourRTrackBar.Value = (int)(lightRValue * 10);
 
                 LightColourGTextbox.Text = lightGValue.ToString("F2", CultureInfo.InvariantCulture);
-                LightColourGTrackBar.Value = (int)(lightGValue * 100);
+                LightColourGTrackBar.Value = (int)(lightGValue * 10);
 
                 LightColourBTextbox.Text = lightBValue.ToString("F2", CultureInfo.InvariantCulture);
-                LightColourBTrackBar.Value = (int)(lightBValue * 100);
+                LightColourBTrackBar.Value = (int)(lightBValue * 10);
 
                 LightColourATextbox.Text = lightAValue.ToString("F2", CultureInfo.InvariantCulture);
-                LightColourATrackBar.Value = (int)(lightAValue * 100);
+                LightColourATrackBar.Value = (int)(lightAValue * 10);
 
 
                 float worldLightValue = EffectManager.Instance.GetWorldLightBrightnessFloat();
@@ -378,7 +404,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             if (updatingValues) return;
             if (!PissFilterRTrackBar.Enabled) return;
 
-            float value = PissFilterRTrackBar.Value / 100f;
+            float value = PissFilterRTrackBar.Value / 10f;
             PissFilterRTextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
             EffectManager.Instance.SetFilterR(value);
         }
@@ -388,7 +414,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             if (updatingValues) return;
             if (!PissFilterGTrackBar.Enabled) return;
 
-            float value = PissFilterGTrackBar.Value / 100f;
+            float value = PissFilterGTrackBar.Value / 10f;
             PissFilterGTextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
             EffectManager.Instance.SetFilterG(value);
         }
@@ -398,7 +424,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             if (updatingValues) return;
             if (!PissFilterBTrackBar.Enabled) return;
 
-            float value = PissFilterBTrackBar.Value / 100f;
+            float value = PissFilterBTrackBar.Value / 10f;
             PissFilterBTextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
             EffectManager.Instance.SetFilterB(value);
         }
@@ -409,7 +435,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             if (updatingValues) return;
             if (!PissFilterATrackBar.Enabled) return;
 
-            float value = PissFilterATrackBar.Value / 100f;
+            float value = PissFilterATrackBar.Value / 10f;
             PissFilterATextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
             EffectManager.Instance.SetFilterA(value);
         }
@@ -423,7 +449,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             if (updatingValues) return;
             if (!LightColourRTrackBar.Enabled) return;
 
-            float value = LightColourRTrackBar.Value / 100f;
+            float value = LightColourRTrackBar.Value / 10f;
             LightColourRTextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
             EffectManager.Instance.SetLightColourR(value);
         }
@@ -433,7 +459,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             if (updatingValues) return;
             if (!LightColourGTrackBar.Enabled) return;
 
-            float value = LightColourGTrackBar.Value / 100f;
+            float value = LightColourGTrackBar.Value / 10f;
             LightColourGTextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
             EffectManager.Instance.SetLightColourG(value);
         }
@@ -443,7 +469,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             if (updatingValues) return;
             if (!LightColourBTrackBar.Enabled) return;
 
-            float value = LightColourBTrackBar.Value / 100f;
+            float value = LightColourBTrackBar.Value / 10f;
             LightColourBTextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
             EffectManager.Instance.SetLightColourB(value);
         }
@@ -453,7 +479,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             if (updatingValues) return;
             if (!LightColourATrackBar.Enabled) return;
 
-            float value = LightColourATrackBar.Value / 100f;
+            float value = LightColourATrackBar.Value / 10f;
             LightColourATextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
             EffectManager.Instance.SetLightColourA(value);
         }
@@ -493,7 +519,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 }
 
                 updatingValues = true;
-                PissFilterRTrackBar.Value = (int)(value * 100);
+                PissFilterRTrackBar.Value = (int)(value * 10);
                 updatingValues = false;
                 EffectManager.Instance.SetFilterR(value);
             }
@@ -515,7 +541,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 }
 
                 updatingValues = true;
-                PissFilterGTrackBar.Value = (int)(value * 100);
+                PissFilterGTrackBar.Value = (int)(value * 10);
                 updatingValues = false;
                 EffectManager.Instance.SetFilterG(value);
             }
@@ -537,7 +563,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 }
 
                 updatingValues = true;
-                PissFilterBTrackBar.Value = (int)(value * 100);
+                PissFilterBTrackBar.Value = (int)(value * 10);
                 updatingValues = false;
                 EffectManager.Instance.SetFilterB(value);
             }
@@ -559,7 +585,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 }
 
                 updatingValues = true;
-                PissFilterATrackBar.Value = (int)(value * 100);
+                PissFilterATrackBar.Value = (int)(value * 10);
                 updatingValues = false;
                 EffectManager.Instance.SetFilterA(value);
             }
@@ -584,7 +610,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 }
 
                 updatingValues = true;
-                LightColourRTrackBar.Value = (int)(value * 100);
+                LightColourRTrackBar.Value = (int)(value * 10);
                 updatingValues = false;
                 EffectManager.Instance.SetLightColourR(value);
             }
@@ -605,7 +631,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 }
 
                 updatingValues = true;
-                LightColourGTrackBar.Value = (int)(value * 100);
+                LightColourGTrackBar.Value = (int)(value * 10);
                 updatingValues = false;
                 EffectManager.Instance.SetLightColourG(value);
             }
@@ -626,7 +652,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 }
 
                 updatingValues = true;
-                LightColourBTrackBar.Value = (int)(value * 100);
+                LightColourBTrackBar.Value = (int)(value * 10);
                 updatingValues = false;
                 EffectManager.Instance.SetLightColourB(value);
             }
@@ -647,7 +673,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 }
 
                 updatingValues = true;
-                LightColourATrackBar.Value = (int)(value * 100);
+                LightColourATrackBar.Value = (int)(value * 10);
                 updatingValues = false;
                 EffectManager.Instance.SetLightColourA(value);
             }
@@ -1154,5 +1180,392 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         #endregion
 
+        #region Extra Light Colour Methods
+
+        private void UpdateExtraLightColourControlsState()
+        {
+            bool isExtraLightColourEnabled = EffectManager.Instance.IsExtraLightColourEnabled();
+            ExtraLightColourEditingCheckBox.Checked = !isExtraLightColourEnabled;
+            SetExtraLightColourControlsEnabled(!isExtraLightColourEnabled);
+        }
+
+        private void SetExtraLightColourControlsEnabled(bool enabled)
+        {
+            ExtraLightColourRTrackBar.Enabled = enabled;
+            ExtraLightColourGTrackBar.Enabled = enabled;
+            ExtraLightColourBTrackBar.Enabled = enabled;
+            ExtraLightColourATrackBar.Enabled = enabled;
+
+            ExtraLightColourRTextbox.Enabled = enabled;
+            ExtraLightColourGTextbox.Enabled = enabled;
+            ExtraLightColourBTextbox.Enabled = enabled;
+            ExtraLightColourATextbox.Enabled = enabled;
+
+            ExtraMinus1LightColourR.Enabled = enabled;
+            ExtraMinus1LightColourG.Enabled = enabled;
+            ExtraMinus1LightColourB.Enabled = enabled;
+            ExtraMinus1LightColourA.Enabled = enabled;
+
+            ExtraPlus1LightColourR.Enabled = enabled;
+            ExtraPlus1LightColourG.Enabled = enabled;
+            ExtraPlus1LightColourB.Enabled = enabled;
+            ExtraPlus1LightColourA.Enabled = enabled;
+
+            ExtraResetColourLightingButton.Enabled = enabled;
+
+            Color backColor = enabled ? SystemColors.Window : SystemColors.Control;
+            Color foreColor = enabled ? SystemColors.ControlText : SystemColors.GrayText;
+
+            ExtraLightColourRTextbox.BackColor = backColor;
+            ExtraLightColourGTextbox.BackColor = backColor;
+            ExtraLightColourBTextbox.BackColor = backColor;
+            ExtraLightColourATextbox.BackColor = backColor;
+
+            ExtraLightColourRTextbox.ForeColor = foreColor;
+            ExtraLightColourGTextbox.ForeColor = foreColor;
+            ExtraLightColourBTextbox.ForeColor = foreColor;
+            ExtraLightColourATextbox.ForeColor = foreColor;
+        }
+
+        private void LoadExtraLightColourValues()
+        {
+            updatingValues = true;
+
+            try
+            {
+                float extraLightRValue = EffectManager.Instance.GetExtraLightColourValueRFloat();
+                float extraLightGValue = EffectManager.Instance.GetExtraLightColourValueGFloat();
+                float extraLightBValue = EffectManager.Instance.GetExtraLightColourValueBFloat();
+                float extraLightAValue = EffectManager.Instance.GetExtraLightColourValueAFloat();
+
+                ExtraLightColourRTextbox.Text = extraLightRValue.ToString("F2", CultureInfo.InvariantCulture);
+                ExtraLightColourRTrackBar.Value = (int)(extraLightRValue * 10);
+
+                ExtraLightColourGTextbox.Text = extraLightGValue.ToString("F2", CultureInfo.InvariantCulture);
+                ExtraLightColourGTrackBar.Value = (int)(extraLightGValue * 10);
+
+                ExtraLightColourBTextbox.Text = extraLightBValue.ToString("F2", CultureInfo.InvariantCulture);
+                ExtraLightColourBTrackBar.Value = (int)(extraLightBValue * 10);
+
+                ExtraLightColourATextbox.Text = extraLightAValue.ToString("F2", CultureInfo.InvariantCulture);
+                ExtraLightColourATrackBar.Value = (int)(extraLightAValue * 10);
+
+                LoggingManager.Instance.Log($"Extra Light Colour Values Loaded - R: {extraLightRValue:F2}, G: {extraLightGValue:F2}, B: {extraLightBValue:F2}, A: {extraLightAValue:F2}");
+            }
+            catch (Exception ex)
+            {
+                LoggingManager.Instance.Log($"Error loading extra light colour values: {ex.Message}");
+            }
+            finally
+            {
+                updatingValues = false;
+            }
+        }
+
+        // Event Handlers for Extra Light Colour
+        private void ExtraLightColourEditingCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ExtraLightColourEditingCheckBox.Checked)
+            {
+                EffectManager.Instance.DisableExtraLightColour();
+                SetExtraLightColourControlsEnabled(true);
+            }
+            else
+            {
+                EffectManager.Instance.EnableExtraLightColour();
+                SetExtraLightColourControlsEnabled(false);
+                // Reset values to default when disabling
+                EffectManager.Instance.SetExtraLightColourR(1.0f);
+                EffectManager.Instance.SetExtraLightColourG(1.0f);
+                EffectManager.Instance.SetExtraLightColourB(1.0f);
+                EffectManager.Instance.SetExtraLightColourA(1.0f);
+
+                ExtraLightColourRTextbox.Text = "1.00";
+                ExtraLightColourGTextbox.Text = "1.00";
+                ExtraLightColourBTextbox.Text = "1.00";
+                ExtraLightColourATextbox.Text = "1.00";
+            }
+        }
+
+        private void ExtraResetColourLightingButton_Click(object sender, EventArgs e)
+        {
+            if (!ExtraResetColourLightingButton.Enabled) return;
+
+            EffectManager.Instance.EnableExtraLightColour();
+            EffectManager.Instance.SetExtraLightColourR(2.0f);
+
+            ExtraLightColourRTextbox.Text = "1";
+            ExtraLightColourGTextbox.Text = "1";
+            ExtraLightColourBTextbox.Text = "1";
+            ExtraLightColourATextbox.Text = "1";
+
+            EffectManager.Instance.DisableExtraLightColour();
+            LoadExtraLightColourValues();
+        }
+
+        // TrackBar Scroll Events
+        private void ExtraLightColourRTrackBar_Scroll(object sender, EventArgs e)
+        {
+            if (updatingValues) return;
+            if (!ExtraLightColourRTrackBar.Enabled) return;
+
+            float value = ExtraLightColourRTrackBar.Value / 10f;
+            ExtraLightColourRTextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
+            EffectManager.Instance.SetExtraLightColourR(value);
+        }
+
+        private void ExtraLightColourGTrackBar_Scroll(object sender, EventArgs e)
+        {
+            if (updatingValues) return;
+            if (!ExtraLightColourGTrackBar.Enabled) return;
+
+            float value = ExtraLightColourGTrackBar.Value / 10f;
+            ExtraLightColourGTextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
+            EffectManager.Instance.SetExtraLightColourG(value);
+        }
+
+        private void ExtraLightColourBTrackBar_Scroll(object sender, EventArgs e)
+        {
+            if (updatingValues) return;
+            if (!ExtraLightColourBTrackBar.Enabled) return;
+
+            float value = ExtraLightColourBTrackBar.Value / 10f;
+            ExtraLightColourBTextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
+            EffectManager.Instance.SetExtraLightColourB(value);
+        }
+
+        private void ExtraLightColourATrackBar_Scroll(object sender, EventArgs e)
+        {
+            if (updatingValues) return;
+            if (!ExtraLightColourATrackBar.Enabled) return;
+
+            float value = ExtraLightColourATrackBar.Value / 10f;
+            ExtraLightColourATextbox.Text = value.ToString("F2", CultureInfo.InvariantCulture);
+            EffectManager.Instance.SetExtraLightColourA(value);
+        }
+
+        // TextBox TextChanged Events
+        private void ExtraLightColourRTextbox_TextChanged(object sender, EventArgs e)
+        {
+            if (updatingValues) return;
+            if (!ExtraLightColourRTextbox.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourRTextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float value))
+            {
+                if (value < MIN_FILTER_VALUE || value > MAX_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value must be between {MIN_FILTER_VALUE:F2} and {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    LoadExtraLightColourValues();
+                    return;
+                }
+
+                updatingValues = true;
+                ExtraLightColourRTrackBar.Value = (int)(value * 10);
+                updatingValues = false;
+                EffectManager.Instance.SetExtraLightColourR(value);
+            }
+        }
+
+        private void ExtraLightColourGTextbox_TextChanged(object sender, EventArgs e)
+        {
+            if (updatingValues) return;
+            if (!ExtraLightColourGTextbox.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourGTextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float value))
+            {
+                if (value < MIN_FILTER_VALUE || value > MAX_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value must be between {MIN_FILTER_VALUE:F2} and {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    LoadExtraLightColourValues();
+                    return;
+                }
+
+                updatingValues = true;
+                ExtraLightColourGTrackBar.Value = (int)(value * 10);
+                updatingValues = false;
+                EffectManager.Instance.SetExtraLightColourG(value);
+            }
+        }
+
+        private void ExtraLightColourBTextbox_TextChanged(object sender, EventArgs e)
+        {
+            if (updatingValues) return;
+            if (!ExtraLightColourBTextbox.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourBTextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float value))
+            {
+                if (value < MIN_FILTER_VALUE || value > MAX_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value must be between {MIN_FILTER_VALUE:F2} and {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    LoadExtraLightColourValues();
+                    return;
+                }
+
+                updatingValues = true;
+                ExtraLightColourBTrackBar.Value = (int)(value * 10);
+                updatingValues = false;
+                EffectManager.Instance.SetExtraLightColourB(value);
+            }
+        }
+
+        private void ExtraLightColourATextbox_TextChanged(object sender, EventArgs e)
+        {
+            if (updatingValues) return;
+            if (!ExtraLightColourATextbox.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourATextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float value))
+            {
+                if (value < MIN_FILTER_VALUE || value > MAX_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value must be between {MIN_FILTER_VALUE:F2} and {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    LoadExtraLightColourValues();
+                    return;
+                }
+
+                updatingValues = true;
+                ExtraLightColourATrackBar.Value = (int)(value * 10);
+                updatingValues = false;
+                EffectManager.Instance.SetExtraLightColourA(value);
+            }
+        }
+
+        // +1/-1 Button Events
+        private void ExtraMinus1LightColourR_Click(object sender, EventArgs e)
+        {
+            if (!ExtraMinus1LightColourR.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourRTextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float currentValue))
+            {
+                if (currentValue <= MIN_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value cannot be less than {MIN_FILTER_VALUE:F2}. Valid range is {MIN_FILTER_VALUE:F2} to {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                float newValue = currentValue - 1f;
+                ExtraLightColourRTextbox.Text = newValue.ToString("F2", CultureInfo.InvariantCulture);
+            }
+        }
+
+        private void ExtraMinus1LightColourG_Click(object sender, EventArgs e)
+        {
+            if (!ExtraMinus1LightColourG.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourGTextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float currentValue))
+            {
+                if (currentValue <= MIN_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value cannot be less than {MIN_FILTER_VALUE:F2}. Valid range is {MIN_FILTER_VALUE:F2} to {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                float newValue = currentValue - 1f;
+                ExtraLightColourGTextbox.Text = newValue.ToString("F2", CultureInfo.InvariantCulture);
+            }
+        }
+
+        private void ExtraMinus1LightColourB_Click(object sender, EventArgs e)
+        {
+            if (!ExtraMinus1LightColourB.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourBTextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float currentValue))
+            {
+                if (currentValue <= MIN_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value cannot be less than {MIN_FILTER_VALUE:F2}. Valid range is {MIN_FILTER_VALUE:F2} to {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                float newValue = currentValue - 1f;
+                ExtraLightColourBTextbox.Text = newValue.ToString("F2", CultureInfo.InvariantCulture);
+            }
+        }
+
+        private void ExtraMinus1LightColourA_Click(object sender, EventArgs e)
+        {
+            if (!ExtraMinus1LightColourA.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourATextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float currentValue))
+            {
+                if (currentValue <= MIN_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value cannot be less than {MIN_FILTER_VALUE:F2}. Valid range is {MIN_FILTER_VALUE:F2} to {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                float newValue = currentValue - 1f;
+                ExtraLightColourATextbox.Text = newValue.ToString("F2", CultureInfo.InvariantCulture);
+            }
+        }
+
+        private void ExtraPlus1LightColourR_Click(object sender, EventArgs e)
+        {
+            if (!ExtraPlus1LightColourR.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourRTextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float currentValue))
+            {
+                if (currentValue >= MAX_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value cannot exceed {MAX_FILTER_VALUE:F2}. Valid range is {MIN_FILTER_VALUE:F2} to {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                float newValue = currentValue + 1f;
+                ExtraLightColourRTextbox.Text = newValue.ToString("F2", CultureInfo.InvariantCulture);
+            }
+        }
+
+        private void ExtraPlus1LightColourG_Click(object sender, EventArgs e)
+        {
+            if (!ExtraPlus1LightColourG.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourGTextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float currentValue))
+            {
+                if (currentValue >= MAX_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value cannot exceed {MAX_FILTER_VALUE:F2}. Valid range is {MIN_FILTER_VALUE:F2} to {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                float newValue = currentValue + 1f;
+                ExtraLightColourGTextbox.Text = newValue.ToString("F2", CultureInfo.InvariantCulture);
+            }
+        }
+
+        private void ExtraPlus1LightColourB_Click(object sender, EventArgs e)
+        {
+            if (!ExtraPlus1LightColourB.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourBTextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float currentValue))
+            {
+                if (currentValue >= MAX_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value cannot exceed {MAX_FILTER_VALUE:F2}. Valid range is {MIN_FILTER_VALUE:F2} to {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                float newValue = currentValue + 1f;
+                ExtraLightColourBTextbox.Text = newValue.ToString("F2", CultureInfo.InvariantCulture);
+            }
+        }
+
+        private void ExtraPlus1LightColourA_Click(object sender, EventArgs e)
+        {
+            if (!ExtraPlus1LightColourA.Enabled) return;
+
+            if (float.TryParse(ExtraLightColourATextbox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float currentValue))
+            {
+                if (currentValue >= MAX_FILTER_VALUE)
+                {
+                    MessageBox.Show($"Value cannot exceed {MAX_FILTER_VALUE:F2}. Valid range is {MIN_FILTER_VALUE:F2} to {MAX_FILTER_VALUE:F2}.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                float newValue = currentValue + 1f;
+                ExtraLightColourATextbox.Text = newValue.ToString("F2", CultureInfo.InvariantCulture);
+            }
+        }
+
+        #endregion
     }
 }

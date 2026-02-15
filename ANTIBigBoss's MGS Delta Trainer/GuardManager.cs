@@ -60,8 +60,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         {
             AobKey = "GuardDamage",Offset = 11872 ,Forward = false, Value = new byte[] { 0x74, 0x0F, 0x0F, 0xB7, 0x42, 0x08, 0x48, 0x83, 0xC2, 0x08, 0x66, 0x85, 0xC0, 0x79, 0xED, 0x33, 0xC0, 0xF3, 0x0F, 0x59, 0xC1, 0x49, 0xBC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF0, 0x3F, 0x66, 0x4D, 0x0F, 0x6E, 0xD4, 0xF3, 0x0F, 0x5A, 0xC0, 0xF2, 0x41, 0x0F, 0x59, 0xC2, 0x90, 0x90, 0x90, 0x90, 0xF2, 0x0F, 0x2C, 0xC0, 0xC3 }, ReadSize = 53, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 11849, Forward = false, Value = new byte[] {  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   }, ReadSize = 8, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 4, Forward = false, Value = 0, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
+            new DamageConfig { AobKey = "GuardDamage", Offset = 4, Forward = false, Value = 9000, ReadSize = 4, Comparer = IntComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 9000, ReadSize = 4, Comparer = IntComparer }
         }
             },
 
@@ -73,8 +73,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         {
             AobKey = "GuardDamage",Offset = 11872 , Forward = false, Value = new byte[] { 0x74, 0x0F, 0x0F, 0xB7, 0x42, 0x08, 0x48, 0x83, 0xC2, 0x08, 0x66, 0x85, 0xC0, 0x79, 0xED, 0x33, 0xC0, 0xF3, 0x0F, 0x59, 0xC1, 0x49, 0xBC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF0, 0x3F, 0x66, 0x4D, 0x0F, 0x6E, 0xD4, 0xF3, 0x0F, 0x5A, 0xC0, 0xF2, 0x41, 0x0F, 0x59, 0xC2, 0x90, 0x90, 0x90, 0x90, 0xF2, 0x0F, 0x2C, 0xC0, 0xC3 }, ReadSize = 53, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 11849, Forward = false, Value = new byte[] {  0x9A, 0x99, 0x99, 0x99, 0x99, 0x99, 0xB9, 0x3F   }, ReadSize = 8, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 4, Forward = false, Value = 0, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
+            new DamageConfig { AobKey = "GuardDamage", Offset = 4, Forward = false, Value = 1, ReadSize = 4, Comparer = IntComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
         }
             },
 
@@ -87,7 +87,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             AobKey = "GuardDamage",Offset = 11872,Forward = false, Value = new byte[] { 0x74, 0x0F, 0x0F, 0xB7, 0x42, 0x08, 0x48, 0x83, 0xC2, 0x08, 0x66, 0x85, 0xC0, 0x79, 0xED, 0x33, 0xC0, 0xF3, 0x0F, 0x59, 0xC1, 0x49, 0xBC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF0, 0x3F, 0x66, 0x4D, 0x0F, 0x6E, 0xD4, 0xF3, 0x0F, 0x5A, 0xC0, 0xF2, 0x41, 0x0F, 0x59, 0xC2, 0x90, 0x90, 0x90, 0x90, 0xF2, 0x0F, 0x2C, 0xC0, 0xC3 }, ReadSize = 53, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 11849, Forward = false, Value = new byte[] {  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xD0, 0x3F   }, ReadSize = 8, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 4, Forward = false, Value = 0, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
         }
             },
 
@@ -100,7 +100,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             AobKey = "GuardDamage",Offset = 11872 ,Forward = false, Value = new byte[] { 0x74, 0x0F, 0x0F, 0xB7, 0x42, 0x08, 0x48, 0x83, 0xC2, 0x08, 0x66, 0x85, 0xC0, 0x79, 0xED, 0x33, 0xC0, 0xF3, 0x0F, 0x59, 0xC1, 0x49, 0xBC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF0, 0x3F, 0x66, 0x4D, 0x0F, 0x6E, 0xD4, 0xF3, 0x0F, 0x5A, 0xC0, 0xF2, 0x41, 0x0F, 0x59, 0xC2, 0x90, 0x90, 0x90, 0x90, 0xF2, 0x0F, 0x2C, 0xC0, 0xC3 }, ReadSize = 53, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 11849, Forward = false, Value = new byte[] {  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE8, 0x3F   }, ReadSize = 8, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 4, Forward = false, Value = 0, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
         }
             },
 
@@ -113,7 +113,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             AobKey = "GuardDamage",Offset = 11872 ,Forward = false, Value = new byte[] { 0x74, 0x0F, 0x0F, 0xB7, 0x42, 0x08, 0x48, 0x83, 0xC2, 0x08, 0x66, 0x85, 0xC0, 0x79, 0xED, 0x33, 0xC0, 0xF3, 0x0F, 0x59, 0xC1, 0x49, 0xBC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF0, 0x3F, 0x66, 0x4D, 0x0F, 0x6E, 0xD4, 0xF3, 0x0F, 0x5A, 0xC0, 0xF2, 0x41, 0x0F, 0x59, 0xC2, 0x90, 0x90, 0x90, 0x90, 0xF2, 0x0F, 0x2C, 0xC0, 0xC3 }, ReadSize = 53, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 11849, Forward = false, Value = new byte[] {  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF0, 0x3F   }, ReadSize = 8, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 4, Forward = false, Value = 0, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
         }
             },
 
@@ -126,7 +126,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             AobKey = "GuardDamage",Offset = 11872 ,Forward = false, Value = new byte[] { 0x74, 0x0F, 0x0F, 0xB7, 0x42, 0x08, 0x48, 0x83, 0xC2, 0x08, 0x66, 0x85, 0xC0, 0x79, 0xED, 0x33, 0xC0, 0xF3, 0x0F, 0x59, 0xC1, 0x49, 0xBC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF0, 0x3F, 0x66, 0x4D, 0x0F, 0x6E, 0xD4, 0xF3, 0x0F, 0x5A, 0xC0, 0xF2, 0x41, 0x0F, 0x59, 0xC2, 0x90, 0x90, 0x90, 0x90, 0xF2, 0x0F, 0x2C, 0xC0, 0xC3 }, ReadSize = 53, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 11849, Forward = false, Value = new byte[] {  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40   }, ReadSize = 8, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 4, Forward = false, Value = 0, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
         }
             },
 
@@ -139,7 +139,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             AobKey = "GuardDamage",Offset = 11872 ,Forward = false, Value = new byte[] { 0x74, 0x0F, 0x0F, 0xB7, 0x42, 0x08, 0x48, 0x83, 0xC2, 0x08, 0x66, 0x85, 0xC0, 0x79, 0xED, 0x33, 0xC0, 0xF3, 0x0F, 0x59, 0xC1, 0x49, 0xBC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF0, 0x3F, 0x66, 0x4D, 0x0F, 0x6E, 0xD4, 0xF3, 0x0F, 0x5A, 0xC0, 0xF2, 0x41, 0x0F, 0x59, 0xC2, 0x90, 0x90, 0x90, 0x90, 0xF2, 0x0F, 0x2C, 0xC0, 0xC3 }, ReadSize = 53, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 11849, Forward = false, Value = new byte[] {  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x24, 0x40   }, ReadSize = 8, Comparer = ByteArrayComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 4, Forward = false, Value = 0, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 397936, Forward = true, Value = 0, ReadSize = 4, Comparer = IntComparer }
         }
             }
         };
@@ -163,9 +163,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             new DamageConfig { AobKey = "GuardDamage", Offset = 2161, Forward = true, Value = 90000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 2179, Forward = true, Value = 90000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 2191, Forward = true, Value = 90000, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 7797, Forward = true, Value = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }, ReadSize = 6, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 102698, Forward = true, Value = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }, ReadSize = 7, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 113777, Forward = true, Value = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }, ReadSize = 6, Comparer = ByteArrayComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 7797, Forward = true, Value = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }, ReadSize = 6, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 102698, Forward = true, Value = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }, ReadSize = 7, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 113777, Forward = true, Value = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }, ReadSize = 6, Comparer = ByteArrayComparer }
         }
             },
             ["VeryStrong"] = new DamageProfile
@@ -175,9 +175,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             new DamageConfig { AobKey = "GuardDamage", Offset = 2161, Forward = true, Value = -2000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 2179, Forward = true, Value = -2000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 2191, Forward = true, Value = -2000, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 7797, Forward = true, Value = new byte[] { 0x89, 0x87, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 102698, Forward = true, Value = new byte[] { 0x44, 0x29, 0xB6, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 7, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 113777, Forward = true, Value = new byte[] { 0x89, 0x8B, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 7797, Forward = true, Value = new byte[] { 0x89, 0x87, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 102698, Forward = true, Value = new byte[] { 0x44, 0x29, 0xB6, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 7, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 113777, Forward = true, Value = new byte[] { 0x89, 0x8B, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
         }
             },
             ["Default"] = new DamageProfile
@@ -187,9 +187,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             new DamageConfig { AobKey = "GuardDamage", Offset = 2161, Forward = true, Value = -20000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 2179, Forward = true, Value = -20000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 2191, Forward = true, Value = -20000, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 7797, Forward = true, Value = new byte[] { 0x89, 0x87, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 102698, Forward = true, Value = new byte[] { 0x44, 0x29, 0xB6, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 7, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 113777, Forward = true, Value = new byte[] { 0x89, 0x8B, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 7797, Forward = true, Value = new byte[] { 0x89, 0x87, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 102698, Forward = true, Value = new byte[] { 0x44, 0x29, 0xB6, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 7, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 113777, Forward = true, Value = new byte[] { 0x89, 0x8B, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
         }
             },
             ["VeryWeak"] = new DamageProfile
@@ -199,9 +199,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             new DamageConfig { AobKey = "GuardDamage", Offset = 2161, Forward = true, Value = -40000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 2179, Forward = true, Value = -40000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 2191, Forward = true, Value = -40000, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 7797, Forward = true, Value = new byte[] { 0x89, 0x87, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 102698, Forward = true, Value = new byte[] { 0x44, 0x29, 0xB6, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 7, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 113777, Forward = true, Value = new byte[] { 0x89, 0x8B, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 7797, Forward = true, Value = new byte[] { 0x89, 0x87, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 102698, Forward = true, Value = new byte[] { 0x44, 0x29, 0xB6, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 7, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 113777, Forward = true, Value = new byte[] { 0x89, 0x8B, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
         }
             },
             ["Oneshot"] = new DamageProfile
@@ -211,9 +211,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             new DamageConfig { AobKey = "GuardDamage", Offset = 2161, Forward = true, Value = -1000000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 2179, Forward = true, Value = -1000000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 2191, Forward = true, Value = -1000000, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 7797, Forward = true, Value = new byte[] { 0x89, 0x87, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 102698, Forward = true, Value = new byte[] { 0x44, 0x29, 0xB6, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 7, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 113777, Forward = true, Value = new byte[] { 0x89, 0x8B, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 7797, Forward = true, Value = new byte[] { 0x89, 0x87, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 102698, Forward = true, Value = new byte[] { 0x44, 0x29, 0xB6, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 7, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 113777, Forward = true, Value = new byte[] { 0x89, 0x8B, 0x48, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
         }
             }
         };
@@ -231,8 +231,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             new DamageConfig { AobKey = "GuardDamage", Offset = 127, Forward = false, Value = 90000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 109, Forward = false, Value = 90000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 97, Forward = false, Value = 90000, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 102286, Forward = true, Value = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }, ReadSize = 6, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 100556, Forward = true, Value = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }, ReadSize = 6, Comparer = ByteArrayComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 102286, Forward = true, Value = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }, ReadSize = 6, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 100556, Forward = true, Value = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }, ReadSize = 6, Comparer = ByteArrayComparer }
         }
             },
             ["VeryStrong"] = new DamageProfile
@@ -242,8 +242,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             new DamageConfig { AobKey = "GuardDamage", Offset = 127, Forward = false, Value = -2000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 109, Forward = false, Value = -2000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 97, Forward = false, Value = -2000, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 102286, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 100556, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 102286, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 100556, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
         }
             },
             ["Default"] = new DamageProfile
@@ -253,8 +253,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             new DamageConfig { AobKey = "GuardDamage", Offset = 127, Forward = false, Value = -20000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 109, Forward = false, Value = -20000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 97, Forward = false, Value = -20000, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 102286, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 100556, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 102286, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 100556, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
         }
             },
             ["VeryWeak"] = new DamageProfile
@@ -264,8 +264,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             new DamageConfig { AobKey = "GuardDamage", Offset = 127, Forward = false, Value = -40000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 109, Forward = false, Value = -40000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 97, Forward = false, Value = -40000, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 102286, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 100556, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 102286, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 100556, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
         }
             },
             ["Oneshot"] = new DamageProfile
@@ -275,8 +275,8 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             new DamageConfig { AobKey = "GuardDamage", Offset = 127, Forward = false, Value = -1000000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 109, Forward = false, Value = -1000000, ReadSize = 4, Comparer = IntComparer },
             new DamageConfig { AobKey = "GuardDamage", Offset = 97, Forward = false, Value = -1000000, ReadSize = 4, Comparer = IntComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 102286, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
-            new DamageConfig { AobKey = "GuardDamage", Offset = 100556, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 102286, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer },
+            //new DamageConfig { AobKey = "GuardDamage", Offset = 100556, Forward = true, Value = new byte[] { 0x29, 0x86, 0x40, 0x01, 0x00, 0x00 }, ReadSize = 6, Comparer = ByteArrayComparer }
         }
             }
         };

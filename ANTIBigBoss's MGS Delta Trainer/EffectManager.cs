@@ -42,7 +42,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         // Reminder: The large range broke the WeaponsForm on Delta Version 1.1.4 find a new one
         public bool IsInfiniteAmmoDisabled()
         {
-            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("PlayerStatusCheck", 336277, false, 5);
+            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("PlayerStatusCheck", 336309, false, 5);
             byte[] noInfiniteAmmoBytes = { 0x66, 0xFF, 0x49, 0x28, 0x48 };
 
             return currentBytes != null && currentBytes.SequenceEqual(noInfiniteAmmoBytes);
@@ -51,19 +51,19 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public bool EnableInfiniteAmmo()
         {
             byte[] infiniteAmmoBytes = { 0x0F, 0x1F, 0x40, 0x00, 0x48 };
-            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336277, false, infiniteAmmoBytes);
+            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336309, false, infiniteAmmoBytes);
         }
 
         public bool DisableInfiniteAmmo()
         {
             byte[] noInfiniteAmmoBytes = { 0x66, 0xFF, 0x49, 0x28, 0x48 };
-            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336277, false, noInfiniteAmmoBytes);
+            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336309, false, noInfiniteAmmoBytes);
         }
 
         // No Reload Methods
         public bool IsNoReloadDisabled()
         {
-            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("PlayerStatusCheck", 336288, false, 7);
+            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("PlayerStatusCheck", 336320, false, 7);
             byte[] noInfiniteAmmoBytes = { 0x66, 0xFF, 0xC8, 0x66, 0x89, 0x41, 0x2C };
 
             return currentBytes != null && currentBytes.SequenceEqual(noInfiniteAmmoBytes);
@@ -72,13 +72,13 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public bool EnableNoReload()
         {
             byte[] infiniteAmmoBytes = { 0x0F, 0x1F, 0x80, 0x00, 0x00, 0x00, 0x00 };
-            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336288, false, infiniteAmmoBytes);
+            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336320, false, infiniteAmmoBytes);
         }
 
         public bool DisableNoReload()
         {
-            byte[] disableNoReloadBytes = { 0x66, 0xFF, 0x49, 0x28, 0x48 };
-            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336288, false, disableNoReloadBytes);
+            byte[] disableNoReloadBytes = { 0x66, 0xFF, 0xC8, 0x66, 0x89, 0x41, 0x2C };
+            return HelperMethods.Instance.WriteMemoryValue("PlayerStatusCheck", 336320, false, disableNoReloadBytes);
         }
 
         #endregion
@@ -107,7 +107,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         public bool IsNoDamageTakenEnabled()
         {
-            byte[] currentByte = HelperMethods.Instance.ReadMemoryBytes("calcuateCamoIndexOffset", 5539, true, 1);
+            byte[] currentByte = HelperMethods.Instance.ReadMemoryBytes("CalculateCamoIndexOffset", 5539, true, 1);
             byte[] noDamageByte = { 0x1 }; // No damage taken
 
             return currentByte != null && currentByte.SequenceEqual(noDamageByte);
@@ -116,13 +116,13 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public bool EnableNoDamageTaken()
         {
             byte[] noDamageByte = { 0x1 };
-            return HelperMethods.Instance.WriteMemoryValue("calcuateCamoIndexOffset", 5539, true, noDamageByte);
+            return HelperMethods.Instance.WriteMemoryValue("CalculateCamoIndexOffset", 5539, true, noDamageByte);
         }
 
         public bool DisableNoDamageTaken()
-        {// 
+        {
             byte[] damageByte = { 0x29 }; // Damage taken
-            return HelperMethods.Instance.WriteMemoryValue("calcuateCamoIndexOffset", 5539, true, damageByte);
+            return HelperMethods.Instance.WriteMemoryValue("CalculateCamoIndexOffset", 5539, true, damageByte);
         }
 
         #endregion
@@ -154,7 +154,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         // Checkbox related methods
         public bool IsPissFilterEnabled()
         {
-            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("FilterInstructions", 226, false, 32);
+            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("FilterInstructions", 16, true, 32);
             byte[] pissFilterOnBytes = { 0xF3, 0x0F, 0x11, 0x9B, 0x00, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x93, 0x04, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x8B, 0x08, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x83, 0x0C, 0x01, 0x00, 0x00 };
 
             return currentBytes != null && currentBytes.SequenceEqual(pissFilterOnBytes);
@@ -163,13 +163,13 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public bool EnablePissFilter()
         {
             byte[] pissFilterOnBytes = { 0xF3, 0x0F, 0x11, 0x9B, 0x00, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x93, 0x04, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x8B, 0x08, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x83, 0x0C, 0x01, 0x00, 0x00 };
-            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 226, false, pissFilterOnBytes);
+            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 16, true, pissFilterOnBytes);
         }
 
         public bool DisablePissFilter()
         {
             byte[] pissFilterOffBytes = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 226, false, pissFilterOffBytes);
+            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 16, true, pissFilterOffBytes);
         }
 
         // Set the value in our form to whatever we want
@@ -238,7 +238,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         public bool IsLightColourEnabled()
         {
-            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("FilterInstructions", 119, false, 32);
+            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("FilterInstructions", 123, true, 32);
             byte[] lightColourOnBytes = { 0xF3, 0x0F, 0x11, 0x9B, 0x10, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x93, 0x14, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x8B, 0x18, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x83, 0x1C, 0x01, 0x00, 0x00 };
 
             return currentBytes != null && currentBytes.SequenceEqual(lightColourOnBytes);
@@ -247,13 +247,13 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public bool EnableLightColour()
         {
             byte[] lightColourOnBytes = { 0xF3, 0x0F, 0x11, 0x9B, 0x10, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x93, 0x14, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x8B, 0x18, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x83, 0x1C, 0x01, 0x00, 0x00 };
-            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 119, false, lightColourOnBytes);
+            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 123, true, lightColourOnBytes);
         }
 
         public bool DisableLightColour()
         {
             byte[] lightColourOffBytes = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 119, false, lightColourOffBytes);
+            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 123, true, lightColourOffBytes);
         }
 
         public bool SetLightColourR(float value)
@@ -318,11 +318,95 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         #endregion
 
+        #region Extra Light Colour Effects
+
+        public bool IsExtraLightColourEnabled()
+        {
+            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("FilterInstructions", 242, true, 32);
+            byte[] extraLightColourOnBytes = { 0xF3, 0x0F, 0x11, 0x9B, 0x20, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x93, 0x24, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x8B, 0x28, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x83, 0x2C, 0x01, 0x00, 0x00 };
+
+            return currentBytes != null && currentBytes.SequenceEqual(extraLightColourOnBytes);
+        }
+
+        public bool EnableExtraLightColour()
+        {
+            byte[] extraLightColourOnBytes = { 0xF3, 0x0F, 0x11, 0x9B, 0x20, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x93, 0x24, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x8B, 0x28, 0x01, 0x00, 0x00, 0xF3, 0x0F, 0x11, 0x83, 0x2C, 0x01, 0x00, 0x00 };
+            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 242, true, extraLightColourOnBytes);
+        }
+
+        public bool DisableExtraLightColour()
+        {
+            byte[] extraLightColourOffBytes = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 242, true, extraLightColourOffBytes);
+        }
+
+        public bool SetExtraLightColourR(float value)
+        {
+            return HelperMethods.Instance.WriteMemoryValue("FilterEffects", 70, true, value);
+        }
+
+        public bool SetExtraLightColourG(float value)
+        {
+            return HelperMethods.Instance.WriteMemoryValue("FilterEffects", 74, true, value);
+        }
+
+        public bool SetExtraLightColourB(float value)
+        {
+            return HelperMethods.Instance.WriteMemoryValue("FilterEffects", 78, true, value);
+        }
+
+        public bool SetExtraLightColourA(float value)
+        {
+            return HelperMethods.Instance.WriteMemoryValue("FilterEffects", 82, true, value);
+        }
+
+        public float GetExtraLightColourValueRFloat() // R
+        {
+            byte[] bytes = HelperMethods.Instance.ReadMemoryBytes("FilterEffects", 70, true, 4);
+            if (bytes != null && bytes.Length == 4)
+            {
+                return BitConverter.ToSingle(bytes, 0);
+            }
+            return 1.0f;
+        }
+
+        public float GetExtraLightColourValueGFloat() // G
+        {
+            byte[] bytes = HelperMethods.Instance.ReadMemoryBytes("FilterEffects", 74, true, 4);
+            if (bytes != null && bytes.Length == 4)
+            {
+                return BitConverter.ToSingle(bytes, 0);
+            }
+            return 1.0f;
+        }
+
+        public float GetExtraLightColourValueBFloat() // B
+        {
+            byte[] bytes = HelperMethods.Instance.ReadMemoryBytes("FilterEffects", 78, true, 4);
+            if (bytes != null && bytes.Length == 4)
+            {
+                return BitConverter.ToSingle(bytes, 0);
+            }
+            return 1.0f;
+        }
+
+        public float GetExtraLightColourValueAFloat() // A
+        {
+            byte[] bytes = HelperMethods.Instance.ReadMemoryBytes("FilterEffects", 82, true, 4);
+            if (bytes != null && bytes.Length == 4)
+            {
+                return BitConverter.ToSingle(bytes, 0);
+            }
+            return 1.0f;
+        }
+
+        #endregion
+
         #region World Lighting
 
         public bool IsWorldLightEnabled()
         {
-            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("FilterInstructions", 2299, true, 32);
+            byte[] currentBytes = HelperMethods.Instance.ReadMemoryBytes("FilterInstructions", 2541, true, 8);
             byte[] worldLightOnBytes = { 0xF3, 0x0F, 0x11, 0x83, 0x6C, 0x02, 0x00, 0x00 };
 
             return currentBytes != null && currentBytes.SequenceEqual(worldLightOnBytes);
@@ -331,13 +415,13 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         public bool EnableWorldLight()
         {
             byte[] worldLightOnBytes = { 0xF3, 0x0F, 0x11, 0x83, 0x6C, 0x02, 0x00, 0x00 };
-            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 2299, true, worldLightOnBytes);
+            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 2541, true, worldLightOnBytes);
         }
 
         public bool DisableWorldLight()
         {
             byte[] worldLightOffBytes = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 2299, true, worldLightOffBytes);
+            return HelperMethods.Instance.WriteMemoryValue("FilterInstructions", 2541, true, worldLightOffBytes);
         }
 
         public bool SetWorldLightBrightness(float value)

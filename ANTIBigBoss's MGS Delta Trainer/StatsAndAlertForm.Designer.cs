@@ -37,18 +37,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatsAndAlertForm));
-            MaxHpTo1 = new Button();
-            Minus100MaxHpValue = new Button();
-            Plus100MaxHpValue = new Button();
             textBox1 = new TextBox();
-            FullStamina30000Value = new Button();
-            SetStaminaToZero = new Button();
-            Minus10000StaminaValue = new Button();
-            Plus10000StaminaValue = new Button();
-            CurrentHpTo1 = new Button();
-            ZeroHP = new Button();
-            Minus100HpValue = new Button();
-            Plus100HpValue = new Button();
             InfiniteCaution = new CheckBox();
             InfiniteAlert = new CheckBox();
             CautionButton = new Button();
@@ -104,52 +93,22 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             MiscFormSwap = new Button();
             InfLifeSnakeCheckBox = new CheckBox();
             GameStatsFormSwap = new Button();
+            SnakeHpTrackBar = new TrackBar();
+            SnakeMaxHpTrackBar = new TrackBar();
+            SnakeStaminaTrackBar = new TrackBar();
+            textBox5 = new TextBox();
+            textBox6 = new TextBox();
+            textBox7 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             LethalGroupBox.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)SnakeHpTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)SnakeMaxHpTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)SnakeStaminaTrackBar).BeginInit();
             SuspendLayout();
-            // 
-            // MaxHpTo1
-            // 
-            MaxHpTo1.BackgroundImage = (Image)resources.GetObject("MaxHpTo1.BackgroundImage");
-            MaxHpTo1.FlatStyle = FlatStyle.Flat;
-            MaxHpTo1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            MaxHpTo1.Location = new Point(13, 323);
-            MaxHpTo1.Name = "MaxHpTo1";
-            MaxHpTo1.Size = new Size(228, 31);
-            MaxHpTo1.TabIndex = 517;
-            MaxHpTo1.Text = "Max HP to 1";
-            MaxHpTo1.UseVisualStyleBackColor = true;
-            MaxHpTo1.Click += MaxHpTo1_Click;
-            // 
-            // Minus100MaxHpValue
-            // 
-            Minus100MaxHpValue.BackgroundImage = (Image)resources.GetObject("Minus100MaxHpValue.BackgroundImage");
-            Minus100MaxHpValue.FlatStyle = FlatStyle.Flat;
-            Minus100MaxHpValue.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            Minus100MaxHpValue.Location = new Point(13, 251);
-            Minus100MaxHpValue.Name = "Minus100MaxHpValue";
-            Minus100MaxHpValue.Size = new Size(228, 31);
-            Minus100MaxHpValue.TabIndex = 516;
-            Minus100MaxHpValue.Text = "Decrease Max Health by 100";
-            Minus100MaxHpValue.UseVisualStyleBackColor = true;
-            Minus100MaxHpValue.Click += Minus100MaxHpValue_Click;
-            // 
-            // Plus100MaxHpValue
-            // 
-            Plus100MaxHpValue.BackgroundImage = (Image)resources.GetObject("Plus100MaxHpValue.BackgroundImage");
-            Plus100MaxHpValue.FlatStyle = FlatStyle.Flat;
-            Plus100MaxHpValue.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            Plus100MaxHpValue.Location = new Point(13, 215);
-            Plus100MaxHpValue.Name = "Plus100MaxHpValue";
-            Plus100MaxHpValue.Size = new Size(228, 31);
-            Plus100MaxHpValue.TabIndex = 515;
-            Plus100MaxHpValue.Text = "Increase Max HP by 100";
-            Plus100MaxHpValue.UseVisualStyleBackColor = true;
-            Plus100MaxHpValue.Click += Plus100MaxHpValue_Click;
             // 
             // textBox1
             // 
@@ -165,110 +124,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             textBox1.Size = new Size(227, 34);
             textBox1.TabIndex = 514;
             textBox1.TextAlign = HorizontalAlignment.Center;
-            // 
-            // FullStamina30000Value
-            // 
-            FullStamina30000Value.BackgroundImage = (Image)resources.GetObject("FullStamina30000Value.BackgroundImage");
-            FullStamina30000Value.FlatStyle = FlatStyle.Flat;
-            FullStamina30000Value.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            FullStamina30000Value.Location = new Point(13, 467);
-            FullStamina30000Value.Name = "FullStamina30000Value";
-            FullStamina30000Value.Size = new Size(228, 31);
-            FullStamina30000Value.TabIndex = 511;
-            FullStamina30000Value.Text = "Max Stamina";
-            FullStamina30000Value.UseVisualStyleBackColor = true;
-            FullStamina30000Value.Click += FullStamina30000Value_Click;
-            // 
-            // SetStaminaToZero
-            // 
-            SetStaminaToZero.BackgroundImage = (Image)resources.GetObject("SetStaminaToZero.BackgroundImage");
-            SetStaminaToZero.FlatStyle = FlatStyle.Flat;
-            SetStaminaToZero.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            SetStaminaToZero.Location = new Point(13, 359);
-            SetStaminaToZero.Name = "SetStaminaToZero";
-            SetStaminaToZero.Size = new Size(228, 31);
-            SetStaminaToZero.TabIndex = 510;
-            SetStaminaToZero.Text = "0 Stamina";
-            SetStaminaToZero.UseVisualStyleBackColor = true;
-            SetStaminaToZero.Click += SetStaminaToZero_Click;
-            // 
-            // Minus10000StaminaValue
-            // 
-            Minus10000StaminaValue.BackgroundImage = (Image)resources.GetObject("Minus10000StaminaValue.BackgroundImage");
-            Minus10000StaminaValue.FlatStyle = FlatStyle.Flat;
-            Minus10000StaminaValue.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            Minus10000StaminaValue.Location = new Point(13, 431);
-            Minus10000StaminaValue.Name = "Minus10000StaminaValue";
-            Minus10000StaminaValue.Size = new Size(228, 31);
-            Minus10000StaminaValue.TabIndex = 509;
-            Minus10000StaminaValue.Text = "Decrease Stamina by 100";
-            Minus10000StaminaValue.UseVisualStyleBackColor = true;
-            Minus10000StaminaValue.Click += Minus10000StaminaValue_Click;
-            // 
-            // Plus10000StaminaValue
-            // 
-            Plus10000StaminaValue.BackgroundImage = (Image)resources.GetObject("Plus10000StaminaValue.BackgroundImage");
-            Plus10000StaminaValue.FlatStyle = FlatStyle.Flat;
-            Plus10000StaminaValue.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            Plus10000StaminaValue.Location = new Point(13, 395);
-            Plus10000StaminaValue.Name = "Plus10000StaminaValue";
-            Plus10000StaminaValue.Size = new Size(228, 31);
-            Plus10000StaminaValue.TabIndex = 508;
-            Plus10000StaminaValue.Text = "Increase Stamina";
-            Plus10000StaminaValue.UseVisualStyleBackColor = true;
-            Plus10000StaminaValue.Click += Plus10000StaminaValue_Click;
-            // 
-            // CurrentHpTo1
-            // 
-            CurrentHpTo1.BackgroundImage = (Image)resources.GetObject("CurrentHpTo1.BackgroundImage");
-            CurrentHpTo1.FlatStyle = FlatStyle.Flat;
-            CurrentHpTo1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            CurrentHpTo1.Location = new Point(13, 287);
-            CurrentHpTo1.Name = "CurrentHpTo1";
-            CurrentHpTo1.Size = new Size(228, 31);
-            CurrentHpTo1.TabIndex = 506;
-            CurrentHpTo1.Text = "Current HP to 1";
-            CurrentHpTo1.UseVisualStyleBackColor = true;
-            CurrentHpTo1.Click += CurrentHpTo1_Click;
-            // 
-            // ZeroHP
-            // 
-            ZeroHP.BackgroundImage = (Image)resources.GetObject("ZeroHP.BackgroundImage");
-            ZeroHP.FlatStyle = FlatStyle.Flat;
-            ZeroHP.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            ZeroHP.Location = new Point(13, 109);
-            ZeroHP.Name = "ZeroHP";
-            ZeroHP.Size = new Size(227, 31);
-            ZeroHP.TabIndex = 505;
-            ZeroHP.Text = "Kill Snake (0 HP)";
-            ZeroHP.UseVisualStyleBackColor = true;
-            ZeroHP.Click += ZeroHP_Click;
-            // 
-            // Minus100HpValue
-            // 
-            Minus100HpValue.BackgroundImage = (Image)resources.GetObject("Minus100HpValue.BackgroundImage");
-            Minus100HpValue.FlatStyle = FlatStyle.Flat;
-            Minus100HpValue.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            Minus100HpValue.Location = new Point(13, 180);
-            Minus100HpValue.Name = "Minus100HpValue";
-            Minus100HpValue.Size = new Size(228, 31);
-            Minus100HpValue.TabIndex = 504;
-            Minus100HpValue.Text = "Decrease Health by 100";
-            Minus100HpValue.UseVisualStyleBackColor = true;
-            Minus100HpValue.Click += Minus100HpValue_Click;
-            // 
-            // Plus100HpValue
-            // 
-            Plus100HpValue.BackgroundImage = (Image)resources.GetObject("Plus100HpValue.BackgroundImage");
-            Plus100HpValue.FlatStyle = FlatStyle.Flat;
-            Plus100HpValue.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            Plus100HpValue.Location = new Point(13, 145);
-            Plus100HpValue.Name = "Plus100HpValue";
-            Plus100HpValue.Size = new Size(228, 31);
-            Plus100HpValue.TabIndex = 503;
-            Plus100HpValue.Text = "Increase HP by 100";
-            Plus100HpValue.UseVisualStyleBackColor = true;
-            Plus100HpValue.Click += Plus100HpValue_Click;
             // 
             // InfiniteCaution
             // 
@@ -454,7 +309,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             textBox3.BorderStyle = BorderStyle.None;
             textBox3.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             textBox3.ForeColor = SystemColors.ActiveCaptionText;
-            textBox3.Location = new Point(254, 60);
+            textBox3.Location = new Point(361, 60);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.PlaceholderText = "Serious Injuries";
@@ -470,7 +325,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             BurnInjury.FlatStyle = FlatStyle.Flat;
             BurnInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             BurnInjury.ImageAlign = ContentAlignment.TopCenter;
-            BurnInjury.Location = new Point(254, 100);
+            BurnInjury.Location = new Point(361, 100);
             BurnInjury.Name = "BurnInjury";
             BurnInjury.Size = new Size(228, 31);
             BurnInjury.TabIndex = 537;
@@ -485,7 +340,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             CutInjury.FlatStyle = FlatStyle.Flat;
             CutInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             CutInjury.ImageAlign = ContentAlignment.TopCenter;
-            CutInjury.Location = new Point(254, 139);
+            CutInjury.Location = new Point(361, 139);
             CutInjury.Name = "CutInjury";
             CutInjury.Size = new Size(228, 31);
             CutInjury.TabIndex = 538;
@@ -500,7 +355,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             GunshotRifleInjury.FlatStyle = FlatStyle.Flat;
             GunshotRifleInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             GunshotRifleInjury.ImageAlign = ContentAlignment.TopCenter;
-            GunshotRifleInjury.Location = new Point(254, 178);
+            GunshotRifleInjury.Location = new Point(361, 178);
             GunshotRifleInjury.Name = "GunshotRifleInjury";
             GunshotRifleInjury.Size = new Size(228, 31);
             GunshotRifleInjury.TabIndex = 539;
@@ -515,7 +370,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             GunshotShotgunInjury.FlatStyle = FlatStyle.Flat;
             GunshotShotgunInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             GunshotShotgunInjury.ImageAlign = ContentAlignment.TopCenter;
-            GunshotShotgunInjury.Location = new Point(254, 218);
+            GunshotShotgunInjury.Location = new Point(361, 218);
             GunshotShotgunInjury.Name = "GunshotShotgunInjury";
             GunshotShotgunInjury.Size = new Size(228, 31);
             GunshotShotgunInjury.TabIndex = 540;
@@ -530,7 +385,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             BoneFractureInjury.FlatStyle = FlatStyle.Flat;
             BoneFractureInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             BoneFractureInjury.ImageAlign = ContentAlignment.TopCenter;
-            BoneFractureInjury.Location = new Point(254, 258);
+            BoneFractureInjury.Location = new Point(361, 258);
             BoneFractureInjury.Name = "BoneFractureInjury";
             BoneFractureInjury.Size = new Size(228, 31);
             BoneFractureInjury.TabIndex = 541;
@@ -545,7 +400,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             BulletBeeInjury.FlatStyle = FlatStyle.Flat;
             BulletBeeInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             BulletBeeInjury.ImageAlign = ContentAlignment.TopCenter;
-            BulletBeeInjury.Location = new Point(254, 299);
+            BulletBeeInjury.Location = new Point(361, 299);
             BulletBeeInjury.Name = "BulletBeeInjury";
             BulletBeeInjury.Size = new Size(228, 31);
             BulletBeeInjury.TabIndex = 542;
@@ -560,7 +415,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             LeechesInjury.FlatStyle = FlatStyle.Flat;
             LeechesInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             LeechesInjury.ImageAlign = ContentAlignment.TopCenter;
-            LeechesInjury.Location = new Point(254, 340);
+            LeechesInjury.Location = new Point(361, 340);
             LeechesInjury.Name = "LeechesInjury";
             LeechesInjury.Size = new Size(228, 31);
             LeechesInjury.TabIndex = 543;
@@ -575,7 +430,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             ArrowInjury.FlatStyle = FlatStyle.Flat;
             ArrowInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             ArrowInjury.ImageAlign = ContentAlignment.TopCenter;
-            ArrowInjury.Location = new Point(254, 381);
+            ArrowInjury.Location = new Point(361, 381);
             ArrowInjury.Name = "ArrowInjury";
             ArrowInjury.Size = new Size(228, 31);
             ArrowInjury.TabIndex = 544;
@@ -590,7 +445,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             TranqInjury.FlatStyle = FlatStyle.Flat;
             TranqInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             TranqInjury.ImageAlign = ContentAlignment.TopCenter;
-            TranqInjury.Location = new Point(254, 423);
+            TranqInjury.Location = new Point(361, 423);
             TranqInjury.Name = "TranqInjury";
             TranqInjury.Size = new Size(228, 31);
             TranqInjury.TabIndex = 545;
@@ -605,7 +460,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             VenomPoisoningInjury.FlatStyle = FlatStyle.Flat;
             VenomPoisoningInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             VenomPoisoningInjury.ImageAlign = ContentAlignment.TopCenter;
-            VenomPoisoningInjury.Location = new Point(254, 465);
+            VenomPoisoningInjury.Location = new Point(361, 465);
             VenomPoisoningInjury.Name = "VenomPoisoningInjury";
             VenomPoisoningInjury.Size = new Size(228, 31);
             VenomPoisoningInjury.TabIndex = 546;
@@ -620,7 +475,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             FoodPoisoningInjury.FlatStyle = FlatStyle.Flat;
             FoodPoisoningInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             FoodPoisoningInjury.ImageAlign = ContentAlignment.TopCenter;
-            FoodPoisoningInjury.Location = new Point(254, 506);
+            FoodPoisoningInjury.Location = new Point(361, 506);
             FoodPoisoningInjury.Name = "FoodPoisoningInjury";
             FoodPoisoningInjury.Size = new Size(228, 31);
             FoodPoisoningInjury.TabIndex = 547;
@@ -635,7 +490,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             CommonColdInjury.FlatStyle = FlatStyle.Flat;
             CommonColdInjury.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             CommonColdInjury.ImageAlign = ContentAlignment.TopCenter;
-            CommonColdInjury.Location = new Point(254, 548);
+            CommonColdInjury.Location = new Point(361, 548);
             CommonColdInjury.Name = "CommonColdInjury";
             CommonColdInjury.Size = new Size(228, 31);
             CommonColdInjury.TabIndex = 548;
@@ -650,7 +505,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             RemoveInjuries.FlatStyle = FlatStyle.Flat;
             RemoveInjuries.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             RemoveInjuries.ImageAlign = ContentAlignment.TopCenter;
-            RemoveInjuries.Location = new Point(254, 590);
+            RemoveInjuries.Location = new Point(361, 590);
             RemoveInjuries.Name = "RemoveInjuries";
             RemoveInjuries.Size = new Size(228, 31);
             RemoveInjuries.TabIndex = 550;
@@ -1033,11 +888,11 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             InfLifeSnakeCheckBox.BackgroundImage = (Image)resources.GetObject("InfLifeSnakeCheckBox.BackgroundImage");
             InfLifeSnakeCheckBox.FlatStyle = FlatStyle.Flat;
             InfLifeSnakeCheckBox.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
-            InfLifeSnakeCheckBox.Location = new Point(14, 504);
+            InfLifeSnakeCheckBox.Location = new Point(361, 631);
             InfLifeSnakeCheckBox.Name = "InfLifeSnakeCheckBox";
-            InfLifeSnakeCheckBox.Size = new Size(226, 31);
+            InfLifeSnakeCheckBox.Size = new Size(228, 31);
             InfLifeSnakeCheckBox.TabIndex = 865;
-            InfLifeSnakeCheckBox.Text = "Snake Infinite Life";
+            InfLifeSnakeCheckBox.Text = "Auto Heal Injuries";
             InfLifeSnakeCheckBox.UseVisualStyleBackColor = true;
             InfLifeSnakeCheckBox.CheckedChanged += InfLifeSnakeCheckBox_CheckedChanged;
             // 
@@ -1057,12 +912,93 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             GameStatsFormSwap.UseVisualStyleBackColor = true;
             GameStatsFormSwap.Click += GameStatsFormSwap_Click;
             // 
+            // SnakeHpTrackBar
+            // 
+            SnakeHpTrackBar.BackColor = Color.FromArgb(156, 156, 124);
+            SnakeHpTrackBar.Cursor = Cursors.NoMoveHoriz;
+            SnakeHpTrackBar.Location = new Point(14, 164);
+            SnakeHpTrackBar.Name = "SnakeHpTrackBar";
+            SnakeHpTrackBar.Size = new Size(330, 45);
+            SnakeHpTrackBar.TabIndex = 911;
+            SnakeHpTrackBar.Scroll += SnakeHpTrackBar_Scroll;
+            // 
+            // SnakeMaxHpTrackBar
+            // 
+            SnakeMaxHpTrackBar.BackColor = Color.FromArgb(156, 156, 124);
+            SnakeMaxHpTrackBar.Cursor = Cursors.NoMoveHoriz;
+            SnakeMaxHpTrackBar.Location = new Point(14, 255);
+            SnakeMaxHpTrackBar.Name = "SnakeMaxHpTrackBar";
+            SnakeMaxHpTrackBar.Size = new Size(330, 45);
+            SnakeMaxHpTrackBar.TabIndex = 912;
+            SnakeMaxHpTrackBar.Scroll += SnakeMaxHpTrackBar_Scroll;
+            // 
+            // SnakeStaminaTrackBar
+            // 
+            SnakeStaminaTrackBar.BackColor = Color.FromArgb(156, 156, 124);
+            SnakeStaminaTrackBar.Cursor = Cursors.NoMoveHoriz;
+            SnakeStaminaTrackBar.Location = new Point(14, 353);
+            SnakeStaminaTrackBar.Name = "SnakeStaminaTrackBar";
+            SnakeStaminaTrackBar.Size = new Size(330, 45);
+            SnakeStaminaTrackBar.TabIndex = 913;
+            SnakeStaminaTrackBar.Scroll += SnakeStaminaTrackBar_Scroll;
+            // 
+            // textBox5
+            // 
+            textBox5.BackColor = SystemColors.ActiveCaptionText;
+            textBox5.BorderStyle = BorderStyle.None;
+            textBox5.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            textBox5.ForeColor = SystemColors.ActiveCaptionText;
+            textBox5.Location = new Point(14, 124);
+            textBox5.Multiline = true;
+            textBox5.Name = "textBox5";
+            textBox5.PlaceholderText = "Snake's HP";
+            textBox5.ReadOnly = true;
+            textBox5.Size = new Size(227, 34);
+            textBox5.TabIndex = 914;
+            textBox5.TextAlign = HorizontalAlignment.Center;
+            // 
+            // textBox6
+            // 
+            textBox6.BackColor = SystemColors.ActiveCaptionText;
+            textBox6.BorderStyle = BorderStyle.None;
+            textBox6.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            textBox6.ForeColor = SystemColors.ActiveCaptionText;
+            textBox6.Location = new Point(14, 215);
+            textBox6.Multiline = true;
+            textBox6.Name = "textBox6";
+            textBox6.PlaceholderText = "Snake's Max HP";
+            textBox6.ReadOnly = true;
+            textBox6.Size = new Size(227, 34);
+            textBox6.TabIndex = 915;
+            textBox6.TextAlign = HorizontalAlignment.Center;
+            // 
+            // textBox7
+            // 
+            textBox7.BackColor = SystemColors.ActiveCaptionText;
+            textBox7.BorderStyle = BorderStyle.None;
+            textBox7.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            textBox7.ForeColor = SystemColors.ActiveCaptionText;
+            textBox7.Location = new Point(14, 313);
+            textBox7.Multiline = true;
+            textBox7.Name = "textBox7";
+            textBox7.PlaceholderText = "Snake's Stamina";
+            textBox7.ReadOnly = true;
+            textBox7.Size = new Size(227, 34);
+            textBox7.TabIndex = 916;
+            textBox7.TextAlign = HorizontalAlignment.Center;
+            // 
             // StatsAndAlertForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1166, 707);
+            Controls.Add(textBox7);
+            Controls.Add(textBox6);
+            Controls.Add(textBox5);
+            Controls.Add(SnakeStaminaTrackBar);
+            Controls.Add(SnakeMaxHpTrackBar);
+            Controls.Add(SnakeHpTrackBar);
             Controls.Add(GameStatsFormSwap);
             Controls.Add(InfLifeSnakeCheckBox);
             Controls.Add(MiscFormSwap);
@@ -1101,18 +1037,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             Controls.Add(CautionButton);
             Controls.Add(textBox2);
             Controls.Add(AlertButton);
-            Controls.Add(MaxHpTo1);
-            Controls.Add(Minus100MaxHpValue);
-            Controls.Add(Plus100MaxHpValue);
             Controls.Add(textBox1);
-            Controls.Add(FullStamina30000Value);
-            Controls.Add(SetStaminaToZero);
-            Controls.Add(Minus10000StaminaValue);
-            Controls.Add(Plus10000StaminaValue);
-            Controls.Add(CurrentHpTo1);
-            Controls.Add(ZeroHP);
-            Controls.Add(Minus100HpValue);
-            Controls.Add(Plus100HpValue);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "StatsAndAlertForm";
             Text = "ANTIBigBoss's MGS3 Delta Trainer - Snake's Stats & Alert Form";
@@ -1126,24 +1051,15 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)SnakeHpTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)SnakeMaxHpTrackBar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)SnakeStaminaTrackBar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button MaxHpTo1;
-        private Button Minus100MaxHpValue;
-        private Button Plus100MaxHpValue;
         private TextBox textBox1;
-        private Button FullStamina30000Value;
-        private Button SetStaminaToZero;
-        private Button Minus10000StaminaValue;
-        private Button Plus10000StaminaValue;
-        private Button CurrentHpTo1;
-        private Button ZeroHP;
-        private Button Minus100HpValue;
-        private Button Plus100HpValue;
         private CheckBox InfiniteCaution;
         private CheckBox InfiniteAlert;
         private Button CautionButton;
@@ -1198,5 +1114,11 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private Button MiscFormSwap;
         private CheckBox InfLifeSnakeCheckBox;
         private Button GameStatsFormSwap;
+        private TrackBar SnakeHpTrackBar;
+        private TrackBar SnakeMaxHpTrackBar;
+        private TrackBar SnakeStaminaTrackBar;
+        private TextBox textBox5;
+        private TextBox textBox6;
+        private TextBox textBox7;
     }
 }

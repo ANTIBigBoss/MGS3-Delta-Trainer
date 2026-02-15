@@ -23,6 +23,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             InitializeProgressBars();
             InitializeCheckboxStates();
             InitializeMonitoringTimer();
+            InitializeSnakeTrackBars();
         }
 
         private void InitializeFormEvents()
@@ -63,6 +64,18 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             continuousMonitoringTimer.Interval = 1000;
             continuousMonitoringTimer.Tick += ContinuousMonitoringTimer_Tick;
             continuousMonitoringTimer.Start();
+        }
+
+        private void InitializeSnakeTrackBars()
+        {
+            SnakeHpTrackBar.Minimum = 0;
+            SnakeHpTrackBar.Maximum = 400;
+
+            SnakeMaxHpTrackBar.Minimum = 1;
+            SnakeMaxHpTrackBar.Maximum = 400;
+
+            SnakeStaminaTrackBar.Minimum = 0;
+            SnakeStaminaTrackBar.Maximum = 30000;
         }
 
         private async void StatsAndAlertForm_Load(object sender, EventArgs e)
@@ -189,70 +202,31 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         }
 
         #region Snake's Health and Stamina
-        // Health and Stamina along with pointer logic
-        private void Plus100HpValue_Click(object sender, EventArgs e)
+
+        private void SnakeHpTrackBar_Scroll(object sender, EventArgs e)
         {
-            PointerEffectManager.ModifyHealthOrStamina(Constants.HealthType.CurrentHealth, 100);
+            PointerEffectManager.ModifyHealthOrStamina(
+                Constants.HealthType.CurrentHealth,
+                SnakeHpTrackBar.Value,
+                true);
         }
 
-        private void Minus100HpValue_Click(object sender, EventArgs e)
+        private void SnakeMaxHpTrackBar_Scroll(object sender, EventArgs e)
         {
-            PointerEffectManager.ModifyHealthOrStamina(Constants.HealthType.CurrentHealth, -100);
+            PointerEffectManager.ModifyHealthOrStamina(
+                Constants.HealthType.MaxHealth,
+                SnakeMaxHpTrackBar.Value,
+                true);
         }
 
-        private void CurrentHpTo1_Click(object sender, EventArgs e)
+        private void SnakeStaminaTrackBar_Scroll(object sender, EventArgs e)
         {
-            PointerEffectManager.ModifyHealthOrStamina(Constants.HealthType.CurrentHealth, 1, true);
-            LoggingManager.Instance.Log("Snake's health has been set to 1");
+            PointerEffectManager.ModifyHealthOrStamina(
+                Constants.HealthType.Stamina,
+                SnakeStaminaTrackBar.Value,
+                true);
         }
 
-        private void MaxHpTo1_Click(object sender, EventArgs e)
-        {
-            PointerEffectManager.ModifyHealthOrStamina(Constants.HealthType.MaxHealth, 1, true);
-            LoggingManager.Instance.Log("Snake's Max health has been set to 1");
-        }
-
-        private void ZeroHP_Click(object sender, EventArgs e)
-        {
-            PointerEffectManager.ModifyHealthOrStamina(Constants.HealthType.CurrentHealth, 0, true);
-            LoggingManager.Instance.Log("Snake's health has been set to 0");
-        }
-
-        private void SetStaminaToZero_Click(object sender, EventArgs e)
-        {
-            PointerEffectManager.ModifyHealthOrStamina(Constants.HealthType.Stamina, 0, true);
-            LoggingManager.Instance.Log("Snake's stamina has been set to 0");
-        }
-
-        private void Plus10000StaminaValue_Click(object sender, EventArgs e)
-        {
-            PointerEffectManager.ModifyHealthOrStamina(Constants.HealthType.Stamina, 7500);
-            LoggingManager.Instance.Log("Snake has gained 10000 stamina");
-        }
-
-        private void Minus10000StaminaValue_Click(object sender, EventArgs e)
-        {
-            PointerEffectManager.ModifyHealthOrStamina(Constants.HealthType.Stamina, -7500);
-            LoggingManager.Instance.Log("Snake has lost 10000 stamina");
-        }
-
-        private void FullStamina30000Value_Click(object sender, EventArgs e)
-        {
-            PointerEffectManager.ModifyHealthOrStamina(Constants.HealthType.Stamina, 30000, true);
-            LoggingManager.Instance.Log("Snake has gained the max 30000 stamina");
-        }
-
-        private void Plus100MaxHpValue_Click(object sender, EventArgs e)
-        {
-            PointerEffectManager.ModifyHealthOrStamina(Constants.HealthType.MaxHealth, 100);
-            LoggingManager.Instance.Log("Snake has gained 100 health");
-        }
-
-        private void Minus100MaxHpValue_Click(object sender, EventArgs e)
-        {
-            PointerEffectManager.ModifyHealthOrStamina(Constants.HealthType.MaxHealth, -100);
-            LoggingManager.Instance.Log("Snake has lost 100 health");
-        }
         #endregion
 
         #region Alert Statuses
@@ -601,6 +575,6 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             InfLifeSnakeCheckBox.Checked = isInstantRecoveryEnabled && isNoDamageTakenEnabled;
         }
 
-        
+
     }
 }

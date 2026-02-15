@@ -13,13 +13,13 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
         private static LoggingManager instance;
         private static readonly object padlock = new object();
         private static string logFolderPath;
-        private static string logFileName = "ANTIBigBoss's MGS Delta Trainer_Log.txt";
+        private static string logFileName = "Delta Trainer Log.txt";
         private static string logPath;
 
         static LoggingManager()
         {
             string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string appLogFolder = "MGS Mod Manager and Trainer Logs";
+            string appLogFolder = "MGS Mod Manager and Trainer";
 
             logFolderPath = Path.Combine(documentsFolder, appLogFolder);
             logPath = Path.Combine(logFolderPath, logFileName);
@@ -76,71 +76,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 Debug.WriteLine($"An error occurred while trying to log: {ex.Message}");
             }
         }
-
-        /// <summary>
-        /// This is mostly to help me stay ahead of game updates so I can log the <br></br>
-        /// offset differences quicker if anything gets shifted around and help <br></br>
-        /// me implement things into Crowd Control quicker
-        /// </summary>         
-        public void LogAOBAddresses()
-        {
-            Process process = GetMGS3Process();
-            if (process == null)
-            {
-                LoggingManager.Instance.Log("Process not found.");
-                return;
-            }
-
-            IntPtr processHandle = OpenGameProcess(process);
-            if (processHandle == IntPtr.Zero)
-            {
-                LoggingManager.Instance.Log("Failed to open process.");
-                return;
-            }
-
-            IntPtr baseAddress = process.MainModule.BaseAddress;
-            long moduleSize = process.MainModule.ModuleMemorySize;
-
-            foreach (var aobEntry in AobManager.AOBs)
-            {
-                string name = aobEntry.Key;
-                if (string.IsNullOrEmpty(name)) continue;
-
-                byte[] pattern = aobEntry.Value.Pattern;
-                string mask = aobEntry.Value.Mask;
-
-                var foundAddresses =
-                    MemoryManager.Instance.ScanForAllAobInstances(processHandle, baseAddress, moduleSize, pattern,
-                        mask);
-                if (foundAddresses.Count > 0)
-                {
-                    foreach (var address in foundAddresses)
-                    {
-                        long offset = address.ToInt64() - baseAddress.ToInt64();
-                        byte[] aobBytes = new byte[pattern.Length];
-                        if (NativeMethods.ReadProcessMemory(processHandle, address, aobBytes, (uint)aobBytes.Length,
-                                out _))
-                        {
-                            string aobHexString = BitConverter.ToString(aobBytes).Replace("-", " ");
-                            LoggingManager.Instance.Log(
-                                $"{name}: Instance found at: {address.ToString("X")}, MGSDelta-Win64-Shipping.exe+{offset:X}, AOB: {aobHexString}");
-                        }
-                        else
-                        {
-                            LoggingManager.Instance.Log(
-                                $"{name}: Instance found at: {address.ToString("X")}, MGSDelta-Win64-Shipping.exe+{offset:X}, but failed to read AOB bytes.");
-                        }
-                    }
-                }
-                else
-                {
-                    LoggingManager.Instance.Log($"{name}: AOB not found.");
-                }
-            }
-
-            NativeMethods.CloseHandle(processHandle);
-        }
-       
+        
         public static void LogAllWeaponsAndItemsAddresses()
         {
             LoggingManager.Instance.Log("Logging all weapons and items' addresses...");
@@ -166,11 +102,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                 IntPtr weaponAddress = WeaponAddresses.GetAddress(weapon.Index, MemoryManager.Instance);
                 if (weaponAddress == IntPtr.Zero) continue;
 
-                // Calculate the offset relative to the base address
                 long relativeOffset = weaponAddress.ToInt64() - baseAddress.ToInt64();
                 LoggingManager.Instance.Log($"{weapon.Name} - Address: {weaponAddress.ToString("X")} MGSDelta-Win64-Shipping.exe+{relativeOffset:X}");
 
-                // These methods in WeaponAddresses already handle the offset calculations
                 if (weapon.MaxAmmoOffset != IntPtr.Zero)
                 {
                     IntPtr maxAmmoAddress = WeaponAddresses.GetMaxAmmoAddress(weaponAddress);
@@ -226,50 +160,127 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             MemoryManager.NativeMethods.CloseHandle(processHandle);
             LoggingManager.Instance.Log("Finished logging weapons and items' addresses.");
         }
-       
+
         /// <summary>
         /// Indepth logging with Memory Addresses and the Values at time of method call
         /// </summary>
         public void LogAllMemoryAddressesandValues()
         {
             var LogMemoryAddresses = new Dictionary<string, Func<string>>()
-            {
+        {
 
-                { "Vomit Fire", () => GetVomitFireValue() },
-                { "Alert Status", () => ReadAlertStatus() },
-                { "Guard Invincibility", () => GetInvincibilityAddressValue() },
-                { "Most Weapons Damage", () => GetMostWeaponsDamageValue() },
-                { "Flame Damage", () => GetFlameDamageValue() },
-                { "Throat Slit Damage", () => GetThroatSlitDamageValue() },
-                { "SleepTimer1", () => GetSleepTimer1Value() },
-                { "SleepTimer2", () => GetSleepTimer2Value() },
-                { "SleepTimer3", () => GetSleepTimer3Value() },
-                { "Sleep Drain", () => GetSleepDrainValue() },
-                { "Tranq Head", () => GetTranqHeadshotValue() },
-                { "Tranq Body", () => GetTranqBodyShotValue() },
-                { "StunTimer1", () => GetStunTimer1Value() },
-                { "StunTimer2", () => GetStunTimer2Value() },
-                { "StunTimer3", () => GetStunTimer3Value() },
-                { "Stun Punch", () => GetStunPunchValue() },
-                { "Stun Grenade", () => GetStunGrenadeValue() },
-                { "Giant Damage Array", () => GetGiantDamageArrayValue() },
-                { "Damage Multiplier", () => GetDamageMultiValue() },
-                { "GetSnakeNoDamageValue", () => GetSnakeNoDamageValue() },
-                { "GetSnakeInstantLifeRecoveryValue", () => GetSnakeInstantLifeRecoveryValue() },
-                { "GetRestartStageValue", () => GetRestartStageValue() },
-                { "GetFilterValue1", () => GetFilterValue1() },
-                { "GetFilterColor1", () => GetFilterColor1() },
-                { "GetFilterLight1", () => GetFilterLight1() },
-                { "GetFilterLight2", () => GetFilterLight2() },
-                { "GetFilterAccurateColorR", () => GetFilterAccurateColorR() },
-                { "GetFilterAccurateColorG", () => GetFilterAccurateColorG() },
-                { "GetFilterAccurateColorB", () => GetFilterAccurateColorB() },
-                { "GetFilterSkyLight", () => GetFilterSkyLight() },
-                { "Fog Array", () => GetFogArrayValue() },
-                { "Delta Piss Filter to NOP", () => GetPissFilterNopValue() },
-                { "RGB Filter to NOP", () => GetRgbNopValue() },
-                { "RGB2 Filter to NOP", () => GetRgb2NopValue() },
-                { "Light of Sky to NOP", () => GetSkyLightNopValue() },
+        #region AOBs from AobManager
+        { "Fog AOB", () => FogAob() },
+        { "FilterInstructions AOB", () => FilterInstructionsAob() },
+        { "LeftBandana AOB", () => LeftBandanaAob() },
+        { "RightBandana AOB", () => RightBandanaAob() },
+        { "CalculateCamoIndexOffset AOB", () => CalculateCamoIndexOffsetAob() },
+        { "CamoIndexInstructions AOB", () => CamoIndexInstructionsAob() },
+        { "GunReloadInstructions AOB", () => GunReloadInstructionsAob() },
+        { "GuardRegion AOB", () => GuardRegionAob() },
+        { "PlayerStatusCheck AOB", () => PlayerStatusCheckAob() },
+        { "SnakeDamageMulti AOB", () => SnakeDamageMultiAob() },
+        { "ActualSnakeDamageMulti AOB", () => ActualSnakeDamageMultiAob() },
+        { "SnakeLifeRecovery AOB", () => SnakeLifeRecoveryAob() },
+        { "CamoIndexHudInstructions AOB", () => CamoIndexHudInstructionsAob() },
+        { "PissFilterInstructions AOB", () => PissFilterInstructionsAob() },
+        { "GuardDamage AOB", () => GuardDamageAob() },
+        { "AlertMemoryRegion AOB", () => AlertMemoryRegionAob() },
+        { "WeaponsTable AOB", () => WeaponsTableAob() },
+        { "ItemsTable AOB", () => ItemsTableAob() },
+        { "PissFilter AOB", () => PissFilterAob() },
+        { "CodeCaveLocation AOB", () => CodeCaveLocationAob() },
+        { "Alphabet AOB", () => AlphabetAob() },
+        { "FilterEffects AOB", () => FilterEffectsAob() },
+        { "StageRestart AOB", () => StageRestartAob() },
+        #endregion
+
+        #region Snake's Various States
+
+        { "Snake Vomits or Set on Fire", () => VomitFireValue() },
+        { "Snake has a Quick Sleep", () => SnakeQuickSleepValue() },
+        { "Snake No Damage", () => SnakeNoDamageValue() },
+        { "Snake Instant Life Recovery", () => SnakeInstantLifeRecoveryValue() },
+        { "Snake's Tactical Reload Instructions", () => TacticalReloadValue() },
+        { "Snake's Manual Reload Instructions", () => ManualReloadValue() },
+        { "Snake's Camo Index Hud Instructions", () => CamoIndexHudInstructions() },
+        { "Snake's Camo Index Instructions", () => CamoIndexInstructions() },
+        { "Snake's Camo Index Instructions Backup", () => CamoIndexInstructionsBackup() },
+        { "Snake's Camo Index Value", () => CamoIndexValue() },
+        { "Snake's Damage Multi Instructions", () => SnakeDamageMultiInstructions() },
+        { "Snake's Damage Multi Instructions Backup", () => SnakeDamageMultiInstructionsBackup() },
+        { "Snake's Damage Multi Instructions Backup 2", () => SnakeDamageMultiInstructionsBackup2() },
+        { "Snake's Damage Multi Value", () => SnakeDamageMultiValue() },
+        #endregion
+
+        #region GuardDamage Related Methods
+
+        { "Guard Invincibility", () => GetInvincibilityAddressValue() },
+        { "Most Weapons Damage", () => GetMostWeaponsDamageValue() },
+        { "Flame Damage", () => GetFlameDamageValue() },
+        { "Throat Slit Damage", () => GetThroatSlitDamageValue() },
+        { "Sleep Timer 1", () => GetSleepTimer1Value() },
+        { "Sleep Timer 2", () => GetSleepTimer2Value() },
+        { "Sleep Timer 3", () => GetSleepTimer3Value() },
+        { "Sleep Drain", () => GetSleepDrainValue() },
+        { "Tranq Head", () => GetTranqHeadshotValue() },
+        { "Tranq Body", () => GetTranqBodyShotValue() },
+        { "Stun Timer 1", () => GetStunTimer1Value() },
+        { "Stun Timer 2", () => GetStunTimer2Value() },
+        { "Stun Timer 3", () => GetStunTimer3Value() },
+        { "Stun Punch", () => GetStunPunchValue() },
+        { "Stun Grenade", () => GetStunGrenadeValue() },
+        { "Giant Damage Array", () => GetGiantDamageArrayValue() },
+        { "Damage Multiplier", () => GetDamageMultiValue() },
+
+        #endregion
+
+        #region Alert Status and Timers
+
+        { "Alert Status", () => AlertStatus() },
+        { "Alert Timer", () => AlertTimer() },
+        { "Evasion Timer", () => EvasionTimer() },
+        { "Caution Timer", () => CautionTimer() },
+
+                #endregion
+
+        #region Filter Effects
+
+        { "Fog Status", () => FogStatus() },
+
+        { "Piss Filter Status", () => PissFilterStatus() },
+        { "Filter R Value", () => FilterRValue() },
+        { "Filter G Value", () => FilterGValue() },
+        { "Filter B Value", () => FilterBValue() },
+        { "Filter A Value", () => FilterAValue() },
+        
+        // Light Colour Effects
+        { "Light Colour Status", () => LightColourStatus() },
+        { "Light Colour R Value", () => LightColourRValue() },
+        { "Light Colour G Value", () => LightColourGValue() },
+        { "Light Colour B Value", () => LightColourBValue() },
+        { "Light Colour A Value", () => LightColourAValue() },
+
+        // Extra Light Colour Effects
+        { "Extra Light Colour Status", () => ExtraLightColourStatus() },
+        { "Extra Light Colour R Value", () => ExtraLightColourRValue() },
+        { "Extra Light Colour G Value", () => ExtraLightColourGValue() },
+        { "Extra Light Colour B Value", () => ExtraLightColourBValue() },
+        { "Extra Light Colour A Value", () => ExtraLightColourAValue() },
+        
+        // World Lighting
+        { "World Light Status", () => WorldLightStatus() },
+        { "World Light Brightness", () => WorldLightBrightnessValue() },
+
+        #endregion
+
+        #region Utility
+
+                { "RestartStageValue", () => RestartStageValue() },
+        { "Code Cave Locator", () => CodeCaveLocator() },
+
+        #endregion
+
             };
 
             foreach (var reading in LogMemoryAddresses)
@@ -281,15 +292,197 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         #region String Methods for LogAllMemoryAddressesAndValues
 
-        public string GetVomitFireValue()
+        #region AOBs From AobManager
+
+        public string FogAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("Fog", 0, false, 15, DataType.ByteArray);
+        }
+
+        public string FilterInstructionsAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 0, false, 32, DataType.ByteArray);
+        }
+
+        public string LeftBandanaAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("LeftBandana", 0, false, 12, DataType.ByteArray);
+        }
+
+        public string RightBandanaAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("RightBandana", 0, false, 12, DataType.ByteArray);
+        }
+
+        public string CalculateCamoIndexOffsetAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("CalculateCamoIndexOffset", 0, false, 24, DataType.ByteArray);
+        }
+
+        public string CamoIndexInstructionsAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("CamoIndexInstructions", 0, false, 16, DataType.ByteArray);
+        }
+
+        public string GunReloadInstructionsAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GunReloadInstructions", 0, false, 10, DataType.ByteArray);
+        }
+
+        public string GuardRegionAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardRegion", 0, false, 8, DataType.ByteArray);
+        }
+
+        public string PlayerStatusCheckAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("PlayerStatusCheck", 0, false, 16, DataType.ByteArray);
+        }
+
+        public string SnakeDamageMultiAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("SnakeDamageMulti", 0, false, 16, DataType.ByteArray);
+        }
+
+        public string ActualSnakeDamageMultiAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("ActualSnakeDamageMulti", 0, false, 64, DataType.ByteArray);
+        }
+
+        public string SnakeLifeRecoveryAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("SnakeLifeRecovery", 0, false, 8, DataType.ByteArray);
+        }
+
+        public string CamoIndexHudInstructionsAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("CamoIndexHudInstructions", 0, false, 16, DataType.ByteArray);
+        }
+
+        public string PissFilterInstructionsAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("PissFilterInstructions", 0, false, 10, DataType.ByteArray);
+        }
+
+        public string GuardDamageAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardDamage", 0, false, 11, DataType.ByteArray);
+        }
+
+        public string AlertMemoryRegionAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("AlertMemoryRegion", 0, false, 10, DataType.ByteArray);
+        }
+
+        public string WeaponsTableAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("WeaponsTable", 0, false, 6, DataType.ByteArray);
+        }
+
+        public string ItemsTableAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("ItemsTable", 0, false, 6, DataType.ByteArray);
+        }
+
+        public string PissFilterAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("PissFilter", 0, false, 12, DataType.ByteArray);
+        }
+
+        public string CodeCaveLocationAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("CodeCaveLocation", 0, false, 15, DataType.ByteArray);
+        }
+
+        public string AlphabetAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("Alphabet", 0, false, 10, DataType.ByteArray);
+        }
+
+        public string FilterEffectsAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 0, false, 34, DataType.ByteArray);
+        }
+
+        public string StageRestartAob()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("StageRestart", 0, false, 33, DataType.ByteArray);
+        }
+
+        #endregion
+
+        #region Snake's Various States
+
+        public string VomitFireValue()
         {
             return HelperMethods.Instance.ReadMemoryValue("ItemsTable", 30234, true, 1, DataType.UInt8);
         }
 
-        public string ReadAlertStatus()
+        public string SnakeQuickSleepValue()
         {
-            return HelperMethods.Instance.ReadMemoryValue("AlertMemoryRegion", (int)AlertOffsets.AlertTriggerAdd, true, 1, DataType.UInt8);
+            return HelperMethods.Instance.ReadMemoryValue("ItemsTable", 30235, true, 1, DataType.UInt8);
         }
+        
+        public string SnakeNoDamageValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("CalculateCamoIndexOffset", 5571, true, 1, DataType.ByteArray);
+        }
+
+        public string SnakeInstantLifeRecoveryValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("SnakeLifeRecovery", 4, false, 1, DataType.ByteArray);
+        }
+
+        public string TacticalReloadValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GunReloadInstructions", 24, false, 4, DataType.ByteArray);
+        }
+
+        public string ManualReloadValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GunReloadInstructions", 2378, false, 4, DataType.ByteArray);
+        }
+
+        public string CamoIndexHudInstructions()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("CamoIndexHudInstructions", 16, true, 6, DataType.ByteArray);
+        }
+
+        public string CamoIndexInstructions()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("CamoIndexInstructions", 32, true, 6, DataType.ByteArray);
+        }
+
+        public string CamoIndexInstructionsBackup()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("GuardRegion", 78311, false, 6, DataType.ByteArray);
+        }
+
+        public string CamoIndexValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("CamoIndexHudInstructions", 180, false, 4, DataType.Int32);
+        }
+
+        public string SnakeDamageMultiInstructions()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("SnakeDamageMulti", 16, true, 65, DataType.ByteArray);
+        }
+
+        public string SnakeDamageMultiInstructionsBackup()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("ActualSnakeDamageMulti", 0, true, 65, DataType.ByteArray);
+        }
+
+        public string SnakeDamageMultiInstructionsBackup2()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("CalculateCamoIndexOffset", 5505, true, 65, DataType.ByteArray);
+        }
+        public string SnakeDamageMultiValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("SnakeDamageMulti", 18, true, 1, DataType.Int8);
+        }
+
+        #endregion
 
         #region GuardDamage Related Methods
 
@@ -380,126 +573,153 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
 
         #endregion
 
-        public string GetRestartStageValue()
+        #region Alert Status and Timers
+
+        public string AlertStatus()
         {
-            return HelperMethods.Instance.ReadMemoryValue("StageRestart", 64, true, 1, DataType.ByteArray);
+            return HelperMethods.Instance.ReadMemoryValue("AlertMemoryRegion", 78, true, 1, DataType.UInt8);
         }
 
-        public string GetSnakeNoDamageValue()
+        public string AlertTimer()
         {
-            return HelperMethods.Instance.ReadMemoryValue("calcuateCamoIndexOffset", 5538, false, 4, DataType.ByteArray);
+            return HelperMethods.Instance.ReadMemoryValue("AlertMemoryRegion", 6, false, 2, DataType.UInt16);
         }
 
-        public string GetSnakeInstantLifeRecoveryValue()
+        public string EvasionTimer()
         {
-            return HelperMethods.Instance.ReadMemoryValue("SnakeLifeRecovery", 4, false, 1, DataType.ByteArray);
+            return HelperMethods.Instance.ReadMemoryValue("AlertMemoryRegion", 18, true, 2, DataType.UInt16);
         }
 
-        public string GetFogArrayValue()
+        public string CautionTimer()
         {
-            return HelperMethods.Instance.ReadMemoryValue("Fog", 4, false, 4, DataType.ByteArray);
-        }
-
-        // Filter Values
-        // Piss Filter
-        public string GetPissFilterNopValue()
-        {
-            return HelperMethods.Instance.ReadMemoryValue("Fog", 5402346, true, 32, DataType.ByteArray);
-        }
-        public string GetFilterValue1()// R?
-        {
-            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 38, true, 4, DataType.Float);
-        }
-        public string GetFilterValue2()// G?
-        {
-            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 42, true, 4, DataType.Float);
-        }
-        public string GetFilterValue3()// B?
-        {
-            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 46, true, 4, DataType.Float);
-        }
-        public string GetFilterValue4()// A?
-        {
-            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 50, true, 4, DataType.Float);
-        }
-
-
-        // Should look into if this is part of piss filter or the first RGB NOP
-        public string GetFilterColor1()
-        {
-            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 54, true, 4, DataType.ByteArray);
-        }
-
-        public string GetFilterLight1()
-        {
-            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 66, true, 4, DataType.ByteArray);
-        }
-
-        public string GetFilterLight2()
-        {
-            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 82, true, 4, DataType.ByteArray);
-        }
-
-        // RGB Might be Floats since all are 4 bytes away from each other?
-        public string GetFilterAccurateColorR()
-        {
-            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 70, true, 4, DataType.ByteArray);
-        }
-
-        public string GetFilterAccurateColorG()
-        {
-            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 74, true, 4, DataType.ByteArray);
-        }
-
-        public string GetFilterAccurateColorB()
-        {
-            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 78, true, 4, DataType.ByteArray);
-        }
-
-        public string GetFilterSkyLight()
-        {
-            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 402, true, 8, DataType.ByteArray);
-        }
-
-        // Functions to NOP for filter effects
-        
-        public string GetRgbNopValue()
-        {
-            return HelperMethods.Instance.ReadMemoryValue("Fog", 5402453, true, 32, DataType.ByteArray);
-        }
-
-        public string GetRgb2NopValue()
-        {
-            return HelperMethods.Instance.ReadMemoryValue("Fog", 5402572, true, 32, DataType.ByteArray);
-        }
-
-        public string GetSkyLightNopValue()
-        {
-            return HelperMethods.Instance.ReadMemoryValue("Fog", 5404871, true, 8, DataType.ByteArray);
+            return HelperMethods.Instance.ReadMemoryValue("AlertMemoryRegion", 2, false, 2, DataType.UInt16);
         }
 
         #endregion
 
+        #region Filter Effects
+
+        public string FogStatus()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("Fog", 4, false, 4, DataType.ByteArray);
+        }
+
+        #region Piss Filter
+        public string PissFilterStatus()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 16, true, 32, DataType.ByteArray);
+        }
+
+        public string FilterRValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 38, true, 4, DataType.Float);
+        }
+
+        public string FilterGValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 42, true, 4, DataType.Float);
+        }
+
+        public string FilterBValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 46, true, 4, DataType.Float);
+        }
+
+        public string FilterAValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 50, true, 4, DataType.Float);
+        }
+
+        #endregion
+
+        #region Light Colour Effects
+
+        public string LightColourStatus()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 123, true, 32, DataType.ByteArray);
+        }
+
+        public string LightColourRValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 54, true, 4, DataType.Float);
+        }
+
+        public string LightColourGValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 58, true, 4, DataType.Float);
+        }
+
+        public string LightColourBValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 62, true, 4, DataType.Float);
+        }
+
+        public string LightColourAValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 66, true, 4, DataType.Float);
+        }
+
+        #endregion
+
+        #region Light Colour Effects
+
+        public string ExtraLightColourStatus()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 242, true, 32, DataType.ByteArray);
+        }
+
+        public string ExtraLightColourRValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 70, true, 4, DataType.Float);
+        }
+
+        public string ExtraLightColourGValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 74, true, 4, DataType.Float);
+        }
+
+        public string ExtraLightColourBValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 78, true, 4, DataType.Float);
+        }
+
+        public string ExtraLightColourAValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 82, true, 4, DataType.Float);
+        }
+
+        #endregion
+
+        #region World Lighting
+
+        public string WorldLightStatus()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterInstructions", 2299, true, 8, DataType.ByteArray);
+        }
+
+        public string WorldLightBrightnessValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("FilterEffects", 402, true, 4, DataType.Float);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Utility
+
+        public string RestartStageValue()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("StageRestart", 64, true, 1, DataType.ByteArray);
+        }
+
+        public string CodeCaveLocator()
+        {
+            return HelperMethods.Instance.ReadMemoryValue("CodeCaveLocation", 114, true, 1065, DataType.ByteArray);
+        }
+
+        #endregion
+
+        #endregion
     }
 }
-
-/* Button to implement later to locate the log file/folder
-
-   private void btnOpenLogFolder_Click(object sender, EventArgs e)
-   {
-       // Use the Process.Start method to open the log folder in File Explorer
-       try
-       {
-           Process.Start(new ProcessStartInfo
-           {
-               FileName = LoggingManager.LogFolderPath,
-               UseShellExecute = true,
-               Verb = "open"
-           });
-       }
-       catch (Exception ex)
-       {
-           MessageBox.Show($"Failed to open log folder: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-       }
-   }
-*/

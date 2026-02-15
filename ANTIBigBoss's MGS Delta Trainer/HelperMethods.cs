@@ -771,11 +771,22 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                         default: diffVal = 30; break;
                     }
 
-                    if (!TimeSpan.TryParseExact(playTimeBox.Text, "hh\\:mm\\:ss", null, out TimeSpan newTime))
+                    string[] timeParts = playTimeBox.Text.Split(':');
+                    if (timeParts.Length != 3)
                     {
                         CustomMessageBox("Invalid PlayTime. Use HH:MM:SS format.", "Input Error");
                         return;
                     }
+
+                    if (!int.TryParse(timeParts[0], out int hours) || hours < 0 ||
+                        !int.TryParse(timeParts[1], out int minutes) || minutes < 0 || minutes > 59 ||
+                        !int.TryParse(timeParts[2], out int seconds) || seconds < 0 || seconds > 59)
+                    {
+                        CustomMessageBox("Invalid PlayTime values. Hours must be >= 0, minutes/seconds 0-59.", "Input Error");
+                        return;
+                    }
+
+                    TimeSpan newTime = new TimeSpan(hours, minutes, seconds);
                     uint frames = (uint)newTime.TotalSeconds * 60;
 
                     bool CheckUshortLimit(TextBox tb, string fieldName, out ushort val)
@@ -786,9 +797,9 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
                             CustomMessageBox($"{fieldName} must be a number.", "Input Error");
                             return false;
                         }
-                        if (result > 9999)
+                        if (result > 32000)
                         {
-                            CustomMessageBox($"{fieldName} cannot exceed 9999.", "Input Error");
+                            CustomMessageBox($"{fieldName} cannot exceed 32000.", "Input Error");
                             return false;
                         }
                         val = result;

@@ -202,7 +202,7 @@ namespace ANTIBigBoss_s_MGS_Delta_Trainer
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "ANTIBigBoss's MGS3 Delta Trainer - Main Menu - Version 1.0.0.6";
+            Text = "ANTIBigBoss's MGS3 Delta Trainer - Main Menu - Version 1.0.0.9";
             Load += MainMenuForm_Load;
             ResumeLayout(false);
         }
